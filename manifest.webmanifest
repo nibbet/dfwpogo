@@ -15,7 +15,7 @@
 
   // Display of the app. 
   //This could be "standalone", "fullscreen", "minimal-ui" or "browser"
-  "display": "standalone", 
+  "display": "fullscreen", 
   
   // The possible icons to display. Make sure to change the src URL,
   // the type and the size to your needs. If the size isn't correct, 

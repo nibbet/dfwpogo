@@ -5,7 +5,7 @@ html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   background-color: #fff;
-  padding: 2em;
+
   background: url(../img/icon.png) 95% 95% no-repeat;
   background-size: 20vh;
 }
