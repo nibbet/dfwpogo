@@ -9,7 +9,7 @@ var APP_PREFIX = 'dfwpogo_';
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_00';
+var VERSION = 'version_01';
 
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -17,5 +17,9 @@ var URLS = [
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
   `${GHPATH}/styles.css`,
-  `${GHPATH}/js/app.js`
+  `${GHPATH}/js/app.js`,
+  `${GHPATH}/img/dmaxdrill.jpg`,
+  `${GHPATH}/img/lugia.jpeg`,
+  `${GHPATH}/img/msal.jpeg`,
+  `${GHPATH}/img/necrozma.jpeg`
 ]
