@@ -7,7 +7,7 @@
 
   // Scope and start URL - these need to change to yours
   "scope": "/dfwpogo/",
-  "start_url": "/dfwpogo/",
+  "start_url": "/dfwpogo/?standalone=true",
 
   // colours of the app as displayed in the installer
   "background_color": "#ffffff",
@@ -15,7 +15,8 @@
 
   // Display of the app. 
   //This could be "standalone", "fullscreen", "minimal-ui" or "browser"
-  "display": "standalone", 
+  "display": "standalone",
+
   
   // The possible icons to display. Make sure to change the src URL,
   // the type and the size to your needs. If the size isn't correct, 
