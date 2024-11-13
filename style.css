@@ -92,6 +92,19 @@ body {
   .lightbox .target *:first-child, .lightbox .target *:last-child {
     flex: 0 0 50px;
   }
+  
+  @media (display-mode: standalone) {
+    body {
+      background-color: #f0f0f0; /* Light grey background for standalone mode */
+    }
+  }
+  
+  @media (display-mode: fullscreen) {
+    body {
+      background-color: #000000; /* Black background for fullscreen mode */
+    }
+  }
+  
 }
 .lightbox .target .content {
   transform: scale(0.9);
