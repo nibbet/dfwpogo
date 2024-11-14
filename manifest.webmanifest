@@ -6,7 +6,7 @@
   "start_url": "/dfwpogo/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "display": "standalone", 
+  "display": "fullscreen", 
   "icons": [
       {
         "src": "/dfwpogo/img/icon.png",
