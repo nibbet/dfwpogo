@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFW POGO</title>
+  <link rel="canonical" href="https://nibbet.github.io/dfwpogo/" />
+  <link rel="manifest" href="file:///Users/trivera/Documents/GitHub/DFWPOGO2/dfwpogo/manifest.webmanifest">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/0786c5feec.css" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+  
+  
+</head>
+<body>
+  <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register (
+        '/dfwpogo/sw.js',
+        {scope: '/dfwpogo/'}
+      )
+    }
+  </script>
+  
+  <div class="thumbs">
+    <a href="#target1"><img src='img/lugia.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
+    <a href="#target2"><img src='img/msal.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
+    <a href="#target3"><img src='img/necrozma.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ0MDQ&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
+  </div>
+  
+  <div class="lightbox">
+    <div class="target" id="target1">
+      <span>
+        <!-- spacer to keep content centered in the flex container -->
+      </span>
+      <div class="content">
+        <img src='img/lugia.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=85' alt=''>
+      </div>
+      <a href="#target2" class="fas fa-chevron-right nav" title="next"></a>
+    </div>
+    <div class="target" id="target2">
+      <a href="#target1" class="fas fa-chevron-left nav" title="previous"></a>
+      <div class="content"><img src='img/msal.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=85' alt=''></div>
+      <a href="#target3" class="fas fa-chevron-right nav" title="next"></a>
+    </div>
+    <div class="target" id="target3">
+      <a href="#target2" class="fas fa-chevron-left nav" title="previous"></a>
+      <div class="content"><img src='img/necrozma.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ0MDQ&ixlib=rb-4.0.3&q=85' alt=''></div>
+      <span>
+        <!-- spacer to keep content centered in the flex container -->
+      </span>
+    </div>
+    <a href="#!" class="fas fa-times close nav"></a>
+  </div>
+  <!-- partial -->
+
+    …
+
+</body>
+</html>
