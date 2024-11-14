@@ -4,8 +4,8 @@
   "description": "DFW POGO Progressive Web App",
   "scope": "/dfwpogo/",
   "start_url": "/dfwpogo/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#000000",
+  "theme_color": #000000",
   "display": "fullscreen", 
   "icons": [
       {
