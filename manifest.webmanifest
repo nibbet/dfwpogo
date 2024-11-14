@@ -7,7 +7,7 @@
 
   // Scope and start URL - these need to change to yours
   "scope": "/dfwpogo/",
-  "start_url": "/dfwpogo/?standalone=true",
+  "start_url": "http://nibbet.github.io/dfwpogo/?standalone=true",
 
   // colours of the app as displayed in the installer
   "background_color": "#ffffff",
