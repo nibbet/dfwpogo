@@ -6,8 +6,8 @@
   "description": "DFW POGO Web App",
 
   // Scope and start URL - these need to change to yours
-  "scope": "/dfwpogo/",
-  "start_url": "http://nibbet.github.io/dfwpogo/?standalone=true",
+  "scope": "/",
+  "start_url": "http://nibbet.github.io/dfwpogo/",
 
   // colours of the app as displayed in the installer
   "background_color": "#ffffff",
