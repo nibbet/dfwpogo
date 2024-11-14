@@ -1,6 +1,6 @@
 {
   "name": "DFW POGO",
-  "short_name": "DFW POGO",
+  "short_name": "DFWPOGO",
   "description": "DFW POGO Progressive Web App",
   "scope": "/dfwpogo/",
   "start_url": "/dfwpogo/",
