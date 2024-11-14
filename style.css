@@ -4,12 +4,19 @@ html, body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  background-color: #fff;
+  background-color: #000;
 
   background: url(../img/icon.png) 95% 95% no-repeat;
   background-size: 20vh;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(img/bkgrnd.png?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ3MzM&ixlib=rb-4.0.3&q=85);
+  background-size: cover;
+}
 
 .thumbs {
   display: flex;
@@ -89,16 +96,11 @@ html, body {
   @media (display-mode: standalone) {
     body {
       background-color: #000000; /* Light grey background for standalone mode */
-      
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-image: url(img/bkgrnd.png?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ3MzM&ixlib=rb-4.0.3&q=85);
-        background-size: cover;
-        
-        
-      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url(img/bkgrnd.png?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ3MzM&ixlib=rb-4.0.3&q=85);
+      background-size: cover;
     }
   }
   
