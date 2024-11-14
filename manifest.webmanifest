@@ -1,12 +1,12 @@
 {
   "name": "DFW POGO",
-  "short_name": "DfWPGO",
+  "short_name": "DFWPGO",
   "description": "DFW POGO Progressive Web App",
   "scope": "/dfwpogo/",
   "start_url": "/dfwpogo/",
   "background_color": "#000000",
-  "theme_color": #000000",
-  "display": "fullscreen", 
+  "theme_color": "#000000",
+  "display": "standalone", 
   "icons": [
       {
         "src": "/dfwpogo/img/icon.png",
