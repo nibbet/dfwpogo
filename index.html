@@ -5,22 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DFW POGO</title>
   <link rel="canonical" href="https://nibbet.github.io/dfwpogo/" />
-  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="manifest" href="/dfwpogo/manifest.webmanifest">
   <link rel="stylesheet" href="https://kit.fontawesome.com/0786c5feec.css" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+  
   
   
 </head>
 <body>
-  <script>
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register (
-        '/sw.js',
-        {scope: '/'}
-      )
-    }
-  </script>
-  
+
   <div class="thumbs">
     <a href="#target1"><img src='img/lugia.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
     <a href="#target2"><img src='img/msal.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
@@ -51,9 +43,17 @@
     </div>
     <a href="#!" class="fas fa-times close nav"></a>
   </div>
-  <!-- partial -->
-
-    …
+  
+  <!--scrip for service worker -->
+  <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register (
+        '/sw.js',
+        {scope: '/dfwpogo/'}
+      )
+    }
+  </script>
+  
 
 </body>
 </html>
