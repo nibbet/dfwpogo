@@ -9,7 +9,7 @@
   "display": "standalone", 
   "icons": [
       {
-        "src": "/dfwpogo/img/Icon.png",
+        "src": "/dfwpogo/img/icon.png",
         "type": "image/png",
         "sizes": "700x700"
       }
