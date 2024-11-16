@@ -18,8 +18,8 @@ var URLS = [
   `${GHPATH}/index.html`,
   `${GHPATH}/styles.css`,
   `${GHPATH}/js/app.js`,
-  `${GHPATH}/img/dmaxdrill.jpg`,
-  `${GHPATH}/img/lugia.jpeg`,
-  `${GHPATH}/img/msal.jpeg`,
-  `${GHPATH}/img/necrozma.jpeg`
+  `${GHPATH}/img/1.jpeg`,
+  `${GHPATH}/img/2.jpeg`,
+  `${GHPATH}/img/3.jpeg`,
+  `${GHPATH}/img/4.jpeg`
 ]
