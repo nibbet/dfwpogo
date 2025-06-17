@@ -171,7 +171,7 @@
     Created for DFW Trainers | Pokémon GO Fest 2025
   </footer>
 
-  <script>
+   <script>
     function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
       const buttons = document.querySelectorAll('.tab-button');
@@ -179,6 +179,12 @@
       buttons.forEach(btn => btn.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       event.target.classList.add('active');
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('Service Worker registered!', reg))
+        .catch(err => console.log('Service Worker registration failed:', err));
     }
   </script>
 </body>
