@@ -1,66 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DFW POGO</title>
-  <link rel="canonical" href="https://nibbet.github.io/dfwpogo/" />
-  <link rel="manifest" href="/dfwpogo/manifest.webmanifest">
-  <link rel="stylesheet" href="https://kit.fontawesome.com/0786c5feec.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
-  
-  
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon GO Fest 2025 - Schedule</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5faff;
+      color: #333;
+    }
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    main {
+      padding: 1em;
+      max-width: 800px;
+      margin: auto;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 1em 0;
+    }
+    .tab-button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      margin: 0 0.25em;
+      cursor: pointer;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab-button.active {
+      background: #005f99;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      padding: 1em;
+      border-radius: 0 0 4px 4px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    h2 {
+      color: #007acc;
+    }
+    .time-block {
+      background: #e6f2ff;
+      border-left: 4px solid #007acc;
+      padding: 0.5em;
+      margin-bottom: 0.75em;
+      border-radius: 6px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      padding: 1em;
+    }
+    details {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      margin-top: 0.5em;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    ul {
+      padding-left: 1.2em;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>DFW Area Pokémon GO Fest 2025</h1>
+    <p>June 28 & 29</p>
+  </header>
 
-  <div class="thumbs">
-    <a href="#target1"><img src='img/4.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
-    <a href="#target2"><img src='img/1.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
-    <a href="#target3"><img src='img/2.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ0MDQ&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
-    <a href="#target4"><img src='img/3.jpeg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ0MDQ&ixlib=rb-4.0.3&q=80&w=400' alt=''></a>
-  </div>
-  
-  <div class="lightbox">
-    <div class="target" id="target1">
-      <span>
-        <!-- spacer to keep content centered in the flex container -->
-      </span>
-      <div class="content">
-        <img src='img/4.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=85' alt=''>
-      </div>
-      <a href="#target2" class="fas fa-chevron-right nav" title="next"></a>
+  <main>
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('day1')">Day 1 – June 28</button>
+      <button class="tab-button" onclick="showTab('day2')">Day 2 – June 29</button>
     </div>
-    <div class="target" id="target2">
-      <a href="#target1" class="fas fa-chevron-left nav" title="previous"></a>
-      <div class="content"><img src='img/1.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=85' alt=''></div>
-      <a href="#target2" class="fas fa-chevron-right nav" title="next"></a>
+
+    <div id="day1" class="tab-content active">
+      <h2>Klyde Warren Park</h2>
+      <h2>🎮 In-Game Schedule</h2>
+      <details open><summary>Habitat Rotations</summary>
+        <ul>
+          <li>10–11 AM: Moonless Volcano</li>
+          <li>11 AM–12 PM: Galvanic Dojo</li>
+          <li>12–1 PM: Hypnotic Tundra</li>
+          <li>1–2 PM: Fae Swamp</li>
+          <li>2–3 PM: Moonless Volcano</li>
+          <li>3–4 PM: Galvanic Dojo</li>
+          <li>4–5 PM: Hypnotic Tundra</li>
+          <li>5–6 PM: Fae Swamp</li>
+        </ul>
+      </details>
+      <details><summary>Featured Pokémon & Bonuses</summary>
+        <ul>
+          <li>Encounter Volcanion (ticket required)</li>
+          <li>Shiny Carbink, Skiddo, Klefki, Frigibax</li>
+          <li>8-hour Party Play boost, 1-hour Lures</li>
+          <li>Surprise Snapshot encounters</li>
+          <li>Hourly Global Challenges</li>
+        </ul>
+      </details>
+
+      <h2>📍 On-Site Schedule</h2>
+      <div class="time-block"><strong>10:00 AM</strong> – Arrive, start gameplay, group meetup</div>
+      <div class="time-block"><strong>12:00 PM</strong> – Grab lunch at park food trucks</div>
+      <div class="time-block"><strong>1:00 – 4:00 PM</strong> – Continue hunting, trading, and raiding</div>
+      <div class="time-block"><strong>4:00 – 6:00 PM</strong> – Final rotation loop & wrap-up</div>
+      <div class="time-block"><strong>6:00 PM</strong> – GO Fest ends, enjoy the park & rest</div>
+      <div class="time-block"><strong>7:00 – 10:00 PM</strong> – 🎆 Independence Day Celebration & Fireworks</div>
     </div>
-    <div class="target" id="target3">
-      <a href="#target3" class="fas fa-chevron-left nav" title="previous"></a>
-      <div class="content"><img src='img/2.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTMyMjM&ixlib=rb-4.0.3&q=85' alt=''></div>
-      <a href="#target4" class="fas fa-chevron-right nav" title="next"></a>
+
+    <div id="day2" class="tab-content">
+    <h2>Klyde Warren Park</h2>
+      <h2>🎮 In-Game Schedule</h2>
+      <details open><summary>Ultra Unlock Bonuses</summary>
+        <ul>
+          <li>Special bonuses & spawn surprises (based on global event)</li>
+          <li>More raids, shiny rates may increase</li>
+          <li>Additional timed research may unlock</li>
+        </ul>
+      </details>
+      <details><summary>Day 2 Highlights</summary>
+        <ul>
+          <li>Raid-focused gameplay</li>
+          <li>Increased rare Pokémon encounters</li>
+          <li>Extra trades and special trades</li>
+        </ul>
+      </details>
+
+      <h2>📍 On-Site Schedule</h2>
+      <div class="time-block"><strong>10:00 AM</strong> – Day 2 kick-off & meet back up</div>
+      <div class="time-block"><strong>11:00 AM – 2:00 PM</strong> – Raid trains and shiny hunting</div>
+      <div class="time-block"><strong>2:00 PM – 4:00 PM</strong> – Community photo ops, giveaways</div>
+      <div class="time-block"><strong>4:00 PM – 6:00 PM</strong> – Final trades and farewell loop</div>
     </div>
-    <div class="target" id="target4">
-      <a href="#target3" class="fas fa-chevron-left nav" title="previous"></a>
-      <div class="content"><img src='img/3.jpeg?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODE0OTQ0MDQ&ixlib=rb-4.0.3&q=85' alt=''></div>
-      <span>
-        <!-- spacer to keep content centered in the flex container -->
-      </span>
-    </div>
-    <a href="#!" class="fas fa-times close nav"></a>
-  </div>
-  
-  <!--scrip for service worker -->
+  </main>
+
+  <footer>
+    Created for DFW Trainers | Pokémon GO Fest 2025
+  </footer>
+
   <script>
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register (
-        '/sw.js',
-        {scope: '/dfwpogo/'}
-      )
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
     }
   </script>
-  
-
 </body>
 </html>
