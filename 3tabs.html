@@ -17,11 +17,10 @@
   </header>
 
   <main>
-    <div class="tabs" role="tablist">
-      <button class="tab-button active" onclick="showTab('info', event)" aria-selected="true">Information</button>
-      <button class="tab-button" onclick="showTab('day1', event)" aria-selected="true">Day 1 <BR> June 28</button>
-      <button class="tab-button" onclick="showTab('day2', event)" aria-selected="false">Day 2 <BR> June 29</button>
-      
+    <div class="tabs" role="tablist" aria-label="Event Tabs">
+      <button class="tab-button active" onclick="showTab('info', event)" role="tab" aria-selected="true">Information</button>
+      <button class="tab-button" onclick="showTab('day1', event)" role="tab" aria-selected="false">Day 1 <br> June 28</button>
+      <button class="tab-button" onclick="showTab('day2', event)" role="tab" aria-selected="false">Day 2 <br> June 29</button>
     </div>
 
 <!--day info-->
@@ -392,19 +391,12 @@ We are hosting in two locations for each day of the event. You can join us at ei
 
 
   </main>
-<div><center>
-  <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button">
-    <img src="img/discord.png" alt="Campfire" class="button-icon">Join The Discord</a>
-
-
-  
-    <button onclick="location.reload()"class="link-button" style="cursor: pointer;">
-      <img src="img/refresh.png" alt="Campfire" class="button-icon"> Refresh
+  <div style="text-align:center;">
+    <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button">
+      <img src="img/discord.png" alt="Discord" class="button-icon">Join The Discord</a>
+    <button onclick="location.reload()" class="link-button" style="cursor: pointer;">
+      <img src="img/refresh.png" alt="Refresh" class="button-icon"> Refresh
     </button>
-  <button onclick="window.open('https://www.example.com', '_blank');"class="link-button" style="cursor: pointer;">
-    <img src="img/refresh.png" alt="Campfire" class="button-icon"> Refresh
-  </button>
-</center>
   </div>
 
   <footer>
@@ -416,15 +408,15 @@ We are hosting in two locations for each day of the event. You can join us at ei
       const tabs = document.querySelectorAll('.tab-content');
       const buttons = document.querySelectorAll('.tab-button');
       tabs.forEach(tab => tab.classList.remove('active'));
-      buttons.forEach(btn => {
+      buttons.forEach((btn, idx) => {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
+        if (tabIds[idx] === tabId) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+        }
       });
       document.getElementById(tabId).classList.add('active');
-      if (event) {
-        event.target.classList.add('active');
-        event.target.setAttribute('aria-selected', 'true');
-      }
       currentTab = tabIds.indexOf(tabId);
     }
 
