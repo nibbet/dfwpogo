@@ -3,9 +3,9 @@ self.addEventListener('install', event => {
     caches.open('go-fest-cache').then(cache => {
       return cache.addAll([
         './index.html',
-        './manifest.json',
-        './img/icon-192.png',
-        './img/icon-512.png'
+        '/manifest.json',
+        '/img/icon-192.png',
+        '/img/icon-512.png'
         // Add other static assets here if needed
       ]);
     })
