@@ -98,7 +98,7 @@ body {
   overflow: hidden;
 }
 thead {
-  background-color: #cc0000;
+  background-color: #007acc;
   color: white;
 }
 th, td {
@@ -123,7 +123,7 @@ tr:last-child td {
       align-items: center;
       justify-content: flex-start;
       width: 150px;
-      height: 50px;
+      height: 30px;
       max-width: 300px;
       background-color: #cc0000;
       color: white;
@@ -151,3 +151,49 @@ tr:last-child td {
       object-fit: contain;
       flex-shrink: 0;
     }
+
+
+
+
+
+.link-buttons-blue {
+  display: flex;
+  <!--  flex-direction: column; -->
+  align-items: center;
+  gap: 0.75em;
+  margin-top: 1.5em;
+}
+
+.link-button-blue {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 150px;
+  height: 30px;
+  max-width: 300px;
+  background-color: #7289DA;
+  color: white;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  font-size: 1.1em;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.link-button-blue:hover {
+  background-color: #4e5d94;
+}
+
+.link-button-blue::before {
+  content: '';
+  margin-right: 0.5em;
+}
+
+.button-blue-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
