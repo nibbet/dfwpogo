@@ -2,7 +2,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open('go-fest-cache').then(cache => {
       return cache.addAll([
-        './index.html',
+        './3tabs.html',
         './manifest.json',
         './img/icon-192.png',
         './img/icon-512.png'
