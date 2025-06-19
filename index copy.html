@@ -3,84 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="dfwstyle.css">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
-  <meta name="theme-color" content="#cc0000" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#cc0000">
   <title>DFW Area Pokémon GO Fest 2025</title>
-  
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff5f5;
+      color: #333;
+    }
+    header {
+      background-color: #cc0000;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    main {
+      padding: 1em;
+      max-width: 800px;
+      margin: auto;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 1em 0;
+    }
+    .tab-button {
+      background: #cc0000;
+      color: white;
+      border: none;
+      padding: 1.2em 4.5em;
+      margin: 0 0.25em;
+      cursor: pointer;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab-button.active {
+      background: #990000;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      padding: 1em;
+      border-radius: 0 0 4px 4px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    h2 {
+      color: #cc0000;
+    }
+    .time-block {
+      background: #ffe6e6;
+      border-left: 4px solid #cc0000;
+      padding: 0.5em;
+      margin-bottom: 0.75em;
+      border-radius: 6px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      padding: 1em;
+    }
+    details {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      margin-top: 0.5em;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    ul {
+      padding-left: 1.2em;
+    }
+    #swipe-area {
+      overflow: hidden;
+    }
+  </style>
 </head>
-
-
 <body>
   <header>
     <h1>DFW Area Pokémon GO Fest 2025</h1>
   </header>
 
   <main>
-   <div class="tabs" role="tablist" aria-label="Event Tabs">
-      <button class="tab-button active" onclick="showTab('info', event)" role="tab" aria-selected="true">Information</button>
-      <button class="tab-button" onclick="showTab('day1', event)" role="tab" aria-selected="false">Day 1 <br> June 28</button>
-      <button class="tab-button" onclick="showTab('day2', event)" role="tab" aria-selected="false">Day 2 <br> June 29</button>
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('day1')">Day 1 – June 28</button>
+      <button class="tab-button" onclick="showTab('day2')">Day 2 – June 29</button>
+      
     </div>
 
 
     <div id="swipe-area">
-     <!--evnet info-->
-    <div id="info" class="tab-content active">
-      <h2>ℹ️ Event Info & Tips</h2>
-      <ul>
-        <li>🔋 Bring a power bank for your phone.</li>
-        <li>💧 Stay hydrated – water refill stations are available.</li>
-        <li>🌤️ Dress for the weather and wear comfy shoes.</li>
-        <li>📱 Make sure your game is updated before arriving.</li>
-        <li>📍 Use the Campfire app or Discord to communicate in real time.</li>
-        <li>📸 Capture your favorite moments and share them with the group.</li>
-      </ul>
-<h2>📋 Meetup Locations for Go Fest</h2>
-We are hosting in two locations for each day of the event. You can join us at either location, or both! 
-      <p>We will be using the Campfire app to coordinate meetups and activities. Make sure to join our community there!</p>
-      <p>Click on the location names below to view them in Campfire.</p>
-<table>
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Location</th>
-      <th>Meeting Spot </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Day 1</td>
-      <td><a href="https://cmpf.re/yZHF8Q" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.10em 0.6em;border-radius:25px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
-          <img src="img/campfire.png" alt="Campfire" style="height:1em;vertical-align:middle;margin-right:0.4em;border-radius:20px;">Klyde Warren Park</a></td>
-      <td>Near the kids playground</td>
-    </tr>
-    <tr>
-      <td>Day 1</td>
-      <td><a href="https://cmpf.re/SEmS0i" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.25em 0.6em;border-radius:25px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
-          <img src="img/campfire.png" alt="Campfire" style="height:2em;vertical-align:middle;margin-right:0.4em;border-radius:2px;">Haggard Park</a></td>
-      <td>Food Truck Row</td>
-    </tr>
-    <tr>
-      <td>Day 2</td>
-       <td><a href="https://cmpf.re/ykUh9Y" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.25em 0.6em;border-radius:25px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
-          <img src="img/campfire.png" alt="Campfire" style="height:2em;vertical-align:middle;margin-right:0.4em;border-radius:2px;">NorthPark Mall</a></td>
-      <td>Ad Astra Scuplture</td>
-    </tr>
-    <tr>
-      <td>Day 2</td>
-       <td><a href="https://cmpf.re/4mBmj0" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.25em 0.6em;border-radius:25px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
-          <img src="img/campfire.png" alt="Campfire" style="height:2em;vertical-align:middle;margin-right:0.4em;border-radius:2px;">Grapevine Mills Mall</a></td>
-      <td>Free Play</td>
-    </tr>
-  </tbody>
-</table>
-
-          </div>
-
-<!--day 1-->
-     <div id="day1" class="tab-content">
+      <div id="day1" class="tab-content active">
         <h2>Klyde Warren Park</h2>
         <a href="https://cmpf.re/yZHF8Q" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.25em 0.6em;border-radius:3px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
           <img src="img/campfire.png" alt="Campfire" style="height:1em;vertical-align:middle;margin-right:0.4em;border-radius:2px;">Campfire Meetup
@@ -236,8 +259,9 @@ We are hosting in two locations for each day of the event. You can join us at ei
         <div class="time-block"><strong>6:00 PM – 6:30 PM</strong> – GO Fest ends, meet for prize giveaways</div>
         <div class="time-block"><strong>7:00 – 10:00 PM</strong> – 🎆 Independence Day Celebration & Fireworks</div>
       </div>
-<!--day 2-->
-    <div id="day2" class="tab-content">
+      
+      
+      <div id="day2" class="tab-content">
         <h2>NorthPark Mall</h2>
         <a href="https://cmpf.re/aovmhR" target="_blank" style="display:inline-block;background:#007acc;color:#fff;padding:0.25em 0.6em;border-radius:3px;text-decoration:none;font-weight:500;font-size:0.95em;margin-bottom:0.7em;">
           <img src="img/campfire.png" alt="Campfire" style="height:1em;vertical-align:middle;margin-right:0.4em;border-radius:2px;">Campfire Meetup
@@ -396,8 +420,7 @@ We are hosting in two locations for each day of the event. You can join us at ei
   </main>
 
   <div style="text-align:center; margin-top: 1em;">
-   <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button">
-      <img src="img/discord.png" alt="Discord" class="button-icon">Join The Discord</a>
+    <button onclick="location.reload()" style="padding: 0.5em 1em; background: #cc0000; color: white; border: none; border-radius: 6px; font-size: 1em;">🔄 Refresh</button>
   </div>
 
   <footer>
@@ -406,22 +429,19 @@ We are hosting in two locations for each day of the event. You can join us at ei
 
   <script>
     let currentTab = 0;
-    const tabIds = ['info','day1', 'day2'];
+    const tabIds = ['day1', 'day2'];
 
-    function showTab(tabId, event) {
+    function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
       const buttons = document.querySelectorAll('.tab-button');
       tabs.forEach(tab => tab.classList.remove('active'));
-      buttons.forEach((btn, idx) => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-        if (tabIds[idx] === tabId) {
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-        }
-      });
+      buttons.forEach(btn => btn.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      currentTab = tabIds.indexOf(tabId);
+      const index = tabIds.indexOf(tabId);
+      if (index !== -1) {
+        buttons[index].classList.add('active');
+        currentTab = index;
+      }
     }
 
     // Scoped swipe detection
