@@ -32,7 +32,7 @@
       border-radius: 4px 4px 0 0;
     }
     .tab-button.active {
-      background: #990000;
+      background: #007acc;
       font-weight: bold;
     }
     .tab-content {
