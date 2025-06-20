@@ -1,0 +1,65 @@
+{
+  "tabs": [
+    {
+      "id": "info",
+      "label": "Meetup<br>Info",
+      "title": "\u2139\ufe0f Event Info & Tips",
+      "html": "<ul><li>\ud83d\udd0b Bring a power bank</li><li>\ud83d\udca7 Stay hydrated</li></ul>"
+    },
+    {
+      "id": "day1",
+      "label": "Day 1<br>Info",
+      "title": "Day 1 Meetups",
+      "meetups": [
+        {
+          "location": "Klyde Warren Park",
+          "link": "https://cmpf.re/yZHF8Q"
+        },
+        {
+          "location": "Haggard Park",
+          "link": "https://cmpf.re/SEmS0i"
+        }
+      ],
+      "raids": {
+        "1-Star": [
+          "Frigibax",
+          "Dapper Pikachu (Red)",
+          "Dapper Pikachu (Blue)"
+        ],
+        "3-Star": [
+          "Falinks"
+        ],
+        "5-Star": [
+          "Crowned Shield Zamazenta"
+        ]
+      }
+    },
+    {
+      "id": "day2",
+      "label": "Day 2<br>Info",
+      "title": "Day 2 Meetups",
+      "meetups": [
+        {
+          "location": "NorthPark Mall",
+          "link": "https://cmpf.re/ykUh9Y"
+        },
+        {
+          "location": "Grapevine Mills Mall",
+          "link": "https://cmpf.re/4mBmj0"
+        }
+      ],
+      "raids": {
+        "1-Star": [
+          "Frigibax",
+          "Dapper Pikachu (Yellow)"
+        ],
+        "3-Star": [
+          "Falinks"
+        ],
+        "5-Star": [
+          "Crowned Sword Zacian"
+        ]
+      }
+    }
+  ]
+}

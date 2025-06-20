@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+header, footer {
+  background: #cc0000;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #eee;
+  padding: 0.5em;
+  flex-wrap: wrap;
+}
+.tab-button {
+  background: #cc0000;
+  color: white;
+  padding: 0.5em 1em;
+  margin: 0.2em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.tab-button.active {
+  background: #a00000;
+}
+.tab-content {
+  display: none;
+  padding: 1em;
+}
+.tab-content.active {
+  display: block;
+}
