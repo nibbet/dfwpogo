@@ -1,7 +1,7 @@
 
 {
   "name": "DFW Area Pokémon",
-  "short_name": "DFW PoGO",
+  "short_name": "DFW PoGo",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "fff5f5",
