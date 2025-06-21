@@ -1,7 +1,7 @@
 
 {
-  "name": "DFW Area Pokémon GO Fest 2025",
-  "short_name": "DFW GO Fest 2025",
+  "name": "DFW Area Pokémon",
+  "short_name": "DFW PoGO",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "fff5f5",
