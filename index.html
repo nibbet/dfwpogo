@@ -13,10 +13,10 @@
 
 
 <body>
-  <header>
+  <header id="main-header">
     <h1>DFW Area Pokémon GO Fest 2025</h1>
     Day 1 (June 28) & Day 2 (June 29)
-    <p>Join us for two days of epic Pokémon GO adventures in the Dallas-Fort
+    <p>Join us for two days of epic Pokémon GO adventures in the Dallas-Fort</p>
   </header>
 
   <main>
@@ -383,6 +383,30 @@ We're setting up at two hotspots each day—drop by one or catch 'em all by visi
         }
       }
     });
+
+    // Dynamic header content based on device
+    function updateHeaderForDevice() {
+      const header = document.getElementById('main-header');
+      if (!header) return;
+      if (window.innerWidth <= 600) {
+        // Mobile
+        header.innerHTML = `
+          <h1 style="font-size:1.3em;">DFW Pokémon GO Fest 2025</h1>
+          <div style="font-size:1em;">June 28 & 29</div>
+          
+        `;
+      } else {
+        // Desktop/tablet
+        header.innerHTML = `
+          <h1>DFW Area Pokémon GO Fest 2025</h1>
+          Day 1 (June 28) & Day 2 (June 29)
+          <p>Join us for two days of epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>
+        `;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', updateHeaderForDevice);
+    window.addEventListener('resize', updateHeaderForDevice);
 
     // Register service worker
     if ('serviceWorker' in navigator) {
