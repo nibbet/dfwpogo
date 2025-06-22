@@ -197,3 +197,16 @@ tr:last-child td {
   object-fit: contain;
   flex-shrink: 0;
 }
+
+a,
+a:visited {
+  color: #007acc;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+a:hover,
+a:focus {
+  color: #cc0000;
+  text-decoration: underline;
+}
