@@ -210,3 +210,12 @@ a:focus {
   color: #cc0000;
   text-decoration: underline;
 }
+
+/* Community list styles */
+#community-list li.ambassador {
+  color: green;
+}
+
+#community-list li.no-ambassador {
+  color: #666;
+}
