@@ -39,88 +39,9 @@
     <div id="swipe-area">
       <!--event info-->
       <div id="info" class="tab-content active">
-       
-<div style="text-align: left; font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; border-radius: 10px;">
-  <h2>📅 Dates & Times</h2>
-  <p>
-    <strong>Saturday, July 5, 2025</strong> – 2:00 PM to 5:00 PM (local time)<br>
-    <strong>Sunday, July 6, 2025</strong> – 2:00 PM to 5:00 PM (local time)<br>
-    <em>Bonuses (like 1/4 hatch distance) last from 2:00 PM to 10:00 PM both days.</em>
-  </p>
-
-  <h2>🔥 Event Bonuses</h2>
-  <ul>
-    <li>Boosted wild Eevee spawns</li>
-    <li>¼ Hatch Distance on Eggs</li>
-    <li>3‑hour Incense (except Daily Adventure Incense)</li>
-    <li>3‑hour Lure Modules (excluding Golden Lures)</li>
-  </ul>
-
-  <h2>🧬 Featured Attacks</h2>
-  <p>Evolve an Eevee caught or hatched during the event from July 5 to July 12 at 10:00 PM local time to receive these moves:</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Evolution</th>
-        <th>Featured Attack</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Eevee</td><td>Last Resort</td></tr>
-      <tr><td>Vaporeon</td><td>Scald</td></tr>
-      <tr><td>Jolteon</td><td>Zap Cannon</td></tr>
-      <tr><td>Flareon</td><td>Superpower</td></tr>
-      <tr><td>Espeon</td><td>Shadow Ball</td></tr>
-      <tr><td>Umbreon</td><td>Psychic</td></tr>
-      <tr><td>Leafeon</td><td>Bullet Seed</td></tr>
-      <tr><td>Glaceon</td><td>Water Pulse</td></tr>
-      <tr><td>Sylveon</td><td>Psyshock</td></tr>
-    </tbody>
-  </table>
-
-  <h2>🛠️ Evolution Requirements</h2>
-  <ul>
-    <li><strong>Espeon & Umbreon</strong>: Walk 1 km with Eevee as your Buddy</li>
-    <li><strong>Sylveon</strong>: Earn 7 hearts with Eevee as your Buddy</li>
-  </ul>
-
-  <h2>📸 Photobomb & Showcases</h2>
-  <ul>
-    <li>Eevee photobombs during snapshots</li>
-    <li>PokéStop Showcases featuring Eevee</li>
-  </ul>
-
-  <h2>✨ Increased Shiny Chances</h2>
-  <p>Higher odds of encountering shiny Eevee and shiny evolutions!</p>
-
-  <h2>🔍 Field & Special Research</h2>
-  <ul>
-    <li>Catch tasks for Poké Balls, Stardust, and more Eevee encounters</li>
-    <li>Earn special-background Eevee through trades, raids, and Party Play</li>
-    <li><strong>Paid Special Research (US$1.99)</strong> with Rare Candy XL, Incense, Premium Pass, and special Eevee rewards</li>
-  </ul>
-
-  <h2>📆 Timed Research</h2>
-  <p>Complete tasks between July 5–6 (2–5 PM) for Eevee with Delightful Days backgrounds. Must be finished by July 12 at 10:00 PM.</p>
-
-  <h2>🛒 Web Store Offer</h2>
-  <p><strong>Ultra Community Day Box</strong> – Includes 2 Rare Candy and a Special Research Ticket. Available for US$1.99 on the Pokémon GO Web Store.</p>
-
-  <h2>🎯 Trainer Tips</h2>
-  <ul>
-    <li>Use Incense/Lures to maximize spawns</li>
-    <li>Walk Eevee before evolving to meet evolution criteria</li>
-    <li>Complete Special Research for valuable rewards</li>
-    <li>Plan evolutions before July 12 to get legacy moves</li>
-  </ul>
-
-
-
-</div>
-
-
-      </div>
-      <div id="communities" class="tab-content">
+          <div id="meetup-content"></div>
+        </div>
+        <div id="communities" class="tab-content">
         <ul id="community-list"></ul>
       </div>
     </div>
@@ -136,7 +57,18 @@
   </footer>
 
   <script src="js/communities.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
+    fetch('meetup-info.md')
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById('meetup-content').innerHTML = marked.parse(text);
+      })
+      .catch(err => {
+        document.getElementById('meetup-content').innerHTML = '<p>Failed to load meetup info.</p>';
+        console.error('Failed to load meetup markdown:', err);
+      });
+
     const tabIds = ['info', 'communities'];
     let currentTab = 0;
 
