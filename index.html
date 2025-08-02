@@ -32,7 +32,10 @@
   </header>
 
   <main>
-    <!-- Only Meetup Info tab shown -->
+    <div class="tabs" role="tablist" aria-label="Main Tabs">
+      <button class="tab-button active" onclick="showTab('info', event)" role="tab" aria-selected="true">Meetup Info</button>
+      <button class="tab-button" onclick="showTab('communities', event)" role="tab" aria-selected="false">Communities</button>
+    </div>
     <div id="swipe-area">
       <!--event info-->
       <div id="info" class="tab-content active">
@@ -116,8 +119,10 @@
 </div>
 
 
-          </div>
-
+      </div>
+      <div id="communities" class="tab-content">
+        <ul id="community-list"></ul>
+      </div>
     </div>
   </main>
 
@@ -130,8 +135,27 @@
     Created for DFW Trainers
   </footer>
 
+  <script src="js/communities.js"></script>
   <script>
-    // Only one tab, so no tab logic needed
+    const tabIds = ['info', 'communities'];
+    let currentTab = 0;
+
+    function showTab(tabId, event) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach((btn, idx) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+        if (tabIds[idx] === tabId) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+        }
+      });
+      document.getElementById(tabId).classList.add('active');
+      currentTab = tabIds.indexOf(tabId);
+    }
+
     // Scoped swipe detection
     const swipeArea = document.getElementById('swipe-area');
     let touchStartX = 0;
