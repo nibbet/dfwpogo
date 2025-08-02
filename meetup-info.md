@@ -1,53 +1,79 @@
-## 📅 Dates & Times
-**Saturday, July 5, 2025** – 2:00 PM to 5:00 PM (local time)  
-**Sunday, July 6, 2025** – 2:00 PM to 5:00 PM (local time)  
-*Bonuses (like 1/4 hatch distance) last from 2:00 PM to 10:00 PM both days.*
+# 🦋 Gigantamax Butterfree Max Battle Day
 
-## 🔥 Event Bonuses
-- Boosted wild Eevee spawns
-- ¼ Hatch Distance on Eggs
-- 3‑hour Incense (except Daily Adventure Incense)
-- 3‑hour Lure Modules (excluding Golden Lures)
+**📅 Date & Time**  
+Sunday, August 3, 2025  
+2:00 PM – 5:00 PM (local time)
 
-## 🧬 Featured Attacks
-Evolve an Eevee caught or hatched during the event from July 5 to July 12 at 10:00 PM local time to receive these moves:
+**🗺️ Location**  
+Worldwide – Check your local Power Spots!
 
-| Evolution | Featured Attack |
-|-----------|----------------|
-| Eevee | Last Resort |
-| Vaporeon | Scald |
-| Jolteon | Zap Cannon |
-| Flareon | Superpower |
-| Espeon | Shadow Ball |
-| Umbreon | Psychic |
-| Leafeon | Bullet Seed |
-| Glaceon | Water Pulse |
-| Sylveon | Psyshock |
+---
 
-## 🛠️ Evolution Requirements
-- **Espeon & Umbreon**: Walk 1 km with Eevee as your Buddy
-- **Sylveon**: Earn 7 hearts with Eevee as your Buddy
+## 🔥 Event Features
 
-## 📸 Photobomb & Showcases
-- Eevee photobombs during snapshots
-- PokéStop Showcases featuring Eevee
+- Debut of **Gigantamax Butterfree** in Max Battles
+- Shiny Butterfree available ✨
+- **All Power Spots** will host Gigantamax raids
+- Max Particle limit increased to **1,600**
+- **8× Max Particles** from Power Spots
+- **2× Max Particles** from exploring (12 AM – 5 PM)
+- **¼ Adventuring distance** needed to earn Max Particles
+- **+2 Special Trades** during event hours
+- **Remote Raid limit raised**: 20 from Aug 2 @ 5 PM to Aug 3 @ 8 PM PDT
 
-## ✨ Increased Shiny Chances
-Higher odds of encountering shiny Eevee and shiny evolutions!
+---
 
-## 🔍 Field & Special Research
-- Catch tasks for Poké Balls, Stardust, and more Eevee encounters
-- Earn special-background Eevee through trades, raids, and Party Play
-- **Paid Special Research (US$1.99)** with Rare Candy XL, Incense, Premium Pass, and special Eevee rewards
+## 🎟️ Timed Research
 
-## 📆 Timed Research
-Complete tasks between July 5–6 (2–5 PM) for Eevee with Delightful Days backgrounds. Must be finished by July 12 at 10:00 PM.
+**Available:**  
+July 28 @ 6 AM – August 3 @ 5 PM (local time)
 
-## 🛒 Web Store Offer
-**Ultra Community Day Box** – Includes 2 Rare Candy and a Special Research Ticket. Available for US$1.99 on the Pokémon GO Web Store.
+### Free Research  
+- Encounter: Dynamax Darumaka (Shiny possible)
+- Candy and Max Particle rewards
 
-## 🎯 Trainer Tips
-- Use Incense/Lures to maximize spawns
-- Walk Eevee before evolving to meet evolution criteria
-- Complete Special Research for valuable rewards
-- Plan evolutions before July 12 to get legacy moves
+### Paid Research – $4.99 USD  
+- Extra rewards: 25,000 XP, 1 Max Mushroom  
+- 2× XP from Max Battles  
+- Max Particle limit increases to **5,600**
+
+> 🎁 Can be gifted to Great Friends or higher  
+> ❌ Not purchasable with PokéCoins
+---
+
+## ⚔️ Battle Tips
+
+**Weaknesses:**  
+- Double: **Rock**  
+- Others: **Fire**, **Flying**, **Electric**, **Ice**
+
+**Recommended Counters:**  
+- Dynamax/Gigantamax: Charizard, Cinderace, Articuno, Zapdos, Lapras  
+- Strong picks: Shuckle, Entei, Raikou, Cryogonal  
+- Use Max Mushrooms for boosted damage  
+- Crowned Sword Zacian’s **Behemoth Blade** is very effective
+
+---
+
+## 🧠 Notes
+
+- 800 Max Particles required to enter a Max Battle
+- Only Dynamax/Gigantamax Pokémon, or Crowned Zacian/Zamazenta may enter
+- Use **Campfire** to find local groups
+- **RSVP planner** supports Max Battles for group coordination
+- Ultra Ticket Box available via Web Store (includes ticket + Max Particle bundle)
+
+---
+
+## 📌 Summary
+
+| Feature              | Details                           |
+| -------------------- | --------------------------------- |
+| Time                 | Aug 3, 2025 • 2–5 PM local        |
+| Featured Pokémon     | Gigantamax Butterfree (Shiny ✨)   |
+| Max Particle Cap     | 1,600 (or 5,600 with ticket)      |
+| Bonus from Exploring | 2× Max Particles (12a–5p)         |
+| Raid Bonus           | 8× from Power Spots               |
+| Special Trades       | +2 during event                   |
+| Remote Raid Limit    | 20 (Aug 2, 5p – Aug 3, 8p PDT)    |
+| Counters             | Rock, Fire, Flying, Electric, Ice |
