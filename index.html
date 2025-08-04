@@ -38,7 +38,7 @@
     <div id="swipe-area">
       <!--event info-->
       <div id="info" class="tab-content active">
-          <div id="meetup-content"></div>
+          <div id="event-container"></div>
         </div>
         <div id="communities" class="tab-content">
         <ul id="community-list"></ul>
@@ -58,15 +58,36 @@
   <script src="js/communities.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    fetch('meetup-info.md')
-      .then(response => response.text())
-      .then(text => {
-        document.getElementById('meetup-content').innerHTML = marked.parse(text);
-      })
-      .catch(err => {
-        document.getElementById('meetup-content').innerHTML = '<p>Failed to load meetup info.</p>';
-        console.error('Failed to load meetup markdown:', err);
-      });
+    const eventFiles = ['meetup-info.md'];
+    const eventContainer = document.getElementById('event-container');
+
+    eventFiles.forEach(file => {
+      fetch(file)
+        .then(response => response.text())
+        .then(md => {
+          const lines = md.split('\n');
+          let title = 'Event';
+          let content = md;
+          if (lines[0].startsWith('#')) {
+            title = lines[0].replace(/^#\s*/, '').trim();
+            content = lines.slice(1).join('\n');
+          }
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = title;
+          details.appendChild(summary);
+          const contentDiv = document.createElement('div');
+          contentDiv.innerHTML = marked.parse(content);
+          details.appendChild(contentDiv);
+          eventContainer.appendChild(details);
+        })
+        .catch(err => {
+          const errorDiv = document.createElement('div');
+          errorDiv.textContent = 'Failed to load meetup info.';
+          eventContainer.appendChild(errorDiv);
+          console.error('Failed to load meetup markdown:', err);
+        });
+    });
 
     const tabIds = ['info', 'communities'];
     let currentTab = 0;
