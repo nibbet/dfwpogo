@@ -1,4 +1,4 @@
-# 🦋 Gigantamax Butterfree Max Battle Day
+## 🦋 Gigantamax Butterfree Max Battle Day
 
 **📅 Date & Time**  
 Sunday, August 3, 2025  
