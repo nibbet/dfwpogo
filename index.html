@@ -57,37 +57,81 @@
 
   <script src="js/communities.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    const eventFiles = ['meetup-info.md'];
-    const eventContainer = document.getElementById('event-container');
+    <script>
+      const eventFiles = ['meetup-info.md'];
+      const eventContainer = document.getElementById('event-container');
 
-    eventFiles.forEach(file => {
-      fetch(file)
-        .then(response => response.text())
-        .then(md => {
-          const lines = md.split('\n');
-          let title = 'Event';
-          let content = md;
-          if (lines[0].startsWith('#')) {
-            title = lines[0].replace(/^#\s*/, '').trim();
-            content = lines.slice(1).join('\n');
-          }
-          const details = document.createElement('details');
-          const summary = document.createElement('summary');
-          summary.textContent = title;
-          details.appendChild(summary);
-          const contentDiv = document.createElement('div');
-          contentDiv.innerHTML = marked.parse(content);
-          details.appendChild(contentDiv);
-          eventContainer.appendChild(details);
-        })
-        .catch(err => {
-          const errorDiv = document.createElement('div');
-          errorDiv.textContent = 'Failed to load meetup info.';
-          eventContainer.appendChild(errorDiv);
-          console.error('Failed to load meetup markdown:', err);
-        });
-    });
+      eventFiles.forEach(file => {
+        fetch(file)
+          .then(response => response.text())
+          .then(md => {
+            const lines = md.split('\n');
+
+            // Handle optional top-level title
+            if (lines[0].startsWith('# ')) {
+              const titleElem = document.createElement('h2');
+              titleElem.textContent = lines[0].replace(/^#\s*/, '').trim();
+              eventContainer.appendChild(titleElem);
+              lines.shift();
+            }
+
+            let intro = [];
+            let currentTitle = '';
+            let currentContent = [];
+            const sections = [];
+
+            lines.forEach(line => {
+              if (line.startsWith('## ')) {
+                if (currentTitle) {
+                  sections.push({
+                    title: currentTitle,
+                    content: currentContent.join('\n')
+                  });
+                } else if (intro.length) {
+                  // no-op, intro already captured
+                }
+                currentTitle = line.replace(/^##\s*/, '').trim();
+                currentContent = [];
+              } else {
+                if (!currentTitle) {
+                  intro.push(line);
+                } else {
+                  currentContent.push(line);
+                }
+              }
+            });
+
+            if (currentTitle) {
+              sections.push({
+                title: currentTitle,
+                content: currentContent.join('\n')
+              });
+            }
+
+            if (intro.length) {
+              const introDiv = document.createElement('div');
+              introDiv.innerHTML = marked.parse(intro.join('\n'));
+              eventContainer.appendChild(introDiv);
+            }
+
+            sections.forEach(sec => {
+              const details = document.createElement('details');
+              const summary = document.createElement('summary');
+              summary.textContent = sec.title;
+              details.appendChild(summary);
+              const contentDiv = document.createElement('div');
+              contentDiv.innerHTML = marked.parse(sec.content);
+              details.appendChild(contentDiv);
+              eventContainer.appendChild(details);
+            });
+          })
+          .catch(err => {
+            const errorDiv = document.createElement('div');
+            errorDiv.textContent = 'Failed to load meetup info.';
+            eventContainer.appendChild(errorDiv);
+            console.error('Failed to load meetup markdown:', err);
+          });
+      });
 
     const tabIds = ['info', 'communities'];
     let currentTab = 0;
