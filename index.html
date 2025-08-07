@@ -28,10 +28,11 @@
   </header>
 
   <main>
-    <div class="tabs" role="tablist" aria-label="Main Tabs">
+    <div class="tabs" role="tablist" aria-label="Main Tabs" id="main-tabs">
       <button class="tab-button active" onclick="showTab('weekdayevents', event)" role="tab" aria-selected="true">Weekday Events</button>
       <button class="tab-button" onclick="showTab('weekendevents', event)" role="tab" aria-selected="false">Weekend Events</button>
       <button class="tab-button" onclick="showTab('communities', event)" role="tab" aria-selected="false">Communities</button>
+      <!-- Placeholder for dynamic tab -->
     </div>
     <div id="swipe-area">
       <div id="weekdayevents" class="tab-content active"><div id="weekdayevents-container"></div></div>
@@ -39,6 +40,7 @@
       <div id="communities" class="tab-content">
         <ul id="community-list"></ul>
       </div>
+      <!-- Placeholder for dynamic tab content -->
     </div>
   </main>
 
@@ -65,73 +67,107 @@
       weekendevents: 'weekendevents.md'
     };
 
+    // Dynamic tab config
+    const dynamicMdFile = 'dynamic.md'; // Change filename as needed
+
     // Load markdown for each tab except communities
     Object.entries(tabMarkdownFiles).forEach(([tabId, mdFile]) => {
       const container = document.getElementById(tabId + '-container');
       if (!container) return;
       fetch(mdFile)
         .then(response => response.text())
-        .then(md => {
-          const lines = md.split('\n');
-          let sections = [];
-          let currentTitle = '';
-          let currentContent = [];
-          let intro = [];
-
-          lines.forEach(line => {
-            if (line.startsWith('# ')) {
-              // H1 collapsible
-              if (currentTitle) {
-                sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
-              } else if (intro.length) {
-                // no-op
-              }
-              currentTitle = line.replace(/^#\s*/, '').trim();
-              currentContent = [];
-              sections.push({ title: currentTitle, content: '', level: 1 });
-              currentTitle = '';
-            } else if (line.startsWith('## ')) {
-              if (currentTitle) {
-                sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
-              }
-              currentTitle = line.replace(/^##\s*/, '').trim();
-              currentContent = [];
-            } else {
-              if (!currentTitle && sections.length === 0) {
-                intro.push(line);
-              } else {
-                currentContent.push(line);
-              }
-            }
-          });
-          if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
-          }
-          if (intro.length) {
-            const introDiv = document.createElement('div');
-            introDiv.innerHTML = marked.parse(intro.join('\n'));
-            container.appendChild(introDiv);
-          }
-          sections.forEach(sec => {
-            const details = document.createElement('details');
-            const summary = document.createElement('summary');
-            summary.textContent = sec.title;
-            details.appendChild(summary);
-            if (sec.content) {
-              const contentDiv = document.createElement('div');
-              contentDiv.innerHTML = marked.parse(sec.content);
-              details.appendChild(contentDiv);
-            }
-            container.appendChild(details);
-          });
-        })
-        .catch(err => {
+        .then(md => renderMarkdownSections(md, container))
+        .catch(() => {
           const errorDiv = document.createElement('div');
           errorDiv.textContent = 'Failed to load info for this tab.';
           container.appendChild(errorDiv);
-          console.error('Failed to load markdown:', mdFile, err);
         });
     });
+
+    // Load dynamic tab if markdown has content
+    fetch(dynamicMdFile)
+      .then(response => response.text())
+      .then(md => {
+        if (!md.trim()) return; // No data, do not show tab
+        // Get first H1 as tab label
+        const h1Match = md.match(/^#\s+(.+)$/m);
+        if (!h1Match) return;
+        const tabLabel = h1Match[1].trim();
+        // Add tab button
+        const tabsDiv = document.getElementById('main-tabs');
+        const btn = document.createElement('button');
+        btn.className = 'tab-button';
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', 'false');
+        btn.textContent = tabLabel;
+        btn.onclick = function(e) { showTab('dynamic', e); };
+        tabsDiv.appendChild(btn);
+        tabIds.push('dynamic');
+        // Add tab content
+        const swipeArea = document.getElementById('swipe-area');
+        const tabDiv = document.createElement('div');
+        tabDiv.id = 'dynamic';
+        tabDiv.className = 'tab-content';
+        const container = document.createElement('div');
+        container.id = 'dynamic-container';
+        tabDiv.appendChild(container);
+        swipeArea.appendChild(tabDiv);
+        renderMarkdownSections(md, container);
+      });
+
+    // Markdown rendering helper
+    function renderMarkdownSections(md, container) {
+      const lines = md.split('\n');
+      let sections = [];
+      let currentTitle = '';
+      let currentContent = [];
+      let intro = [];
+      lines.forEach(line => {
+        if (line.startsWith('# ')) {
+          if (currentTitle) {
+            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
+          } else if (intro.length) {
+            // no-op
+          }
+          currentTitle = line.replace(/^#\s*/, '').trim();
+          currentContent = [];
+          sections.push({ title: currentTitle, content: '', level: 1 });
+          currentTitle = '';
+        } else if (line.startsWith('## ')) {
+          if (currentTitle) {
+            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
+          }
+          currentTitle = line.replace(/^##\s*/, '').trim();
+          currentContent = [];
+        } else {
+          if (!currentTitle && sections.length === 0) {
+            intro.push(line);
+          } else {
+            currentContent.push(line);
+          }
+        }
+      });
+      if (currentTitle) {
+        sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
+      }
+      if (intro.length) {
+        const introDiv = document.createElement('div');
+        introDiv.innerHTML = marked.parse(intro.join('\n'));
+        container.appendChild(introDiv);
+      }
+      sections.forEach(sec => {
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = sec.title;
+        details.appendChild(summary);
+        if (sec.content) {
+          const contentDiv = document.createElement('div');
+          contentDiv.innerHTML = marked.parse(sec.content);
+          details.appendChild(contentDiv);
+        }
+        container.appendChild(details);
+      });
+    }
 
     let currentTab = 0;
     function showTab(tabId, event) {
