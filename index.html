@@ -26,26 +26,16 @@
   <header id="main-header">
     <h1>DFW Area Pokémon GO</h1>
   </header>
-  
-
 
   <main>
     <div class="tabs" role="tablist" aria-label="Main Tabs">
-      <button class="tab-button active" onclick="showTab('weeklyupdates', event)" role="tab" aria-selected="false">Weekly Updates</button>
-      <button class="tab-button" onclick="showTab('maxmondays', event)" role="tab" aria-selected="false">Max Mondays</button>
-      <button class="tab-button" onclick="showTab('spotlighthour', event)" role="tab" aria-selected="false">Spotlight Hour</button>
-      <button class="tab-button" onclick="showTab('raidhour', event)" role="tab" aria-selected="false">Raid Hour</button>
-      <button class="tab-button" onclick="showTab('specialevents', event)" role="tab" aria-selected="false">Special Events</button>
-      <button class="tab-button" onclick="showTab('nextmonth', event)" role="tab" aria-selected="true">Next Month</button>
+      <button class="tab-button active" onclick="showTab('weekdayevents', event)" role="tab" aria-selected="true">Weekday Events</button>
+      <button class="tab-button" onclick="showTab('weekendevents', event)" role="tab" aria-selected="false">Weekend Events</button>
       <button class="tab-button" onclick="showTab('communities', event)" role="tab" aria-selected="false">Communities</button>
     </div>
     <div id="swipe-area">
-      <div id="weeklyupdates" class="tab-content active"><div id="weeklyupdates-container"></div></div>
-      <div id="maxmondays" class="tab-content"><div id="maxmondays-container"></div></div>
-      <div id="spotlighthour" class="tab-content"><div id="spotlighthour-container"></div></div>
-      <div id="raidhour" class="tab-content"><div id="raidhour-container"></div></div>
-      <div id="specialevents" class="tab-content"><div id="specialevents-container"></div></div>
-      <div id="nextmonth" class="tab-content"><div id="nextmonth-container"></div></div>
+      <div id="weekdayevents" class="tab-content active"><div id="weekdayevents-container"></div></div>
+      <div id="weekendevents" class="tab-content"><div id="weekendevents-container"></div></div>
       <div id="communities" class="tab-content">
         <ul id="community-list"></ul>
       </div>
@@ -66,21 +56,13 @@
   <script>
     // Tab IDs and markdown file mapping
     const tabIds = [
-      'nextmonth',
-      'maxmondays',
-      'spotlighthour',
-      'raidhour',
-      'specialevents',
-      'weeklyupdates',
+      'weekdayevents',
+      'weekendevents',
       'communities'
     ];
     const tabMarkdownFiles = {
-      nextmonth: 'nextmonth.md',
-      maxmondays: 'maxmondays.md',
-      spotlighthour: 'spotlighthour.md',
-      raidhour: 'raidhour.md',
-      specialevents: 'specialevents.md',
-      weeklyupdates: 'weeklyupdates.md'
+      weekdayevents: 'weekdayevents.md',
+      weekendevents: 'weekendevents.md'
     };
 
     // Load markdown for each tab except communities
