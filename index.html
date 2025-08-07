@@ -29,18 +29,18 @@
 
   <main>
     <div class="tabs" role="tablist" aria-label="Main Tabs" id="main-tabs">
-      <button class="tab-button active" onclick="showTab('weekdayevents', event)" role="tab" aria-selected="true">Weekday Events</button>
+      <!-- Dynamic tab will be inserted first by JS -->
+      <button class="tab-button" onclick="showTab('weekdayevents', event)" role="tab" aria-selected="false">Weekday Events</button>
       <button class="tab-button" onclick="showTab('weekendevents', event)" role="tab" aria-selected="false">Weekend Events</button>
       <button class="tab-button" onclick="showTab('communities', event)" role="tab" aria-selected="false">Communities</button>
-      <!-- Placeholder for dynamic tab -->
     </div>
     <div id="swipe-area">
-      <div id="weekdayevents" class="tab-content active"><div id="weekdayevents-container"></div></div>
+      <!-- Dynamic tab content will be inserted first by JS -->
+      <div id="weekdayevents" class="tab-content"><div id="weekdayevents-container"></div></div>
       <div id="weekendevents" class="tab-content"><div id="weekendevents-container"></div></div>
       <div id="communities" class="tab-content">
         <ul id="community-list"></ul>
       </div>
-      <!-- Placeholder for dynamic tab content -->
     </div>
   </main>
 
@@ -59,6 +59,7 @@
   <script>
     // Tab IDs and markdown file mapping
     const tabIds = [
+      // dynamic tab will be inserted first if present
       'weekdayevents',
       'weekendevents',
       'communities'
@@ -69,9 +70,54 @@
     };
 
     // Dynamic tab config
-    const dynamicMdFile = 'dynamic.md'; // Change filename as needed
+    const dynamicMdFile = 'dynamic.md';
 
-    // Load markdown for each tab except communities
+    // Insert dynamic tab first if markdown has content
+    fetch(dynamicMdFile)
+      .then(response => response.text())
+      .then(md => {
+        if (!md.trim()) return; // No data, do not show tab
+        // Get first H1 as tab label
+        const h1Match = md.match(/^#\s+(.+)$/m);
+        if (!h1Match) return;
+        const tabLabel = h1Match[1].trim();
+
+        // Insert tab button as first
+        const tabsDiv = document.getElementById('main-tabs');
+        const btn = document.createElement('button');
+        btn.className = 'tab-button active';
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', 'true');
+        btn.textContent = tabLabel;
+        btn.onclick = function(e) { showTab('dynamic', e); };
+        tabsDiv.insertBefore(btn, tabsDiv.firstChild);
+
+        // Insert tab content as first
+        const swipeArea = document.getElementById('swipe-area');
+        const tabDiv = document.createElement('div');
+        tabDiv.id = 'dynamic';
+        tabDiv.className = 'tab-content active';
+        const container = document.createElement('div');
+        container.id = 'dynamic-container';
+        tabDiv.appendChild(container);
+        swipeArea.insertBefore(tabDiv, swipeArea.firstChild);
+
+        // Make all other tabs inactive
+        document.querySelectorAll('.tab-button').forEach((b, i) => {
+          if (i > 0) {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          }
+        });
+        document.querySelectorAll('.tab-content').forEach((c, i) => {
+          if (i > 0) c.classList.remove('active');
+        });
+
+        tabIds.unshift('dynamic');
+        renderMarkdownSections(md, container);
+      });
+
+    // Load markdown for each tab except communities and dynamic
     Object.entries(tabMarkdownFiles).forEach(([tabId, mdFile]) => {
       const container = document.getElementById(tabId + '-container');
       if (!container) return;
@@ -85,37 +131,6 @@
         });
     });
 
-    // Load dynamic tab if markdown has content
-    fetch(dynamicMdFile)
-      .then(response => response.text())
-      .then(md => {
-        if (!md.trim()) return; // No data, do not show tab
-        // Get first H1 as tab label
-        const h1Match = md.match(/^#\s+(.+)$/m);
-        if (!h1Match) return;
-        const tabLabel = h1Match[1].trim();
-        // Add tab button
-        const tabsDiv = document.getElementById('main-tabs');
-        const btn = document.createElement('button');
-        btn.className = 'tab-button';
-        btn.setAttribute('role', 'tab');
-        btn.setAttribute('aria-selected', 'false');
-        btn.textContent = tabLabel;
-        btn.onclick = function(e) { showTab('dynamic', e); };
-        tabsDiv.appendChild(btn);
-        tabIds.push('dynamic');
-        // Add tab content
-        const swipeArea = document.getElementById('swipe-area');
-        const tabDiv = document.createElement('div');
-        tabDiv.id = 'dynamic';
-        tabDiv.className = 'tab-content';
-        const container = document.createElement('div');
-        container.id = 'dynamic-container';
-        tabDiv.appendChild(container);
-        swipeArea.appendChild(tabDiv);
-        renderMarkdownSections(md, container);
-      });
-
     // Markdown rendering helper
     function renderMarkdownSections(md, container) {
       const lines = md.split('\n');
@@ -123,8 +138,10 @@
       let currentTitle = '';
       let currentContent = [];
       let intro = [];
+      let firstH1 = true;
       lines.forEach(line => {
         if (line.startsWith('# ')) {
+          // H1: render as non-collapsible
           if (currentTitle) {
             sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
           } else if (intro.length) {
@@ -132,8 +149,9 @@
           }
           currentTitle = line.replace(/^#\s*/, '').trim();
           currentContent = [];
-          sections.push({ title: currentTitle, content: '', level: 1 });
+          sections.push({ title: currentTitle, content: '', level: 1, collapsible: false });
           currentTitle = '';
+          firstH1 = false;
         } else if (line.startsWith('## ')) {
           if (currentTitle) {
             sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
@@ -157,16 +175,24 @@
         container.appendChild(introDiv);
       }
       sections.forEach(sec => {
-        const details = document.createElement('details');
-        const summary = document.createElement('summary');
-        summary.textContent = sec.title;
-        details.appendChild(summary);
-        if (sec.content) {
-          const contentDiv = document.createElement('div');
-          contentDiv.innerHTML = marked.parse(sec.content);
-          details.appendChild(contentDiv);
+        if (sec.level === 1 && sec.collapsible === false) {
+          // Non-collapsible H1
+          const h1 = document.createElement('h1');
+          h1.textContent = sec.title;
+          container.appendChild(h1);
+        } else {
+          // Collapsible H2
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = sec.title;
+          details.appendChild(summary);
+          if (sec.content) {
+            const contentDiv = document.createElement('div');
+            contentDiv.innerHTML = marked.parse(sec.content);
+            details.appendChild(contentDiv);
+          }
+          container.appendChild(details);
         }
-        container.appendChild(details);
       });
     }
 
