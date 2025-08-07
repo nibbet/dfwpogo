@@ -1,6 +1,6 @@
 # GO Fest 2025: Max Finale
 
-## 📅 Event Dates
+ 📅 Event Dates
 **Saturday, August 23 & Sunday, August 24, 2025**  
 **Time:** 10:00 AM – 6:00 PM local time  
 **Bonuses Active:** 12:00 AM – 11:59 PM both days
