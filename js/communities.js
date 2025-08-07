@@ -13,8 +13,8 @@ fetch('communities.json')
 
       const status = document.createElement('span');
       status.textContent = group.hasAmbassador
-        ? ' : Has a Niantic Community Ambassador'
-        : ' : Does Not Have a Community Ambassador';
+        ? ' : Has Community Ambassador'
+        : ' : No Community Ambassador';
 
       li.appendChild(link);
       li.appendChild(status);
