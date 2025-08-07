@@ -1,4 +1,4 @@
-# Pokémon GO Fest 2025: Max Finale
+# GO Fest 2025: Max Finale
 
 ## 📅 Event Dates
 **Saturday, August 23 & Sunday, August 24, 2025**  
