@@ -138,26 +138,32 @@
       let currentTitle = '';
       let currentContent = [];
       let intro = [];
-      let firstH1 = true;
+      let currentLevel = 0;
       lines.forEach(line => {
         if (line.startsWith('# ')) {
           // H1: render as non-collapsible
           if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
-          } else if (intro.length) {
-            // no-op
+            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
           }
           currentTitle = line.replace(/^#\s*/, '').trim();
           currentContent = [];
-          sections.push({ title: currentTitle, content: '', level: 1, collapsible: false });
+          currentLevel = 1;
+          sections.push({ title: currentTitle, content: '', level: 1 });
           currentTitle = '';
-          firstH1 = false;
         } else if (line.startsWith('## ')) {
           if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
+            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
           }
           currentTitle = line.replace(/^##\s*/, '').trim();
           currentContent = [];
+          currentLevel = 2;
+        } else if (line.startsWith('### ')) {
+          if (currentTitle) {
+            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
+          }
+          currentTitle = line.replace(/^###\s*/, '').trim();
+          currentContent = [];
+          currentLevel = 3;
         } else {
           if (!currentTitle && sections.length === 0) {
             intro.push(line);
@@ -167,7 +173,7 @@
         }
       });
       if (currentTitle) {
-        sections.push({ title: currentTitle, content: currentContent.join('\n'), level: 2 });
+        sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
       }
       if (intro.length) {
         const introDiv = document.createElement('div');
@@ -175,13 +181,23 @@
         container.appendChild(introDiv);
       }
       sections.forEach(sec => {
-        if (sec.level === 1 && sec.collapsible === false) {
+        if (sec.level === 1) {
           // Non-collapsible H1
           const h1 = document.createElement('h1');
           h1.textContent = sec.title;
           container.appendChild(h1);
-        } else {
-          // Collapsible H2
+        } else if (sec.level === 2) {
+          // Non-collapsible H2
+          const h2 = document.createElement('h2');
+          h2.textContent = sec.title;
+          container.appendChild(h2);
+          if (sec.content) {
+            const contentDiv = document.createElement('div');
+            contentDiv.innerHTML = marked.parse(sec.content);
+            container.appendChild(contentDiv);
+          }
+        } else if (sec.level === 3) {
+          // Collapsible H3
           const details = document.createElement('details');
           const summary = document.createElement('summary');
           summary.textContent = sec.title;
