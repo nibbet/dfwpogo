@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="dfwstyle.css">
+  <link rel="stylesheet" href="dfwstyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
   <meta name="theme-color" content="#cc0000" />
   <!-- Open Graph Meta Tags for Discord Embed -->
@@ -24,7 +25,11 @@
 </head>
 <body>
   <header id="main-header">
-    <h1>DFW Area Pokémon GO</h1>
+    <img src="img/DFWGOFEST.png" alt="DFW Pokémon GO" class="hero-logo" />
+    <div class="header-text">
+      <h1>DFW Area Pokémon GO</h1>
+      <p>Join us for epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>
+    </div>
   </header>
 
   <main>
@@ -56,7 +61,20 @@
 
   <script src="js/communities.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+      highlight: function(code, lang) {
+        try {
+          return hljs.highlight(code, { language: lang || 'plaintext' }).value;
+        } catch (e) {
+          return code;
+        }
+      }
+    });
+
     // Tab IDs and markdown file mapping
     const tabIds = [
       // dynamic tab will be inserted first if present
@@ -306,13 +324,12 @@
 
     // Dynamic header content based on device
     function updateHeaderForDevice() {
-      const header = document.getElementById('main-header');
-      if (!header) return;
+      const headerText = document.querySelector('#main-header .header-text');
+      if (!headerText) return;
       if (window.innerWidth <= 600) {
-        header.innerHTML = `<h1 style="font-size:1.3em;">DFW Area Pokémon GO</h1>`;
+        headerText.innerHTML = `<h1 style="font-size:1.3em;">DFW Area Pokémon GO</h1>`;
       } else {
-        header.innerHTML = `<h1>DFW Area Pokémon</h1>
-          <p>Join us for epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>`;
+        headerText.innerHTML = `<h1>DFW Area Pokémon GO</h1><p>Join us for epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>`;
       }
     }
     window.addEventListener('DOMContentLoaded', updateHeaderForDevice);
