@@ -3,3 +3,13 @@ Repository for custom webapp for DFW Pokémon GO community.
 
 ## Community Directory
 `communities.html` displays local groups using data from `communities.json`. Update the JSON file to change the listing.
+
+## Markdown Content
+Event and update pages are built from Markdown files (for example, `weekdayevents.md`).
+You can embed images in these files using standard Markdown syntax:
+
+```
+![Alt text](img/example.png)
+```
+
+Images included this way will automatically scale to fit the layout.

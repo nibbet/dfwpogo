@@ -206,6 +206,7 @@
           details.appendChild(summary);
           if (sec.content) {
             const contentDiv = document.createElement('div');
+            contentDiv.className = 'markdown-section';
             contentDiv.innerHTML = marked.parse(sec.content);
             details.appendChild(contentDiv);
           }

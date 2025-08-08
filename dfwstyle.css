@@ -24,6 +24,15 @@
 .markdown-section tr:last-child td {
   border-bottom: none;
 }
+
+/* Ensure markdown images scale and align consistently */
+.markdown-intro img,
+.markdown-section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5em 0;
+}
 body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
