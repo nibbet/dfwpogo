@@ -1,3 +1,29 @@
+/* Ensure tables in markdown sections are always visible and styled */
+.markdown-intro table,
+.markdown-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.markdown-intro thead,
+.markdown-section thead {
+  background-color: #cc0000;
+  color: white;
+}
+.markdown-intro th, .markdown-intro td,
+.markdown-section th, .markdown-section td {
+  padding: 0.75em;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+.markdown-intro tr:last-child td,
+.markdown-section tr:last-child td {
+  border-bottom: none;
+}
 body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;

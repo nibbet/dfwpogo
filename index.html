@@ -177,6 +177,7 @@
       }
       if (intro.length) {
         const introDiv = document.createElement('div');
+        introDiv.className = 'markdown-intro';
         introDiv.innerHTML = marked.parse(intro.join('\n'));
         container.appendChild(introDiv);
       }
@@ -193,6 +194,7 @@
           container.appendChild(h2);
           if (sec.content) {
             const contentDiv = document.createElement('div');
+            contentDiv.className = 'markdown-section';
             contentDiv.innerHTML = marked.parse(sec.content);
             container.appendChild(contentDiv);
           }
