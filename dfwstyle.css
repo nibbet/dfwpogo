@@ -1,248 +1,219 @@
-/* Ensure tables in markdown sections are always visible and styled */
+:root {
+  --color-primary: #cc0000;
+  --color-primary-dark: #990000;
+  --color-accent: #007acc;
+  --color-bg: #fff5f5;
+  --color-surface: #ffffff;
+  --color-text: #333;
+  --radius: 8px;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  --max-width: 900px;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: var(--color-bg) url('img/bkgrnd.png') no-repeat center/cover fixed;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 1.5rem 1rem;
+}
+
+header .hero-logo {
+  max-width: 150px;
+  width: 40%;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.tab-button {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  margin: 0.25rem;
+  cursor: pointer;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transition: background 0.2s;
+}
+
+.tab-button:hover,
+.tab-button:focus {
+  background: var(--color-primary-dark);
+}
+
+.tab-button.active {
+  background: var(--color-accent);
+  font-weight: bold;
+}
+
+.tab-content {
+  display: none;
+  background: var(--color-surface);
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 1rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.markdown-intro,
+.markdown-section {
+  overflow-x: auto;
+}
+
 .markdown-intro table,
 .markdown-section table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1em;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.markdown-intro thead,
-.markdown-section thead {
-  background-color: #cc0000;
-  color: white;
-}
-.markdown-intro th, .markdown-intro td,
-.markdown-section th, .markdown-section td {
-  padding: 0.75em;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-.markdown-intro tr:last-child td,
-.markdown-section tr:last-child td {
-  border-bottom: none;
+  margin: 1rem 0;
+  background: var(--color-surface);
 }
 
-/* Ensure markdown images scale and align consistently */
+.markdown-intro thead,
+.markdown-section thead {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.markdown-intro th,
+.markdown-intro td,
+.markdown-section th,
+.markdown-section td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+}
+
 .markdown-intro img,
 .markdown-section img {
   max-width: 100%;
   height: auto;
+  margin: 0.5rem auto;
   display: block;
-  margin: 0.5em 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
-body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff5f5;
-      color: #333;
-    }
-    header {
-      background-color: #cc0000;
-      color: white;
-      padding: 1em;
-      text-align: center;
-    }
-    main {
-      padding: 1em;
-      max-width: 800px;
-      margin: auto;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin: 1em 0;
-    }
-    .tab-button {
-      background: #cc0000;
-      color: white;
-      border: none;
-      padding: 1.2em 1.5em;
-      margin: 0 0.25em;
-      cursor: pointer;
-      border-radius: 4px 4px 0 0;
-    }
-    .tab-button.active {
-      background: #007acc;
-      font-weight: bold;
-    }
-    .tab-content {
-      display: none;
-      background: white;
-      border: 1px solid #ccc;
-      border-top: none;
-      padding: 1em;
-      border-radius: 0 0 4px 4px;
-    }
 
-.nontab-content {
-  display: none;
-  background: white;
+.markdown-section code,
+.markdown-intro code {
+  background: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.markdown-section pre code,
+.markdown-intro pre code {
+  display: block;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.markdown-section input[type="checkbox"],
+.markdown-intro input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+details {
+  background: var(--color-surface);
   border: 1px solid #ccc;
-  border-top: none;
-  padding: 1em;
-  border-radius: 0 0 4px 4px;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-    .tab-content.active {
-      display: block;
-    }
-    h2 {
-      color: #cc0000;
-    }
-    .time-block {
-      background: #ffe6e6;
-      border-left: 4px solid #cc0000;
-      padding: 0.5em;
-      margin-bottom: 0.75em;
-      border-radius: 6px;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      padding: 1em;
-    }
-    details {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 0.5em 1em;
-      margin-top: 0.5em;
-    }
-    summary {
-      font-weight: bold;
-      cursor: pointer;
-    }
-    ul {
-      padding-left: 1.2em;
-    }
-    #swipe-area {
-      overflow: hidden;
-    }
- table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1em;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-}
-thead {
-  background-color: #cc0000;
-  color: white;
-}
-th, td {
-  padding: 0.75em;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-tr:last-child td {
-  border-bottom: none;
+summary {
+  font-weight: bold;
+  cursor: pointer;
 }
 
-    .link-buttons {
-      display: flex;
-      <!--  flex-direction: column; -->
-      align-items: center;
-      gap: 0.75em;
-      margin-top: 1.5em;
-    }
-
-    .link-button {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 150px;
-      height: 30px;
-      max-width: 300px;
-      background-color: #cc0000;
-      color: white;
-      padding: 0.75em 1em;
-      text-decoration: none;
-      font-size: 1.1em;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-      font-weight: bold;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .link-button:hover {
-      background-color: #990000;
-    }
-
-    .link-button::before {
-      content: '';
-      margin-right: 0.5em;
-    }
-
-    .button-icon {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-
-
-
-
-.link-buttons-blue {
-  display: flex;
-  <!--  flex-direction: column; -->
-  align-items: center;
-  gap: 0.75em;
-  margin-top: 1.5em;
+h2 {
+  color: var(--color-primary);
 }
 
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  padding: 2rem 1rem;
+}
+
+.link-button,
 .link-button-blue {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 150px;
-  height: 30px;
-  max-width: 300px;
-  background-color: #7289DA;
-  color: white;
-  padding: 0.75em 1em;
+  width: 200px;
+  max-width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
   text-decoration: none;
-  font-size: 1.1em;
-  border-radius: 10px;
-  transition: background-color 0.3s;
+  color: #fff;
   font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  transition: background 0.2s;
+}
+
+.link-button {
+  background: var(--color-primary);
+}
+
+.link-button:hover {
+  background: var(--color-primary-dark);
+}
+
+.link-button-blue {
+  background: #7289DA;
 }
 
 .link-button-blue:hover {
-  background-color: #4e5d94;
+  background: #4e5d94;
 }
 
-.link-button-blue::before {
-  content: '';
-  margin-right: 0.5em;
-}
-
+.button-icon,
 .button-blue-icon {
   width: 24px;
   height: 24px;
-  object-fit: contain;
+  margin-right: 0.5rem;
   flex-shrink: 0;
 }
 
 a,
 a:visited {
-  color: #007acc;
+  color: var(--color-accent);
   text-decoration: underline;
   transition: color 0.2s;
 }
 
 a:hover,
 a:focus {
-  color: #cc0000;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 

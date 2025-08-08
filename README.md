@@ -13,3 +13,6 @@ You can embed images in these files using standard Markdown syntax:
 ```
 
 Images included this way will automatically scale to fit the layout.
+
+## Styling and Markdown Rendering
+The site uses [Marked](https://marked.js.org/) with [Highlight.js](https://highlightjs.org/) to render GitHub-flavored Markdown with code syntax highlighting.  Responsive styles live in `dfwstyle.css`, which applies consistent formatting to headings, tables, checklists, and embedded images.
