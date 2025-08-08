@@ -1,40 +1,14 @@
-# Pokémon GO Events – August 4–10
+# Pokémon GO Weekday Events – August 2025
 
-## 🌀 August 4 – **Omanyte Max Battle Day**
-
-Omanyte 🐚, the Spiral Pokémon, is bursting out of the Dynamax Dens for the first time!
-Get ready to battle, catch, and power up for bonus rewards!
-
-🔹 **Max Raid Details**
-• CP: **826 – 882**
-• Rock/Water 🪨💧
-• Best Counters: 🌿 Grass (x2), 🥊 Fighting, ⛏️ Ground, ⚡ Electric
-• **Shiny Available** ✨
-
-
-
-## 🍬 August 5 – **Swirlix Spotlight Hour**
-
-Swirlix, the Cotton Candy Pokémon, is ready to sweeten your evening! 🍭
-Catch it in the wild from **6–7 PM local time** and enjoy Stardust bonuses!
-
-🔹 **Spotlight Details:**
-• Fairy Type 🧚‍♂️
-• **Shiny Available** ✨
-• 2× Catch Stardust 🌟
-
-
-
-## 🕊️ August 6 – **Lugia Raid Hour**
-
-The legendary **Lugia**, the Diving Pokémon, descends once again!
-Gather your squad and take to the skies from **6–7 PM local time** ⏰⚔️
-
-🔹 **Raid Details:**
-• CP Range: **2028 – 2115**
-• Weather-boosted CP: **2535 – 2645** 🪁
-• Psychic/Flying 🧠🕊️
-• Best Counters: ⚡ Electric, ❄️ Ice, 🌑 Dark, 👻 Ghost, 🪨 Rock
-• **Shiny Available** ✨
-
-
+| Date (2025) | Day | Event |
+|---|---|---|
+| Aug 4 | Mon | **Max Monday – Dynamax Omanyte** |
+| Aug 5 | Tue | **Spotlight Hour – Swirlix** (2× Catch Stardust) |
+| Aug 6 | Wed | **Raid Hour – Lugia** |
+| Aug 11 | Mon | **Max Monday – Trubbish** |
+| Aug 12 | Tue | **Spotlight Hour – Plusle & Minun** (2× Catch XP) |
+| Aug 13 | Wed | **Raid Hour – Ho-Oh** |
+| Aug 19 | Tue | **Spotlight Hour – Ralts** (2× Catch Candy) |
+| Aug 25 | Mon | **Max Monday – Chansey** |
+| Aug 26 | Tue | **Spotlight Hour – Lechonk** (2× Transfer Candy) |
+| Aug 27 | Wed | **Raid Hour – Necrozma** |
