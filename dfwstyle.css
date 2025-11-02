@@ -13,26 +13,38 @@
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: var(--color-bg) url('img/bkgrnd.png') no-repeat center/cover fixed;
+  background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
 }
 
 header {
   text-align: center;
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem;
 }
 
-header .hero-logo {
-  max-width: 150px;
-  width: 40%;
-  height: auto;
-  display: block;
-  margin: 0 auto 0.5rem auto;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+header .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.85;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+header .tagline {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
 }
 
 main {
@@ -81,6 +93,41 @@ main {
 
 .tab-content.active {
   display: block;
+}
+
+.markdown-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.copy-markdown {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.copy-markdown:hover,
+.copy-markdown:focus {
+  background: #005f99;
+  transform: translateY(-1px);
+}
+
+.copy-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #555;
 }
 
 .markdown-intro,
@@ -178,6 +225,7 @@ footer {
   font-weight: bold;
   box-shadow: var(--shadow);
   transition: background 0.2s;
+  gap: 0.5rem;
 }
 
 .link-button {
@@ -194,6 +242,16 @@ footer {
 
 .link-button-blue:hover {
   background: #4e5d94;
+}
+
+.button-emoji {
+  font-size: 1.2rem;
+}
+
+.cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .button-icon,
