@@ -1,415 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-7375087964799588">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="dfwstyle.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
-  <meta name="theme-color" content="#cc0000" />
-  <!-- Open Graph Meta Tags for Discord Embed -->
-  <meta property="og:title" content="DFW Area Pokémon GO Community" />
-  <meta property="og:description" content="Join epic meetups and catch ‘em all across DFW!" />
-  <meta property="og:image" content="https://dfwpogo.com/img/social-preview.png" />
-  <meta property="og:url" content="https://dfwpogo.com" />
-  <meta property="og:type" content="website" /> 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DFW Area Pokémon GO Community" />
-  <meta name="twitter:description" content="Check in and join the fun across DFW!" />
-  <meta name="twitter:image" content="https://dfwpogo.com/img/social-preview.png" />
-  <title>DFW Area Pokémon GO</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375087964799588"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFW Area Pokemon GO - Community Events</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .nav-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            background: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            text-align: left;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-nav-toggle .current-tab {
+            flex: 1;
+        }
+
+        .mobile-nav-toggle .hamburger {
+            font-size: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs.mobile-open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            margin-top: 0.5rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            text-align: left;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .signature-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border: 3px solid #d63031;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .signature-card h2 {
+            color: #d63031;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .type-raid { background: #ff6b6b; color: white; }
+        .type-spotlight { background: #ffd93d; color: #333; }
+        .type-community { background: #6bcf7f; color: white; }
+        .type-raid-day { background: #c44569; color: white; }
+
+        .markdown-content h2 {
+            color: #667eea;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content h3 {
+            color: #764ba2;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #667eea;
+        }
+
+        .error {
+            background: #ffe0e0;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #d63031;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
+            }
+
+            .nav-tabs {
+                display: none;
+            }
+
+            .nav-tabs.mobile-open {
+                display: flex;
+            }
+
+            .tab-btn {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .content-area {
+                padding: 1.5rem;
+            }
+
+            .signature-card {
+                padding: 1.5rem;
+            }
+
+            .signature-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header id="main-header">
-    <div class="header-text">
-      <p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p>
-      <h1>DFW Area Pokémon GO</h1>
-      <p class="tagline">Live event calendar and community resources maintained by local trainers.</p>
+    <div class="header">
+        <h1>⚡ DFW Area Pokemon GO ⚡</h1>
+        <p>Your guide to local community events and Campfire groups</p>
     </div>
-  </header>
 
-  <main>
-    <div class="tabs" role="tablist" aria-label="Main Tabs" id="main-tabs">
-      <!-- Dynamic tab will be inserted first by JS -->
-      <button class="tab-button" onclick="showTab('weekdayevents', event)" role="tab" aria-selected="false">Weekday Events</button>
-      <button class="tab-button" onclick="showTab('weekendevents', event)" role="tab" aria-selected="false">Weekend Events</button>
-      <button class="tab-button" onclick="showTab('communities', event)" role="tab" aria-selected="false">Communities</button>
+    <div class="container">
+        <div class="nav-container">
+            <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
+                <span class="current-tab">📅 Events</span>
+                <span class="hamburger">☰</span>
+            </button>
+            <div class="nav-tabs" id="nav-tabs">
+                <button class="tab-btn active" onclick="showTab('events', '📅 Events')">📅 Events</button>
+                <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
+                <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div id="events-tab" class="tab-content">
+                <h2>Upcoming Events</h2>
+                <div id="events-list" class="event-grid">
+                    <div class="loading">Loading events...</div>
+                </div>
+            </div>
+
+            <div id="signature-tab" class="tab-content" style="display:none;">
+                <div id="signature-content" class="markdown-content">
+                    <div class="loading">Loading signature event...</div>
+                </div>
+            </div>
+
+            <div id="campfire-tab" class="tab-content" style="display:none;">
+                <h2>Local Campfire Groups</h2>
+                <div id="campfire-list" class="markdown-content">
+                    <div class="loading">Loading Campfire groups...</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="swipe-area">
-      <!-- Dynamic tab content will be inserted first by JS -->
-      <div id="weekdayevents" class="tab-content"><div id="weekdayevents-container"></div></div>
-      <div id="weekendevents" class="tab-content"><div id="weekendevents-container"></div></div>
-      <div id="communities" class="tab-content">
-        <ul id="community-list"></ul>
-      </div>
-    </div>
-  </main>
 
-  <div class="cta-row">
-    <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button-blue">
-      <span class="button-emoji" aria-hidden="true">🗨️</span>
-      Join Our Discord
-    </a>
-  </div>
+    <script>
+        // ==========================================
+        // MAINTENANCE MODE - Change to true to enable
+        // ==========================================
+        const MAINTENANCE_MODE = false;
+        
+        let eventsData = [];
+        let campfireData = '';
+        let signatureData = '';
+        let signatureTitle = 'Signature Events';
 
-  <footer>
-    Created for DFW Trainers
-  </footer>
-
-  <script src="js/communities.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      highlight: function(code, lang) {
-        try {
-          return hljs.highlight(code, { language: lang || 'plaintext' }).value;
-        } catch (e) {
-          return code;
+        // Load markdown files from GitHub
+        async function loadMarkdownFile(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filename}`);
+                }
+                return await response.text();
+            } catch (error) {
+                console.error(`Error loading ${filename}:`, error);
+                return null;
+            }
         }
-      }
-    });
 
-    // Tab IDs and markdown file mapping
-    const tabIds = [
-      // dynamic tab will be inserted first if present
-      'weekdayevents',
-      'weekendevents',
-      'communities'
-    ];
-    const tabMarkdownFiles = {
-      weekdayevents: 'weekdayevents.md',
-      weekendevents: 'weekendevents.md'
-    };
-
-    const tabMarkdownRaw = {};
-
-    function ensureCopyButton(container, tabId) {
-      if (!tabId) return;
-      const tab = container.closest('.tab-content');
-      if (!tab || tab.querySelector('.markdown-actions')) return;
-
-      const actions = document.createElement('div');
-      actions.className = 'markdown-actions';
-
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'copy-markdown';
-      button.textContent = 'Copy Markdown for Discord';
-      button.addEventListener('click', () => {
-        const markdown = tabMarkdownRaw[tabId];
-        if (!markdown) return;
-
-        const resetLabel = () => {
-          setTimeout(() => { button.textContent = 'Copy Markdown for Discord'; }, 2000);
-        };
-        const showMessage = (message) => {
-          button.textContent = message;
-          resetLabel();
-        };
-
-        const fallbackCopy = () => {
-          const textarea = document.createElement('textarea');
-          textarea.value = markdown;
-          textarea.setAttribute('readonly', '');
-          textarea.style.position = 'absolute';
-          textarea.style.left = '-9999px';
-          document.body.appendChild(textarea);
-          textarea.select();
-          try {
-            const copied = document.execCommand('copy');
-            showMessage(copied ? 'Markdown copied!' : 'Unable to copy');
-          } catch (err) {
-            showMessage('Unable to copy');
-          }
-          document.body.removeChild(textarea);
-        };
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(markdown)
-            .then(() => showMessage('Markdown copied!'))
-            .catch(() => {
-              fallbackCopy();
+        function parseEvents(markdown) {
+            if (!markdown) return [];
+            
+            const events = [];
+            const sections = markdown.split('##').filter(s => s.trim());
+            
+            sections.forEach(section => {
+                const lines = section.trim().split('\n');
+                const title = lines[0].trim();
+                const content = lines.slice(1).join('\n');
+                
+                const dateMatch = content.match(/\*\*Date:\*\*\s*(.+)/);
+                const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
+                const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
+                
+                events.push({
+                    title,
+                    date: dateMatch ? dateMatch[1].trim() : 'TBA',
+                    pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
+                    type: typeMatch ? typeMatch[1].trim().toLowerCase() : 'event',
+                    content: marked.parse(content)
+                });
             });
-        } else {
-          fallbackCopy();
+            
+            return events;
         }
-      });
 
-      const hint = document.createElement('p');
-      hint.className = 'copy-hint';
-      hint.textContent = 'Copies the raw Markdown so you can paste it into Discord.';
+        function parseSignatureEvent(markdown) {
+            if (!markdown) return '';
+            
+            // Extract title from first h1
+            const titleMatch = markdown.match(/^#\s+(.+)$/m);
+            if (titleMatch) {
+                signatureTitle = titleMatch[1].trim();
+                updateSignatureTabLabel();
+            }
+            return marked.parse(markdown);
+        }
 
-      actions.appendChild(button);
-      actions.appendChild(hint);
-      tab.insertBefore(actions, tab.firstChild);
-    }
+        function updateSignatureTabLabel() {
+            const tabBtn = document.getElementById('signature-tab-btn');
+            // Shorten title if it's too long
+            const displayTitle = signatureTitle.length > 25 
+                ? signatureTitle.substring(0, 22) + '...' 
+                : signatureTitle;
+            tabBtn.innerHTML = `🌟 ${displayTitle}`;
+            tabBtn.setAttribute('onclick', `showTab('signature', '🌟 ${displayTitle}')`);
+        }
 
-    // Dynamic tab config
-    const dynamicMdFile = 'dynamic.md';
+        function renderEvents() {
+            const container = document.getElementById('events-list');
+            
+            if (eventsData.length === 0) {
+                container.innerHTML = '<div class="error">No events found. Please ensure events.md exists in your repository.</div>';
+                return;
+            }
+            
+            container.innerHTML = eventsData.map(event => `
+                <div class="event-card">
+                    <span class="event-type type-${event.type}">${event.type.replace('-', ' ').toUpperCase()}</span>
+                    <h3>${event.title}</h3>
+                    <p><strong>📅 ${event.date}</strong></p>
+                    ${event.pokemon ? `<p>⚡ Featured: ${event.pokemon}</p>` : ''}
+                    <div class="markdown-content">${event.content}</div>
+                </div>
+            `).join('');
+        }
 
-    // Insert dynamic tab first if markdown has content
-    fetch(dynamicMdFile)
-      .then(response => response.text())
-      .then(md => {
-        if (!md.trim()) return; // No data, do not show tab
-        // Get first H1 as tab label
-        const h1Match = md.match(/^#\s+(.+)$/m);
-        if (!h1Match) return;
-        const tabLabel = h1Match[1].trim();
+        function renderSignature() {
+            const container = document.getElementById('signature-content');
+            
+            if (!signatureData) {
+                container.innerHTML = '<div class="error">No signature event found. Please ensure signature.md exists in your repository.</div>';
+                return;
+            }
+            
+            container.innerHTML = `<div class="signature-card">${signatureData}</div>`;
+        }
 
-        // Insert tab button as first
-        const tabsDiv = document.getElementById('main-tabs');
-        const btn = document.createElement('button');
-        btn.className = 'tab-button active';
-        btn.setAttribute('role', 'tab');
-        btn.setAttribute('aria-selected', 'true');
-        btn.textContent = tabLabel;
-        btn.onclick = function(e) { showTab('dynamic', e); };
-        tabsDiv.insertBefore(btn, tabsDiv.firstChild);
+        function renderCampfire() {
+            const container = document.getElementById('campfire-list');
+            
+            if (!campfireData) {
+                container.innerHTML = '<div class="error">No Campfire groups found. Please ensure campfire.md exists in your repository.</div>';
+                return;
+            }
+            
+            container.innerHTML = marked.parse(campfireData);
+        }
 
-        // Insert tab content as first
-        const swipeArea = document.getElementById('swipe-area');
-        const tabDiv = document.createElement('div');
-        tabDiv.id = 'dynamic';
-        tabDiv.className = 'tab-content active';
-        const container = document.createElement('div');
-        container.id = 'dynamic-container';
-        tabDiv.appendChild(container);
-        swipeArea.insertBefore(tabDiv, swipeArea.firstChild);
+        function showTab(tabName, tabLabel) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.style.display = 'none');
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(`${tabName}-tab`).style.display = 'block';
+            
+            // Find and activate the clicked button
+            const clickedButton = Array.from(buttons).find(btn => 
+                btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabName)
+            );
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
 
-        // Make all other tabs inactive
-        document.querySelectorAll('.tab-button').forEach((b, i) => {
-          if (i > 0) {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          }
+            // Update mobile nav toggle text
+            const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+            if (mobileToggle && tabLabel) {
+                mobileToggle.textContent = tabLabel;
+            }
+
+            // Close mobile nav after selection
+            closeMobileNav();
+        }
+
+        function toggleMobileNav() {
+            const navTabs = document.getElementById('nav-tabs');
+            navTabs.classList.toggle('mobile-open');
+        }
+
+        function closeMobileNav() {
+            const navTabs = document.getElementById('nav-tabs');
+            navTabs.classList.remove('mobile-open');
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navTabs = document.getElementById('nav-tabs');
+            
+            if (!navContainer.contains(event.target) && navTabs.classList.contains('mobile-open')) {
+                closeMobileNav();
+            }
         });
-        document.querySelectorAll('.tab-content').forEach((c, i) => {
-          if (i > 0) c.classList.remove('active');
-        });
 
-        tabIds.unshift('dynamic');
-        renderMarkdownSections(md, container, 'dynamic');
-      });
+        // Initialize - Load all markdown files
+        async function init() {
+            // Load events
+            const eventsMarkdown = await loadMarkdownFile('events.md');
+            if (eventsMarkdown) {
+                eventsData = parseEvents(eventsMarkdown);
+                renderEvents();
+            }
 
-    // Load markdown for each tab except communities and dynamic
-    Object.entries(tabMarkdownFiles).forEach(([tabId, mdFile]) => {
-      const container = document.getElementById(tabId + '-container');
-      if (!container) return;
-      fetch(mdFile)
-        .then(response => response.text())
-        .then(md => renderMarkdownSections(md, container, tabId))
-        .catch(() => {
-          const errorDiv = document.createElement('div');
-          errorDiv.textContent = 'Failed to load info for this tab.';
-          container.appendChild(errorDiv);
-        });
-    });
+            // Load signature event
+            const signatureMarkdown = await loadMarkdownFile('signature.md');
+            if (signatureMarkdown) {
+                signatureData = parseSignatureEvent(signatureMarkdown);
+                renderSignature();
+            }
 
-    // Markdown rendering helper
-    function renderMarkdownSections(md, container, tabId) {
-      if (tabId) {
-        tabMarkdownRaw[tabId] = md;
-        ensureCopyButton(container, tabId);
-      }
-      container.innerHTML = '';
-      const lines = md.split('\n');
-      let sections = [];
-      let currentTitle = '';
-      let currentContent = [];
-      let intro = [];
-      let currentLevel = 0;
-      lines.forEach(line => {
-        if (line.startsWith('# ')) {
-          // H1: render as non-collapsible
-          if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
-          }
-          currentTitle = line.replace(/^#\s*/, '').trim();
-          currentContent = [];
-          currentLevel = 1;
-          sections.push({ title: currentTitle, content: '', level: 1 });
-          currentTitle = '';
-        } else if (line.startsWith('## ')) {
-          if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
-          }
-          currentTitle = line.replace(/^##\s*/, '').trim();
-          currentContent = [];
-          currentLevel = 2;
-        } else if (line.startsWith('### ')) {
-          if (currentTitle) {
-            sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
-          }
-          currentTitle = line.replace(/^###\s*/, '').trim();
-          currentContent = [];
-          currentLevel = 3;
-        } else {
-          if (!currentTitle && sections.length === 0) {
-            intro.push(line);
-          } else {
-            currentContent.push(line);
-          }
+            // Load campfire groups
+            const campfireMarkdown = await loadMarkdownFile('campfire.md');
+            if (campfireMarkdown) {
+                campfireData = campfireMarkdown;
+                renderCampfire();
+            }
         }
-      });
-      if (currentTitle) {
-        sections.push({ title: currentTitle, content: currentContent.join('\n'), level: currentLevel });
-      }
-      if (intro.length) {
-        const introDiv = document.createElement('div');
-        introDiv.className = 'markdown-intro';
-        introDiv.innerHTML = marked.parse(intro.join('\n'));
-        container.appendChild(introDiv);
-      }
-      sections.forEach(sec => {
-        if (sec.level === 1) {
-          // Non-collapsible H1
-          const h1 = document.createElement('h1');
-          h1.textContent = sec.title;
-          container.appendChild(h1);
-        } else if (sec.level === 2) {
-          // Non-collapsible H2
-          const h2 = document.createElement('h2');
-          h2.textContent = sec.title;
-          container.appendChild(h2);
-          if (sec.content) {
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'markdown-section';
-            contentDiv.innerHTML = marked.parse(sec.content);
-            container.appendChild(contentDiv);
-          }
-        } else if (sec.level === 3) {
-          // Collapsible H3
-          const details = document.createElement('details');
-          const summary = document.createElement('summary');
-          summary.textContent = sec.title;
-          details.appendChild(summary);
-          if (sec.content) {
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'markdown-section';
-            contentDiv.innerHTML = marked.parse(sec.content);
-            details.appendChild(contentDiv);
-          }
-          container.appendChild(details);
-        }
-      });
-    }
 
-    let currentTab = 0;
-    function showTab(tabId, event) {
-      const tabs = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-button');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      buttons.forEach((btn, idx) => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-        if (tabIds[idx] === tabId) {
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-        }
-      });
-      document.getElementById(tabId).classList.add('active');
-      currentTab = tabIds.indexOf(tabId);
-    }
-
-    // Scoped swipe detection
-    const swipeArea = document.getElementById('swipe-area');
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    swipeArea.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    swipeArea.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      const delta = touchEndX - touchStartX;
-      if (Math.abs(delta) > 50) {
-        if (delta < 0 && currentTab < tabIds.length - 1) {
-          showTab(tabIds[currentTab + 1]);
-        } else if (delta > 0 && currentTab > 0) {
-          showTab(tabIds[currentTab - 1]);
-        }
-      }
-    });
-
-    // Pull-to-refresh implementation
-    let startY = 0;
-    let isPulling = false;
-    let refreshElem = null;
-    function createRefreshElem() {
-      if (!refreshElem) {
-        refreshElem = document.createElement('div');
-        refreshElem.style.position = 'fixed';
-        refreshElem.style.top = '0';
-        refreshElem.style.left = '0';
-        refreshElem.style.right = '0';
-        refreshElem.style.height = '40px';
-        refreshElem.style.background = '#cc0000';
-        refreshElem.style.color = '#fff';
-        refreshElem.style.display = 'flex';
-        refreshElem.style.alignItems = 'center';
-        refreshElem.style.justifyContent = 'center';
-        refreshElem.style.fontWeight = 'bold';
-        refreshElem.style.zIndex = '9999';
-        refreshElem.style.transform = 'translateY(-40px)';
-        refreshElem.style.transition = 'transform 0.2s';
-        refreshElem.innerText = '↻ Refreshing...';
-        document.body.appendChild(refreshElem);
-      }
-    }
-    window.addEventListener('touchstart', function(e) {
-      if (window.scrollY === 0) {
-        startY = e.touches[0].clientY;
-        isPulling = true;
-      }
-    });
-    window.addEventListener('touchmove', function(e) {
-      if (!isPulling) return;
-      const currentY = e.touches[0].clientY;
-      if (currentY - startY > 60) {
-        createRefreshElem();
-        refreshElem.style.transform = 'translateY(0)';
-      }
-    });
-    window.addEventListener('touchend', function(e) {
-      if (refreshElem && refreshElem.style.transform === 'translateY(0px)') {
-        setTimeout(() => {
-          location.reload();
-        }, 400);
-      }
-      if (refreshElem) {
-        refreshElem.style.transform = 'translateY(-40px)';
-      }
-      isPulling = false;
-    });
-
-    // Dynamic header content based on device
-    function updateHeaderForDevice() {
-      const headerText = document.querySelector('#main-header .header-text');
-      if (!headerText) return;
-      if (window.innerWidth <= 600) {
-        headerText.innerHTML = `<p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p><h1 style="font-size:1.4em;">DFW Area Pokémon GO</h1>`;
-      } else {
-        headerText.innerHTML = `<p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p><h1>DFW Area Pokémon GO</h1><p class="tagline">Live event calendar and community resources maintained by local trainers.</p>`;
-      }
-    }
-    window.addEventListener('DOMContentLoaded', updateHeaderForDevice);
-    window.addEventListener('resize', updateHeaderForDevice);
-
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(reg => console.log('Service Worker registered!', reg))
-        .catch(err => console.log('Service Worker registration failed:', err));
-    }
-  </script>
+        // Load content when page loads
+        init();
+    </script>
 </body>
 </html>
