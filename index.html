@@ -25,10 +25,10 @@
 </head>
 <body>
   <header id="main-header">
-    <img src="img/DFWGOFEST.png" alt="DFW Pokémon GO" class="hero-logo" />
     <div class="header-text">
+      <p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p>
       <h1>DFW Area Pokémon GO</h1>
-      <p>Join us for epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>
+      <p class="tagline">Live event calendar and community resources maintained by local trainers.</p>
     </div>
   </header>
 
@@ -49,9 +49,10 @@
     </div>
   </main>
 
-  <div style="display: flex; justify-content: center; margin-top: 1em;">
-    <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button-blue" style="display: flex; align-items: center;">
-      <img src="img/discord.png" alt="Discord" class="button-icon" style="margin-right: 0.5em;">Join Our Discord
+  <div class="cta-row">
+    <a href="https://discord.gg/YTNmVde6Vg" target="_blank" class="link-button-blue">
+      <span class="button-emoji" aria-hidden="true">🗨️</span>
+      Join Our Discord
     </a>
   </div>
 
@@ -86,6 +87,69 @@
       weekdayevents: 'weekdayevents.md',
       weekendevents: 'weekendevents.md'
     };
+
+    const tabMarkdownRaw = {};
+
+    function ensureCopyButton(container, tabId) {
+      if (!tabId) return;
+      const tab = container.closest('.tab-content');
+      if (!tab || tab.querySelector('.markdown-actions')) return;
+
+      const actions = document.createElement('div');
+      actions.className = 'markdown-actions';
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'copy-markdown';
+      button.textContent = 'Copy Markdown for Discord';
+      button.addEventListener('click', () => {
+        const markdown = tabMarkdownRaw[tabId];
+        if (!markdown) return;
+
+        const resetLabel = () => {
+          setTimeout(() => { button.textContent = 'Copy Markdown for Discord'; }, 2000);
+        };
+        const showMessage = (message) => {
+          button.textContent = message;
+          resetLabel();
+        };
+
+        const fallbackCopy = () => {
+          const textarea = document.createElement('textarea');
+          textarea.value = markdown;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'absolute';
+          textarea.style.left = '-9999px';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            const copied = document.execCommand('copy');
+            showMessage(copied ? 'Markdown copied!' : 'Unable to copy');
+          } catch (err) {
+            showMessage('Unable to copy');
+          }
+          document.body.removeChild(textarea);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(markdown)
+            .then(() => showMessage('Markdown copied!'))
+            .catch(() => {
+              fallbackCopy();
+            });
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      const hint = document.createElement('p');
+      hint.className = 'copy-hint';
+      hint.textContent = 'Copies the raw Markdown so you can paste it into Discord.';
+
+      actions.appendChild(button);
+      actions.appendChild(hint);
+      tab.insertBefore(actions, tab.firstChild);
+    }
 
     // Dynamic tab config
     const dynamicMdFile = 'dynamic.md';
@@ -132,7 +196,7 @@
         });
 
         tabIds.unshift('dynamic');
-        renderMarkdownSections(md, container);
+        renderMarkdownSections(md, container, 'dynamic');
       });
 
     // Load markdown for each tab except communities and dynamic
@@ -141,7 +205,7 @@
       if (!container) return;
       fetch(mdFile)
         .then(response => response.text())
-        .then(md => renderMarkdownSections(md, container))
+        .then(md => renderMarkdownSections(md, container, tabId))
         .catch(() => {
           const errorDiv = document.createElement('div');
           errorDiv.textContent = 'Failed to load info for this tab.';
@@ -150,7 +214,12 @@
     });
 
     // Markdown rendering helper
-    function renderMarkdownSections(md, container) {
+    function renderMarkdownSections(md, container, tabId) {
+      if (tabId) {
+        tabMarkdownRaw[tabId] = md;
+        ensureCopyButton(container, tabId);
+      }
+      container.innerHTML = '';
       const lines = md.split('\n');
       let sections = [];
       let currentTitle = '';
@@ -327,9 +396,9 @@
       const headerText = document.querySelector('#main-header .header-text');
       if (!headerText) return;
       if (window.innerWidth <= 600) {
-        headerText.innerHTML = `<h1 style="font-size:1.3em;">DFW Area Pokémon GO</h1>`;
+        headerText.innerHTML = `<p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p><h1 style="font-size:1.4em;">DFW Area Pokémon GO</h1>`;
       } else {
-        headerText.innerHTML = `<h1>DFW Area Pokémon GO</h1><p>Join us for epic Pokémon GO adventures in the Dallas-Fort Worth area!</p>`;
+        headerText.innerHTML = `<p class="eyebrow">Dallas–Fort Worth Pokémon GO network</p><h1>DFW Area Pokémon GO</h1><p class="tagline">Live event calendar and community resources maintained by local trainers.</p>`;
       }
     }
     window.addEventListener('DOMContentLoaded', updateHeaderForDevice);
