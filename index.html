@@ -241,12 +241,22 @@
                 // Get the cleaned content
                 const cleanContent = tempDiv.innerHTML;
                 
+                // Extract time information using regex
+                const timeMatch = cleanContent.match(/Time:([^\n]+)/);
+                const time = timeMatch ? timeMatch[1].trim() : '';
+                
+                // Remove the time line if we found it
+                if (time) {
+                    cleanContent = cleanContent.replace(/Time:[^\n]+\n/, '');
+                }
+                
                 return `
                 <div class="event-card">
                     <span class="event-type type-${event.type}">${event.type.replace('-', ' ').toUpperCase()}</span>
                     <h3>${event.title}</h3>
                     <p><strong>📅 ${event.date}</strong></p>
-                    ${event.pokemon ? `<p>⚡ Featured: ${event.pokemon}</p>` : ''}
+                    ${time ? `<p><strong>🕒 ${time}</strong></p>` : ''}
+                    ${event.pokemon ? `<p><strong>⚡ Featured: ${event.pokemon}</strong></p>` : ''}
                     <div class="markdown-content">${cleanContent}</div>
                 </div>
                 `;
