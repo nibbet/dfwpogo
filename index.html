@@ -103,7 +103,7 @@
                     title,
                     date: dateMatch ? dateMatch[1].trim() : 'TBA',
                     pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
-                    type: typeMatch ? typeMatch[1].trim().toLowerCase() : 'event',
+                    type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
                     content: marked.parse(content)
                 });
             });

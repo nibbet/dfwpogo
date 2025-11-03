@@ -1,36 +1,78 @@
-## Max Battle- Inkay
+## Raid Hour - Mega Charizard X
+**Date:** November 8, 2025
+**Type:** Raid Hour
+**Featured Pokemon:** Mega Charizard X
 
-**Date:** November 3, 2025, 6:00 PM - 7:00 PM
-**Featured Pokemon:** Inkay
-**Location:** Powerspots
+Join us every Wednesday from 6:00 PM - 7:00 PM local time for Raid Hour! This week featuring Mega Charizard X in raids.
+
+- Time: 6:00 PM - 7:00 PM
+- Location: All local gyms
+- Bonus: Extra raid passes from nearby gyms
+- Meet-up Point: Klyde Warren Park
+
+## Max Raid Battle - Gigantamax Pikachu
+**Date:** November 10, 2025
 **Type:** Max Battle
+**Featured Pokemon:** Gigantamax Pikachu
 
-Join trainers across DFW for an hour of Inkay battles! Coordinate with your local Campfire groups for the best raid routes.
+Special Max Raid Battle event featuring the chunky champion himself!
 
-## Spotlight Hour - Pikachu Party
+- Time: 2:00 PM - 5:00 PM
+- Location: Selected gyms in DFW area
+- Bonus: Guaranteed XL candy
+- Recommended: Level 40+ trainers
 
-**Date:** November 5, 2024, 6:00 PM - 7:00 PM
-**Featured Pokemon:** Pikachu
-**Bonus:** 2x Catch Candy
-**Type:** spotlight
+## Season 17 GO Battle League
+**Date:** November 15 - December 15, 2025
+**Type:** Go Battle League
 
-Catch as many Pikachu as you can during this special hour! Perfect for stocking up on candy.
+New season of GO Battle League starts! Climb the ranks and earn exclusive rewards.
 
-## Community Day - Timburr
+- Great League: Nov 15-22
+- Ultra League: Nov 22-29
+- Master League: Nov 29-Dec 6
+- Special Cup: Dec 6-15
+- End of Season rewards include exclusive pose and avatar items
 
-**Date:** November 9, 2024, 2:00 PM - 5:00 PM
-**Featured Pokemon:** Timburr
-**Special Move:** Hammer Arm
-**Bonuses:** 3x Catch XP, 2x Catch Candy
-**Type:** community
+## Community Trade Day
+**Date:** November 12, 2025
+**Type:** Trade Day
 
-Don’t miss this Community Day! Evolve Gurdurr during the event or up to 2 hours after to get the exclusive move Hammer Arm.
+Massive trading event with reduced stardust costs and increased lucky trade chances!
 
-## Raid Day - Primal Groudon
+- Time: 11:00 AM - 5:00 PM
+- Location: Sundance Square, Fort Worth
+- Trading Cost: 50% discount
+- Lucky Trade Rate: Increased
+- Special Focus: Dragon-type Pokemon
 
-**Date:** November 16, 2024, 2:00 PM - 5:00 PM
-**Featured Pokemon:** Primal Groudon
-**Special Bonus:** Increased shiny rate
-**Type:** raid-day
+## Shadow Mewtwo Raid Day
+**Date:** November 20, 2025
+**Type:** Shadow Raid
+**Featured Pokemon:** Shadow Mewtwo
 
-Get ready for an epic Raid Day featuring Primal Groudon! Team up with fellow trainers for your best chance at a shiny.
+First-ever Shadow Mewtwo in raids! Don't miss this extremely rare opportunity.
+
+- Time: 2:00 PM - 5:00 PM
+- Location: All local gyms
+- Bonus: 2 free raid passes
+- Requirements: 
+  - Strong Dark/Ghost counters
+  - Team of 6+ trainers recommended
+
+## G-Max Raid Weekend
+**Date:** November 25-26, 2025
+**Type:** G-Max Battle
+**Featured Pokemon:** Various G-Max Forms
+
+Special weekend featuring multiple Gigantamax forms in raids!
+
+- Featured Pokemon:
+  - G-Max Butterfree
+  - G-Max Meowth
+  - G-Max Pikachu
+  - G-Max Charizard
+- Bonus Features:
+  - Double candy
+  - Guaranteed XL candy
+  - Special research tasks
