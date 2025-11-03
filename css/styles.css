@@ -30,6 +30,41 @@ body {
     font-size: 1.1rem;
 }
 
+/* Discord join button */
+.discord-btn {
+    display: inline-block;
+    margin-top: 0.75rem;
+    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%); /* Discord blurple style */
+    color: #fff;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.22);
+    opacity: 0.95;
+}
+
+/* Footer that holds the join button */
+.site-footer {
+    margin-top: 2rem;
+    padding: 1rem 0 2rem;
+    text-align: center;
+}
+
+/* Ensure the button has proper spacing on small screens */
+@media (max-width: 480px) {
+    .discord-btn {
+        padding: 0.55rem 0.9rem;
+        font-size: 0.95rem;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 2rem auto;
