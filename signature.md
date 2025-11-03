@@ -1,4 +1,4 @@
-# GO Wild Area: Global 2025
+# GO Wild Area: DFW 2025
 
 ## Event Overview
 
