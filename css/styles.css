@@ -65,6 +65,29 @@ body {
     }
 }
 
+/* Sticky bottom-center variant */
+.discord-btn.sticky {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    /* slightly larger shadow for floating effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Ensure the sticky button doesn't hug the edges on very small screens */
+@media (max-width: 420px) {
+    .discord-btn.sticky {
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 32px);
+        max-width: 420px;
+        padding: 0.6rem 1rem;
+        border-radius: 12px;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -299,5 +322,32 @@ body {
 
     .signature-card h2 {
         font-size: 1.5rem;
+    }
+}
+
+/* Mobile nav fixed/persistent styles */
+@media (max-width: 768px) {
+    .nav-container.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        background: rgba(255,255,255,0.98);
+        padding: 0.6rem 1rem;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    /* When nav is fixed, add top padding to the main container so content isn't covered. */
+    .nav-fixed .container {
+        padding-top: var(--nav-height, 64px);
+    }
+
+    /* Slightly reduce mobile toggle sizing when fixed to save space */
+    .nav-container.fixed .mobile-nav-toggle {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
     }
 }

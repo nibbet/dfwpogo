@@ -320,11 +320,57 @@
         }
 
         // Load content when page loads
+        // Initialize sticky mobile nav behavior
+        function setupStickyMobileNav() {
+            const navContainer = document.querySelector('.nav-container');
+            if (!navContainer) return;
+
+            let navTop = navContainer.getBoundingClientRect().top + window.scrollY;
+
+            function updateNav() {
+                // Only use sticky behavior on narrow viewports
+                if (window.innerWidth > 768) {
+                    navContainer.classList.remove('fixed');
+                    document.body.classList.remove('nav-fixed');
+                    document.body.style.removeProperty('--nav-height');
+                    return;
+                }
+
+                const navHeight = navContainer.getBoundingClientRect().height;
+                // Save nav height to a CSS variable so we can pad content
+                document.body.style.setProperty('--nav-height', `${navHeight}px`);
+
+                if (window.scrollY > navTop) {
+                    if (!navContainer.classList.contains('fixed')) {
+                        navContainer.classList.add('fixed');
+                        document.body.classList.add('nav-fixed');
+                    }
+                } else {
+                    if (navContainer.classList.contains('fixed')) {
+                        navContainer.classList.remove('fixed');
+                        document.body.classList.remove('nav-fixed');
+                    }
+                }
+            }
+
+            // Recalculate anchor position on resize/paint
+            function recompute() {
+                navTop = navContainer.getBoundingClientRect().top + window.scrollY;
+                updateNav();
+            }
+
+            window.addEventListener('scroll', updateNav, { passive: true });
+            window.addEventListener('resize', recompute);
+            // run once to set initial state
+            recompute();
+        }
+
         init();
+        setupStickyMobileNav();
     </script>
     <footer class="site-footer">
         <div class="container">
-            <a class="discord-btn" href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord server">Join our Discord Server</a>
+            <a class="discord-btn sticky" href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord server">Join our Discord Server</a>
         </div>
     </footer>
 </body>
