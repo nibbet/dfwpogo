@@ -1,11 +1,11 @@
-## Max Monday - Inkay, the fun upside down Pokémon
+## Max Battle- Inkay
 
 **Date:** November 3, 2025, 6:00 PM - 7:00 PM
 **Featured Pokemon:** Inkay
 **Location:** Powerspots
 **Type:** Max Battle
 
-Join trainers across DFW for an hour of Darkrai raids! Coordinate with your local Campfire groups for the best raid routes.
+Join trainers across DFW for an hour of Inkay battles! Coordinate with your local Campfire groups for the best raid routes.
 
 ## Spotlight Hour - Pikachu Party
 
