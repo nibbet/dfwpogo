@@ -215,15 +215,23 @@
                 return;
             }
             
-            container.innerHTML = eventsData.map(event => `
+            container.innerHTML = eventsData.map(event => {
+                // Strip the date and pokemon from content to avoid duplication
+                let cleanContent = event.content
+                    .replace(/\*\*Date:\*\*[^\n]+\n/, '') // Remove Date line
+                    .replace(/\*\*Featured Pokemon:\*\*[^\n]+\n/, '') // Remove Featured Pokemon line
+                    .replace(/\*\*Type:\*\*[^\n]+\n/, ''); // Remove Type line
+                
+                return `
                 <div class="event-card">
                     <span class="event-type type-${event.type}">${event.type.replace('-', ' ').toUpperCase()}</span>
                     <h3>${event.title}</h3>
                     <p><strong>📅 ${event.date}</strong></p>
                     ${event.pokemon ? `<p>⚡ Featured: ${event.pokemon}</p>` : ''}
-                    <div class="markdown-content">${event.content}</div>
+                    <div class="markdown-content">${cleanContent}</div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function renderSignature() {
