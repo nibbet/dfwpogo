@@ -1,5 +1,6 @@
 ## Max Monday - Inkay
-**Date:** November 3, 2025 6:00 PM to 7:00 PM
+**Date:** November 3, 2025
+**Time** 6:00 PM to 7:00 PM
 **Type:** Max Battle
 **Featured Pokemon:** Inkay
 
