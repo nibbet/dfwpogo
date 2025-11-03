@@ -58,7 +58,16 @@
         let eventsData = [];
         let campfireData = '';
         let signatureData = '';
-        let signatureTitle = 'Signature Events';
+        let signatureTitle = localStorage.getItem('lastSignatureTitle') || 'Signature Events';
+
+        // Constants for localStorage
+        const STORAGE_KEYS = {
+            TITLE: 'lastSignatureTitle',
+            LAST_UPDATED: 'signatureTitleLastUpdated'
+        };
+
+        // Cache duration (24 hours in milliseconds)
+        const CACHE_DURATION = 24 * 60 * 60 * 1000;
 
         // Load markdown files from GitHub
         async function loadMarkdownFile(filename) {
@@ -102,25 +111,99 @@
         }
 
         function parseSignatureEvent(markdown) {
-            if (!markdown) return '';
+            if (!markdown || !markdown.trim()) {
+                hideSignatureTab();
+                return '';
+            }
             
             // Extract title from first h1
             const titleMatch = markdown.match(/^#\s+(.+)$/m);
             if (titleMatch) {
-                signatureTitle = titleMatch[1].trim();
-                updateSignatureTabLabel();
+                const newTitle = titleMatch[1].trim();
+                updateSignatureTitle(newTitle);
+                showSignatureTab();
+            } else {
+                // Try to use cached title if available and not expired
+                const cachedTitle = getCachedTitle();
+                if (cachedTitle) {
+                    signatureTitle = cachedTitle;
+                    updateSignatureTabLabel();
+                    showSignatureTab();
+                } else {
+                    hideSignatureTab();
+                }
             }
             return marked.parse(markdown);
         }
 
+        function updateSignatureTitle(newTitle) {
+            signatureTitle = newTitle;
+            // Cache the new title
+            localStorage.setItem(STORAGE_KEYS.TITLE, newTitle);
+            localStorage.setItem(STORAGE_KEYS.LAST_UPDATED, Date.now().toString());
+            updateSignatureTabLabel();
+        }
+
+        function getCachedTitle() {
+            const lastUpdated = parseInt(localStorage.getItem(STORAGE_KEYS.LAST_UPDATED) || '0');
+            const cachedTitle = localStorage.getItem(STORAGE_KEYS.TITLE);
+            
+            // Check if cache exists and isn't expired
+            if (cachedTitle && Date.now() - lastUpdated < CACHE_DURATION) {
+                return cachedTitle;
+            }
+            
+            // Clear expired cache
+            localStorage.removeItem(STORAGE_KEYS.TITLE);
+            localStorage.removeItem(STORAGE_KEYS.LAST_UPDATED);
+            return null;
+        }
+
         function updateSignatureTabLabel() {
             const tabBtn = document.getElementById('signature-tab-btn');
+            if (!tabBtn) return;
+            
             // Shorten title if it's too long
             const displayTitle = signatureTitle.length > 25 
                 ? signatureTitle.substring(0, 22) + '...' 
                 : signatureTitle;
             tabBtn.innerHTML = `🌟 ${displayTitle}`;
             tabBtn.setAttribute('onclick', `showTab('signature', '🌟 ${displayTitle}')`);
+        }
+
+        function hideSignatureTab() {
+            const tabBtn = document.getElementById('signature-tab-btn');
+            if (tabBtn) {
+                tabBtn.classList.add('hiding');
+                // Wait for transition before hiding
+                setTimeout(() => {
+                    tabBtn.style.display = 'none';
+                    tabBtn.classList.remove('hiding');
+                    // If signature tab was active, switch to events tab
+                    if (tabBtn.classList.contains('active')) {
+                        showTab('events', '📅 Events');
+                    }
+                }, 300); // Match transition duration
+            }
+            const signatureTab = document.getElementById('signature-tab');
+            if (signatureTab) {
+                signatureTab.style.display = 'none';
+            }
+        }
+
+        function showSignatureTab() {
+            const tabBtn = document.getElementById('signature-tab-btn');
+            if (tabBtn) {
+                // Reset visibility without transition
+                tabBtn.classList.remove('hiding');
+                tabBtn.style.opacity = '0';
+                tabBtn.style.display = '';
+                
+                // Trigger transition
+                requestAnimationFrame(() => {
+                    tabBtn.style.opacity = '1';
+                });
+            }
         }
 
         function renderEvents() {
@@ -222,8 +305,8 @@
 
             // Load signature event
             const signatureMarkdown = await loadMarkdownFile('signature.md');
-            if (signatureMarkdown) {
-                signatureData = parseSignatureEvent(signatureMarkdown);
+            signatureData = parseSignatureEvent(signatureMarkdown || '');
+            if (signatureData) {
                 renderSignature();
             }
 

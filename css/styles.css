@@ -97,11 +97,20 @@ body {
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    transition: all 0.3s;
+    transition: all 0.3s, opacity 0.3s, transform 0.3s;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: auto; /* default to auto so tabs can sit side-by-side */
     flex: 1 1 auto; /* allow equal-width tabs across the row */
     text-align: center; /* center label when tabs share space */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Transition states for tab buttons */
+.tab-btn.hiding {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
 }
 
 .tab-btn:hover {
