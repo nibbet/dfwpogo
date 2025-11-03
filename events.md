@@ -1,100 +1,36 @@
-## Dynamax Event - Inkay Takeover
+## Max Monday - Inkay, the fun upside down Pokémon
 
-**Date:** November 3, 2025  
-**Featured Pokémon:** Inkay  
-**Type:** dynamax
+**Date:** November 3, 2025, 6:00 PM - 7:00 PM
+**Featured Pokemon:** Inkay
+**Location:** Powerspots
+**Type:** Max Battle
 
-Inkay, the fun upside-down Pokémon, is taking over the Dynamax Dens!
+Join trainers across DFW for an hour of Darkrai raids! Coordinate with your local Campfire groups for the best raid routes.
 
----
+## Spotlight Hour - Pikachu Party
 
-### ✅️ Check-in Bonus
-- **Win 2 Max Battles**  
-  - Reward: 5000 XP  
-- **Catch 1 Max Pokémon**  
-  - Reward: 5 Great Balls  
-- **Power up Pokémon 10 times**  
-  - Reward: 2000 Stardust  
-- **Page Complete**  
-  - Reward: 800 MP  
-
----
-
-### 💥 Raid Details
-- **CP Range:** 365–397  
-- **Type:** Dark / Psychic  
-- **Recommended Counters:** Bug and Fairy-type Pokémon  
-- **Shiny Available:** ✨ Yes
-
----
-
-## Raid Hour - The Legendary Beasts
-
-**Date:** November 5, 2025  
-**Featured Pokémon:** Raikou, Suicune, Entei  
-**Type:** raid-hour
-
-The Legendary Beasts (Raikou, Suicune, Entei) are the featured Pokémon for this Raid Hour!
-
----
-
-### ✅ Check-in Rewards
-- **Use 12 Berries to catch Pokémon**  
-  - Reward: 🍍 10 Pinap Berries  
-- **Win 2 Raids**  
-  - Reward: ⭐ 5000 XP  
-- **Use 3 super-effective charged attacks**  
-  - Reward: ✨ 1500 Stardust  
-- **Page Complete**  
-  - Reward: 🎟️ 1 Premium Raid Pass  
-
----
-
-### 💥 Raid Details
-**Raikou**  
-- **Type:** Electric  
-- **CP Range:** 1889–1972 (2361–2466☔️)  
-- **Weakness:** Ground types  
-- **Shiny Available:** ✨ Yes  
-
-**Suicune**  
-- **Type:** Water  
-- **CP Range:** 1556–1704 (1957–2130☔️)  
-- **Weakness:** Electric and Grass types  
-- **Shiny Available:** ✨ Yes  
-
-**Entei**  
-- **Type:** Fire  
-- **CP Range:** 1900–1984 (2375–2480☀️)  
-- **Weakness:** Ground, Rock, and Water types  
-- **Shiny Available:** ✨ Yes
-
----
-
-## Spotlight Hour - Weedle
-
-**Date:** November 4, 2025  
-**Featured Pokémon:** Weedle  
+**Date:** November 5, 2024, 6:00 PM - 7:00 PM
+**Featured Pokemon:** Pikachu
+**Bonus:** 2x Catch Candy
 **Type:** spotlight
 
-Weedle, the Hairy Bug Pokémon, is featured in this week's Spotlight Hour!
+Catch as many Pikachu as you can during this special hour! Perfect for stocking up on candy.
 
----
+## Community Day - Timburr
 
-### ✅ Check-in Bonus
-- **Catch 30 Pokémon**  
-  - Reward: 10 Poké Balls  
-- **Transfer 20 Pokémon**  
-  - Reward: 5 Great Balls  
-- **Explore 1 km**  
-  - Reward: 5 Ultra Balls  
-- **Page Complete**  
-  - Reward: Super Incubator  
+**Date:** November 9, 2024, 2:00 PM - 5:00 PM
+**Featured Pokemon:** Timburr
+**Special Move:** Hammer Arm
+**Bonuses:** 3x Catch XP, 2x Catch Candy
+**Type:** community
 
----
+Don’t miss this Community Day! Evolve Gurdurr during the event or up to 2 hours after to get the exclusive move Hammer Arm.
 
-### 💥 Spotlight Details
-- **Type:** Bug / Poison  
-- **Shiny Available:** ✨ Yes  
-- **Bonus:** 2x Transfer Candy
+## Raid Day - Primal Groudon
 
+**Date:** November 16, 2024, 2:00 PM - 5:00 PM
+**Featured Pokemon:** Primal Groudon
+**Special Bonus:** Increased shiny rate
+**Type:** raid-day
+
+Get ready for an epic Raid Day featuring Primal Groudon! Team up with fellow trainers for your best chance at a shiny.
