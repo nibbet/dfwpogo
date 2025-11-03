@@ -99,12 +99,19 @@
                 const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
                 const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
                 
+                // Remove the metadata lines from content before parsing
+                let cleanContent = content
+                    .replace(/\*\*Date:\*\*[^\n]*\n/, '')
+                    .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n/, '')
+                    .replace(/\*\*Type:\*\*[^\n]*\n/, '')
+                    .trim();
+                
                 events.push({
                     title,
                     date: dateMatch ? dateMatch[1].trim() : 'TBA',
                     pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
                     type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
-                    content: marked.parse(content)
+                    content: marked.parse(cleanContent)
                 });
             });
             
@@ -216,11 +223,23 @@
             }
             
             container.innerHTML = eventsData.map(event => {
-                // Strip the date and pokemon from content to avoid duplication
-                let cleanContent = event.content
-                    .replace(/\*\*Date:\*\*[^\n]+\n/, '') // Remove Date line
-                    .replace(/\*\*Featured Pokemon:\*\*[^\n]+\n/, '') // Remove Featured Pokemon line
-                    .replace(/\*\*Type:\*\*[^\n]+\n/, ''); // Remove Type line
+                // Create a temporary div to parse the markdown content
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = event.content;
+                
+                // Find and remove the metadata paragraphs
+                const paragraphs = tempDiv.getElementsByTagName('p');
+                for (let i = paragraphs.length - 1; i >= 0; i--) {
+                    const p = paragraphs[i];
+                    if (p.textContent.includes('Date:') || 
+                        p.textContent.includes('Featured Pokemon:') || 
+                        p.textContent.includes('Type:')) {
+                        p.remove();
+                    }
+                }
+                
+                // Get the cleaned content
+                const cleanContent = tempDiv.innerHTML;
                 
                 return `
                 <div class="event-card">
