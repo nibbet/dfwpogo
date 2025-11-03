@@ -32,15 +32,16 @@ body {
 
 /* Discord join button */
 .discord-btn {
-    display: inline-block;
-    margin-top: 0.75rem;
-    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%); /* Discord blurple style */
-    color: #fff;
-    text-decoration: none;
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    font-weight: 700;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+    /* Stronger baseline to avoid being overridden by other rules */
+    display: inline-block !important;
+    margin-top: 0.75rem !important;
+    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%) !important; /* Discord blurple style */
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 0.6rem 1rem !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18) !important;
     transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
 }
 
@@ -55,6 +56,16 @@ body {
     margin-top: 2rem;
     padding: 1rem 0 2rem;
     text-align: center;
+}
+
+/* Ensure footer-placed button looks like a button on desktop even if 'sticky' class is present */
+.site-footer .discord-btn {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 10 !important;
+    margin: 0.75rem auto 0 auto !important;
 }
 
 /* Ensure the button has proper spacing on small screens */
