@@ -39,7 +39,7 @@ Challenge the ancient sea beast in its most powerful form!
 ## Spotlight Hour - Weedle
 **Date:** November 4, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour  
+**Type:** Spotlight    
 **Bonus:** 2× Transfer Candy  
 
 Get ready to clear your storage! Transfer Pokémon for double the candy rewards.  
@@ -79,7 +79,7 @@ Enter the psychic realm with Ralts as it channels mystical energy from beyond!
 ## Spotlight Hour - Morelull
 **Date:** November 11, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour 
+**Type:** Spotlight   
 **Bonus:** 2× Evolution XP  
 
 Evolve your Pokémon and rack up that XP under the glow of the luminous mushroom!  
@@ -109,7 +109,7 @@ The electric rock duo is back—choose your vibe and shock the competition!
 ## Spotlight Hour - Sableye
 **Date:** November 18, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour  
+**Type:** Spotlight    
 **Bonus:** 2× Catch Stardust  
 
 A rare gem returns! Catch Sableye for double Stardust and possible Shiny encounters.  
@@ -129,7 +129,7 @@ The molten titan rises again! Bring your best Ground types and feel the heat.
 ## Max Battle Weekend
 **Date:** November 21–24, 2025  
 **Time:** All Day  
-**Type:** Max Battle Weekend  
+**Type:** Max Battle
 **Featured Pokémon:** Various  
 
 A longer-form Max Battle event spanning multiple days—great for coordinating with your local group.  
@@ -167,7 +167,7 @@ The beloved Evolution Pokémon makes its Dynamax debut!
 ## Spotlight Hour - Scraggy
 **Date:** November 25, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour  
+**Type:** Spotlight    
 **Bonus:** 2× Catch XP  
 
 Train up your Scraggy and power through with double experience rewards!  
@@ -187,7 +187,7 @@ The Swords of Justice assemble—can you catch them all?
 ## Max Battle Weekend – Bonus Edition
 **Date:** November 29–30, 2025  
 **Time:** All Day  
-**Type:** Max Battle Weekend  
+**Type:** Max Battle
 **Featured Pokémon:** Various  
 
 Round off the month with another weekend of high-intensity Dynamax battles.  
@@ -205,7 +205,7 @@ Round off the month with another weekend of high-intensity Dynamax battles.
 ## Community Day – Featured Pokémon TBA
 **Date:** November 30, 2025  
 **Time:** 2:00 PM – 5:00 PM  
-**Type:** Community Day  
+**Type:** Community
 **Featured Pokémon:** To be announced  
 
 Get ready for a high-spawn event where one special Pokémon takes the spotlight!  

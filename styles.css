@@ -257,6 +257,7 @@ body {
 .type-g-max-battle { background: #e056fd; color: white; } /* Bright Purple */
 
 /* Also add aliases for non-hyphenated versions */
+.type-spotlighthour { background: #ffd93d; color: #333; }
 .type-raidhour { background: #ff7f50; color: white; }
 .type-maxbattle { background: #4834d4; color: white; }
 .type-gobattleleague { background: #686de0; color: white; }
