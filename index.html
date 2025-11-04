@@ -223,41 +223,28 @@
             }
             
             container.innerHTML = eventsData.map(event => {
-                // Create a temporary div to parse the markdown content
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = event.content;
+                let processedContent = event.content;
                 
-                // Find and remove the metadata paragraphs
-                const paragraphs = tempDiv.getElementsByTagName('p');
-                for (let i = paragraphs.length - 1; i >= 0; i--) {
-                    const p = paragraphs[i];
-                    if (p.textContent.includes('Date:') || 
-                        p.textContent.includes('Featured Pokemon:') || 
-                        p.textContent.includes('Type:')) {
-                        p.remove();
-                    }
-                }
+                // Extract time if it exists
+                const timeMatch = processedContent.match(/Time:([^\n]+)/);
+                const timeDisplay = timeMatch ? `<p><strong>🕒 ${timeMatch[1].trim()}</strong></p>` : '';
                 
-                // Get the cleaned content
-                const cleanContent = tempDiv.innerHTML;
-                
-                // Extract time information using regex
-                const timeMatch = cleanContent.match(/Time:([^\n]+)/);
-                const time = timeMatch ? timeMatch[1].trim() : '';
-                
-                // Remove the time line if we found it
-                if (time) {
-                    cleanContent = cleanContent.replace(/Time:[^\n]+\n/, '');
-                }
+                // Remove metadata from content
+                processedContent = processedContent
+                    .replace(/\*\*Date:\*\*[^\n]*\n/g, '')
+                    .replace(/\*\*Type:\*\*[^\n]*\n/g, '')
+                    .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n/g, '')
+                    .replace(/Time:[^\n]*\n/g, '')
+                    .trim();
                 
                 return `
                 <div class="event-card">
-                    <span class="event-type type-${event.type}">${event.type.replace('-', ' ').toUpperCase()}</span>
+                    <span class="event-type type-${event.type}">${event.type.replace(/-/g, ' ').toUpperCase()}</span>
                     <h3>${event.title}</h3>
                     <p><strong>📅 ${event.date}</strong></p>
-                    ${time ? `<p><strong>🕒 ${time}</strong></p>` : ''}
+                    ${timeDisplay}
                     ${event.pokemon ? `<p><strong>⚡ Featured: ${event.pokemon}</strong></p>` : ''}
-                    <div class="markdown-content">${cleanContent}</div>
+                    <div class="markdown-content">${processedContent}</div>
                 </div>
                 `;
             }).join('');
@@ -337,8 +324,12 @@
             // Load events
             const eventsMarkdown = await loadMarkdownFile('events.md');
             if (eventsMarkdown) {
+                console.log('Loaded markdown:', eventsMarkdown.substring(0, 500) + '...');
                 eventsData = parseEvents(eventsMarkdown);
+                console.log('Parsed events:', eventsData);
                 renderEvents();
+            } else {
+                console.error('Failed to load events.md');
             }
 
             // Load signature event
