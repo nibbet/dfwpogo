@@ -21,7 +21,7 @@
                 <span class="hamburger">☰</span>
             </button>
             <div class="nav-tabs" id="nav-tabs">
-                <button class="tab-btn active" onclick="showTab('events', '📅 Events')">📅 Events</button>
+                <button class="tab-btn active" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
                 <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
                 <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
             </div>
@@ -98,17 +98,20 @@
                 const dateMatch = content.match(/\*\*Date:\*\*\s*(.+)/);
                 const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
                 const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
-                
-                // Remove the metadata lines from content before parsing
+                const timeMatch = content.match(/\*\*Time\*\*\s*:?\s*(.+)/);
+
+                // Remove the metadata lines from content before parsing (allow optional colon or not)
                 let cleanContent = content
-                    .replace(/\*\*Date:\*\*[^\n]*\n/, '')
-                    .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n/, '')
-                    .replace(/\*\*Type:\*\*[^\n]*\n/, '')
+                    .replace(/\*\*Date:\*\*[^\n]*\n?/g, '')
+                    .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n?/g, '')
+                    .replace(/\*\*Type:\*\*[^\n]*\n?/g, '')
+                    .replace(/\*\*Time\*\*\s*:?.*\n?/g, '')
                     .trim();
-                
+
                 events.push({
                     title,
                     date: dateMatch ? dateMatch[1].trim() : 'TBA',
+                    time: timeMatch ? timeMatch[1].trim() : '',
                     pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
                     type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
                     content: marked.parse(cleanContent)
@@ -185,6 +188,19 @@
                 tabBtn.classList.add('hiding');
                 // Wait for transition before hiding
                 setTimeout(() => {
+                    // If we previously moved the tab, attempt to restore its original position
+                    const navTabs = document.getElementById('nav-tabs');
+                    if (tabBtn.dataset && tabBtn.dataset.originalIndex) {
+                        const originalIndex = parseInt(tabBtn.dataset.originalIndex, 10);
+                        // If originalIndex is within bounds, insert before that child, otherwise append
+                        if (!isNaN(originalIndex) && originalIndex < navTabs.children.length) {
+                            navTabs.insertBefore(tabBtn, navTabs.children[originalIndex]);
+                        } else {
+                            navTabs.appendChild(tabBtn);
+                        }
+                        delete tabBtn.dataset.originalIndex;
+                    }
+
                     tabBtn.style.display = 'none';
                     tabBtn.classList.remove('hiding');
                     // If signature tab was active, switch to events tab
@@ -202,11 +218,20 @@
         function showSignatureTab() {
             const tabBtn = document.getElementById('signature-tab-btn');
             if (tabBtn) {
+                // Move the signature tab to the front when visible, remembering original position
+                const navTabs = document.getElementById('nav-tabs');
+                if (navTabs && !tabBtn.dataset.originalIndex) {
+                    const children = Array.from(navTabs.children);
+                    const idx = children.indexOf(tabBtn);
+                    if (idx !== -1) tabBtn.dataset.originalIndex = idx;
+                    navTabs.insertBefore(tabBtn, navTabs.firstChild);
+                }
+
                 // Reset visibility without transition
                 tabBtn.classList.remove('hiding');
                 tabBtn.style.opacity = '0';
                 tabBtn.style.display = '';
-                
+
                 // Trigger transition
                 requestAnimationFrame(() => {
                     tabBtn.style.opacity = '1';
@@ -223,20 +248,10 @@
             }
             
             container.innerHTML = eventsData.map(event => {
-                let processedContent = event.content;
-                
-                // Extract time if it exists
-                const timeMatch = processedContent.match(/Time:([^\n]+)/);
-                const timeDisplay = timeMatch ? `<p><strong>🕒 ${timeMatch[1].trim()}</strong></p>` : '';
-                
-                // Remove metadata from content
-                processedContent = processedContent
-                    .replace(/\*\*Date:\*\*[^\n]*\n/g, '')
-                    .replace(/\*\*Type:\*\*[^\n]*\n/g, '')
-                    .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n/g, '')
-                    .replace(/Time:[^\n]*\n/g, '')
-                    .trim();
-                
+                // event.content comes pre-parsed (HTML) and metadata lines were removed in parseEvents
+                const processedContent = event.content;
+                const timeDisplay = event.time ? `<p><strong>🕒 ${event.time}</strong></p>` : '';
+
                 return `
                 <div class="event-card">
                     <span class="event-type type-${event.type}">${event.type.replace(/-/g, ' ').toUpperCase()}</span>

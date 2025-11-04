@@ -245,7 +245,7 @@ body {
 }
 
 .type-raid { background: #ff6b6b; color: white; }
-.type-spotlight { background: #ffd93d; color: #333; }
+.type-spotlight-hour, .type-spotlight { background: #ffd93d; color: #333; }
 .type-community { background: #6bcf7f; color: white; }
 .type-raid-day { background: #c44569; color: white; }
 .type-raid-hour { background: #ff7f50; color: white; } /* Coral */
