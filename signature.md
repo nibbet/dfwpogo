@@ -11,146 +11,144 @@ Experience the **GO Wild Area 2025: Global** event — a worldwide adventure ful
 **Optional Ticket Cost:** $11.99 USD (or local equivalent)
 
 
+# GO Wild Area 2025 — Global
+
+## Event Overview 🎯
+
+The wilderness of Galar is calling, Trainers! Experience the **GO Wild Area 2025: Global** event — a worldwide celebration with rare spawns, Shadow Raids, and debut Pokémon.
+
+- **Dates:** November 15–16, 2025
+- **Time:** 10:00 AM – 6:00 PM (local time)
+- **Location:** Global (play from anywhere)
+- **Ticket (optional):** $11.99 USD (or local equivalent)
+
+---
 
 ## Highlights & Features ✨
 
-- 🌟 **Debuts:**
-  - Impidimp, Morgrem, and Grimmsnarl (with shiny available)
-- 🌑 **Shadow Raids:**
-  - Shadow Darkrai and Shadow Cresselia appear in 5★ Shadow Raids
-- 🧵 **Special Costumed Pokémon:**
-  - Bewear wearing a **Wilderness Cape** in 3★ Raids
-- 💥 **Max Battles:**
-  - Gigantamax Grimmsnarl appears in 6★ Max Battles
-- ✨ **New Shinies:**
-  - Shiny Unown W, Shiny Hatenna, and Shiny Impidimp debut
-- 📸 **New Catch Background:**
-  - Special event-themed background for featured Pokémon
+- Debuts: Impidimp, Morgrem, Grimmsnarl (shiny available)
+- Shadow Raids (5★): Shadow Darkrai, Shadow Cresselia
+- Costumed Pokémon: Bewear (Wilderness Cape) in 3★ Raids
+- Max Battles: Gigantamax Grimmsnarl in 6★ Max Battles
+- New Shinies: Unown W, Hatenna, Impidimp
+- New catch background and event visuals
 
-
+---
 
 ## Habitats & Schedule 🗺️
 
 Two alternating hourly habitats each day:
 
-| Time (Local) | Habitat | Theme |
-||-|--|
-| 10:00 – 11:00 | Lurking Dark Hour | Dark-type Pokémon |
-| 11:00 – 12:00 | Fanciful Fairy Hour | Fairy-type Pokémon |
-| 12:00 – 1:00 | Lurking Dark Hour | Dark-type Pokémon |
-| 1:00 – 2:00 | Fanciful Fairy Hour | Fairy-type Pokémon |
-| 2:00 – 3:00 | Lurking Dark Hour | Dark-type Pokémon |
-| 3:00 – 4:00 | Fanciful Fairy Hour | Fairy-type Pokémon |
-| 4:00 – 5:00 | Lurking Dark Hour | Dark-type Pokémon |
-| 5:00 – 6:00 | Fanciful Fairy Hour | Fairy-type Pokémon |
+| Time (Local)    | Habitat               | Theme               |
+|-----------------|-----------------------|---------------------|
+| 10:00 – 11:00    | Lurking Dark Hour     | Dark-type Pokémon   |
+| 11:00 – 12:00    | Fanciful Fairy Hour   | Fairy-type Pokémon  |
+| 12:00 – 13:00    | Lurking Dark Hour     | Dark-type Pokémon   |
+| 13:00 – 14:00    | Fanciful Fairy Hour   | Fairy-type Pokémon  |
+| 14:00 – 15:00    | Lurking Dark Hour     | Dark-type Pokémon   |
+| 15:00 – 16:00    | Fanciful Fairy Hour   | Fairy-type Pokémon  |
+| 16:00 – 17:00    | Lurking Dark Hour     | Dark-type Pokémon   |
+| 17:00 – 18:00    | Fanciful Fairy Hour   | Fairy-type Pokémon  |
 
 ### Lurking Dark Hour
-Includes: Alolan Meowth, Gastly, Hoothoot, Murkrow, Sneasel, Houndour, Poochyena, Galarian Zigzagoon, Stunky, Scrafty, Zorua, Foongus, Deino, Phantump, Impidimp, Dreepy, and more.
+Common / notable spawns: Alolan Meowth, Gastly, Hoothoot, Murkrow, Sneasel, Houndour, Poochyena, Galarian Zigzagoon, Stunky, Scrafty, Zorua, Foongus, Deino, Phantump, Impidimp, Dreepy.
 
 ### Fanciful Fairy Hour
-Includes: Clefairy, Alolan Vulpix, Jigglypuff, Galarian Ponyta, Togetic, Marill, Snubbull, Ralts, Swablu, Feebas, Cherubi, Cottonee, Dedenne, Hatenna, Smoliv, and more.
+Common / notable spawns: Clefairy, Alolan Vulpix, Jigglypuff, Galarian Ponyta, Togetic, Marill, Snubbull, Ralts, Swablu, Feebas, Cherubi, Cottonee, Dedenne, Hatenna, Smoliv.
 
+---
 
+## Mighty Pokémon & Incense
 
-## Mighty Pokémon & Incense Encounters
-
-### Saturday – November 15
+### Saturday — November 15
 Wigglytuff, Galarian Rapidash, Tyranitar, Mawile, Absol, Golurk, Hatterene, Obstagoon, Meowscarada
 
-### Sunday – November 16
+### Sunday — November 16
 Alolan Ninetales, Galarian Weezing, Granbull, Houndoom, Gardevoir, Honchkrow, Garchomp, Drapion, Weavile
 
 ### Incense (Both Days)
-All Trainers:
-- Alolan Ninetales, Galarian Rapidash, Tyranitar, Mawile, Absol, Garchomp, Drapion, Weavile
+- All trainers: Alolan Ninetales, Galarian Rapidash, Tyranitar, Mawile, Absol, Garchomp, Drapion, Weavile
+- Ticket holders (additional rares): Unown W, Unown I/L/D; Uxie, Mesprit, Azelf
 
-Ticket Holders:
-- Unown W (first appearance), Unown I, L, D  
-- Uxie, Mesprit, Azelf as rare Mighty Pokémon
+---
 
+## Raids & Eggs
 
+- Shadow Raids (5★): Shadow Darkrai, Shadow Cresselia
+- Raids (3★): Bewear (Wilderness Cape)
 
-## Raids
+**5 km Eggs:** Mime Jr., Sandile, Pawniard, Carbink, Impidimp, Tinkatink
 
-- **Shadow Raids (5★):** Shadow Darkrai, Shadow Cresselia  
-- **Raids (3★):** Bewear (w/Wilderness Cape)  
-
-
-
-## Egg Hatches
-
-**5 km Eggs** during event: Mime Jr., Sandile, Pawniard, Carbink, Impidimp, Tinkatink
-
-
+---
 
 ## Bonuses & Ticket Details
 
-**Free for All Trainers:**
-- 3 Free Raid Passes/day from Gyms  
-- Max Particle cap: 1,600  
-- 3 GO Snapshot surprise encounters/day  
+**Free for all trainers**
+- 3 free raid passes/day from Gyms
+- Max particle cap: 1,600
+- 3 GO Snapshot surprise encounters/day
 
-**Ticket Holder Bonuses:**
-- Increased shiny odds (not guaranteed)  
-- 2× Catch Candy  
-- ½ Egg Hatch Distance (during event)  
-- 2-hour Lures + 2-hour Incense  
-- Up to 6 Free Raid Passes/day  
-- Max Particle cap: 3,200  
-- ¾ cost for unlocking/powering Max Moves  
-- 6 Special Trades/day + ½ Stardust cost  
-- Special Research: Choose **Dark Detective** or **Fairy Fanatic** path  
-- 6 GO Snapshot encounters/day  
+**Ticket holder bonuses**
+- Increased shiny odds (not guaranteed)
+- 2× catch candy
+- ½ egg hatch distance (during event)
+- 2-hour lures + 2-hour incense
+- Up to 6 free raid passes/day
+- Max particle cap: 3,200
+- Reduced cost to unlock/power Max Moves
+- 6 special trades/day at ½ stardust cost
+- Special research (choose one path)
+- 6 GO Snapshot encounters/day
 
-**Ticket Cost:** $11.99 USD (or local equivalent)  
-**Web Store Purchase Bonus:** Flower Crown avatar item + 10 Max Revives + 10 Rare Candy + 3 Premium Passes + 1 Egg Incubator + 144 Reward Points  
+**Ticket:** $11.99 USD (or local equivalent)
 
+**Web store bonus:** Flower Crown avatar + 10 Max Revives + 10 Rare Candy + 3 Premium Passes + 1 Egg Incubator + 144 Reward Points
 
+---
 
 ## Special Research Paths
 
-Choose between two exclusive paths (ticket-holders only):
+- Dark Detective — Rewards favor Dark-type Mighty Pokémon (XL candy boost for level 31+) + bonus stardust
+- Fairy Fanatic — Rewards favor Fairy-type Mighty Pokémon (XL candy boost for level 31+) + bonus stardust
 
-- **Dark Detective:** +1 XL Candy for Dark-type Mighty Pokémon (level 31+) + Bonus Stardust  
-- **Fairy Fanatic:** +1 XL Candy for Fairy-type Mighty Pokémon (level 31+) + Bonus Stardust  
+---
 
+## Avatar Items & Rewards
 
+- Flower Crown (web store bonus)
+- Bewear Onsie & Morgrem Hairstyle (in-game shop)
+- Grimmsnarl Hairstyle (GO Pass Deluxe)
+- New avatar pose (special research reward)
 
-## Avatar Items
-
-- **Flower Crown:** Web Store purchase bonus  
-- **Bewear Onsie & Morgrem Hairstyle:** In-game shop items  
-- **Grimmsnarl Hairstyle:** GO Pass Deluxe reward  
-- **New Avatar Pose:** Unlocked via Special Research completion  
-
-
+---
 
 ## Additional Features
 
-- 🎈 **Supply Balloons:** Hourly drops of Safari Balls (for ticket holders)  
-- 🗺️ **Routes Exploration:** More Pokémon spawns & extra Buddy Candy  
-- 🏠 **Pokémon HOME Update:** Safari Ball visual transfer support coming soon  
+- Supply Balloons: hourly drops of Safari Balls (ticket holders)
+- Routes Exploration: extra spawns & buddy candy
+- Pokémon HOME: upcoming Safari Ball transfer visuals
 
-
+---
 
 ## DFW Meetup Locations
 
-Join local trainers in the DFW area to enjoy the event together!
+Join local trainers at:
 
-- **Klyde Warren Park** (Dallas) – 10 AM – 6 PM both days  
-- **Sundance Square** (Fort Worth) – 11 AM – 5 PM both days  
-- **Legacy West** (Plano) – 12 PM – 4 PM both days  
+- Klyde Warren Park (Dallas) — 10 AM–6 PM
+- Sundance Square (Fort Worth) — 11 AM–5 PM
+- Legacy West (Plano) — 12 PM–4 PM
 
-Coordinate via your local **Campfire groups** for raid trains, trades, and photo ops.
+Coordinate via Campfire groups for raid trains, trades, and meetups.
 
-
+---
 
 ## Preparation Tips
 
-- Stock up on Poké Balls & Berries  
-- Clear storage for new Pokémon and items  
-- Bring battery packs & cables  
-- Stay hydrated and check DFW weather  
+- Stock up on Poké Balls & berries
+- Clear storage for new Pokémon and items
+- Bring battery packs and chargers
+- Stay hydrated and check weather
+- Download offline maps
+- Join local Campfire groups for coordination
 - Download offline maps of your area  
-- Join local Campfire groups for live coordination  
 

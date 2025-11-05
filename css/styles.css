@@ -20,53 +20,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Collapsible section styles */
-.collapsible {
-    background: #fff;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.collapsible-header {
-    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
-    color: #fff;
-    padding: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.collapsible-header:hover {
-    background: linear-gradient(135deg, #7850B0 0%, #243870 100%);
-}
-
-.collapsible-header::after {
-    content: '▼';
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-}
-
-.collapsible-header.collapsed::after {
-    transform: rotate(-90deg);
-}
-
-.collapsible-content {
-    padding: 1rem;
-    display: block;
-    background: #fff;
-    transition: max-height 0.3s ease-out;
-    overflow: hidden;
-}
-
-.collapsible-content.collapsed {
-    max-height: 0;
-    padding: 0 1rem;
-}
+/* Section headers are styled below for static display (no collapsible behavior) */
 
 .header h1 {
     color: white;
