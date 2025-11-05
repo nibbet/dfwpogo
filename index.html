@@ -98,40 +98,52 @@
             }
         }
 
+        // Parse events and filter out past events
         function parseEvents(markdown) {
             if (!markdown) return [];
-            
             const events = [];
             const sections = markdown.split('##').filter(s => s.trim());
-            
+            const today = new Date();
             sections.forEach(section => {
                 const lines = section.trim().split('\n');
                 const title = lines[0].trim();
                 const content = lines.slice(1).join('\n');
-                
                 const dateMatch = content.match(/\*\*Date:\*\*\s*(.+)/);
                 const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
                 const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
                 const timeMatch = content.match(/\*\*Time\*\*\s*:?\s*(.+)/);
-
-                // Remove the metadata lines from content before parsing (allow optional colon or not)
                 let cleanContent = content
                     .replace(/\*\*Date:\*\*[^\n]*\n?/g, '')
                     .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n?/g, '')
                     .replace(/\*\*Type:\*\*[^\n]*\n?/g, '')
                     .replace(/\*\*Time\*\*\s*:?.*\n?/g, '')
                     .trim();
-
-                events.push({
-                    title,
-                    date: dateMatch ? dateMatch[1].trim() : 'TBA',
-                    time: timeMatch ? timeMatch[1].trim() : '',
-                    pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
-                    type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
-                    content: marked.parse(cleanContent)
-                });
+                // Parse the date for filtering
+                let eventDate = null;
+                if (dateMatch) {
+                    let dateStr = dateMatch[1].split(/[–-]/)[0].trim();
+                    if (!/\d{4}/.test(dateStr) && /\d{4}/.test(dateMatch[1])) {
+                        dateStr += ', ' + dateMatch[1].match(/\d{4}/)[0];
+                    }
+                    eventDate = new Date(dateStr);
+                }
+                let isUpcoming = true;
+                if (eventDate instanceof Date && !isNaN(eventDate)) {
+                    const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+                    const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    isUpcoming = eventDay >= todayDay;
+                }
+                if (isUpcoming) {
+                    events.push({
+                        title,
+                        date: dateMatch ? dateMatch[1].trim() : 'TBA',
+                        time: timeMatch ? timeMatch[1].trim() : '',
+                        pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
+                        type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
+                        content: marked.parse(cleanContent)
+                    });
+                }
             });
-            
             return events;
         }
 
