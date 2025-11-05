@@ -39,7 +39,7 @@ Challenge the ancient sea beast in its most powerful form!
 ## Spotlight Hour - Weedle
 **Date:** November 4, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight    
+**Type:** Spotlight Hour  
 **Bonus:** 2× Transfer Candy  
 
 Get ready to clear your storage! Transfer Pokémon for double the candy rewards.  
@@ -79,7 +79,7 @@ Enter the psychic realm with Ralts as it channels mystical energy from beyond!
 ## Spotlight Hour - Morelull
 **Date:** November 11, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight   
+**Type:** Spotlight Hour  
 **Bonus:** 2× Evolution XP  
 
 Evolve your Pokémon and rack up that XP under the glow of the luminous mushroom!  
@@ -109,7 +109,7 @@ The electric rock duo is back—choose your vibe and shock the competition!
 ## Spotlight Hour - Sableye
 **Date:** November 18, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight    
+**Type:** Spotlight Hour  
 **Bonus:** 2× Catch Stardust  
 
 A rare gem returns! Catch Sableye for double Stardust and possible Shiny encounters.  
@@ -167,7 +167,7 @@ The beloved Evolution Pokémon makes its Dynamax debut!
 ## Spotlight Hour - Scraggy
 **Date:** November 25, 2025  
 **Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight    
+**Type:** Spotlight Hour  
 **Bonus:** 2× Catch XP  
 
 Train up your Scraggy and power through with double experience rewards!  

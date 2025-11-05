@@ -225,13 +225,14 @@ body {
 }
 
 .signature-card {
-    /* Highlight signature events with a bold yellow -> orange gradient */
-    background: linear-gradient(135deg, #F2B90F 0%, #D95829 50%);
+    /* Darker signature event background for improved readability while keeping themed colors */
+    background: linear-gradient(135deg, rgba(242,185,15,0.22) 0%, rgba(217,88,41,0.16) 100%);
     border: 1px solid #D95829;
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    /* slightly stronger shadow to lift the card when the background is darker */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
 }
 
 .signature-card h2 {

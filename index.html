@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DFW Area Pokemon GO - Community Events</title>
+    <title>DFW Pokemon GO</title>
+    <!-- PWA: manifest and theme color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6E46A6">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="DFW PoGO">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="header">
-        <h1>DFW Area
-            Pokemon GO</h1>
+        <h1>DFW Pokémon Go</h1>
         <p>Your guide to local community events and Campfire groups</p>
     </div>
 
@@ -416,5 +421,13 @@
             <a class="discord-btn sticky" href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord server">Join our Discord Server</a>
         </div>
     </footer>
+    <script>
+        // Register service worker if supported
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service worker registered with scope:', reg.scope))
+                .catch(err => console.warn('Service worker registration failed:', err));
+        }
+    </script>
 </body>
 </html>
