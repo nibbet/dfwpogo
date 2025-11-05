@@ -1,6 +1,6 @@
 # GO Wild Area 2025: Global
 
-## Event Overview
+## Event Overview 🎯
 
 The wilderness of Galar is calling, Trainers!  
 Experience the **GO Wild Area 2025: Global** event — a worldwide adventure full of rare spawns, Shadow Raids, and debut Pokémon.
@@ -10,9 +10,9 @@ Experience the **GO Wild Area 2025: Global** event — a worldwide adventure ful
 **Location:** Global (Play from anywhere)  
 **Optional Ticket Cost:** $11.99 USD (or local equivalent)
 
----
 
-## Highlights & Features
+
+## Highlights & Features ✨
 
 - 🌟 **Debuts:**
   - Impidimp, Morgrem, and Grimmsnarl (with shiny available)
@@ -27,14 +27,14 @@ Experience the **GO Wild Area 2025: Global** event — a worldwide adventure ful
 - 📸 **New Catch Background:**
   - Special event-themed background for featured Pokémon
 
----
 
-## Habitats & Schedule
+
+## Habitats & Schedule 🗺️
 
 Two alternating hourly habitats each day:
 
 | Time (Local) | Habitat | Theme |
-|---------------|----------|--------|
+||-|--|
 | 10:00 – 11:00 | Lurking Dark Hour | Dark-type Pokémon |
 | 11:00 – 12:00 | Fanciful Fairy Hour | Fairy-type Pokémon |
 | 12:00 – 1:00 | Lurking Dark Hour | Dark-type Pokémon |
@@ -50,7 +50,7 @@ Includes: Alolan Meowth, Gastly, Hoothoot, Murkrow, Sneasel, Houndour, Poochyena
 ### Fanciful Fairy Hour
 Includes: Clefairy, Alolan Vulpix, Jigglypuff, Galarian Ponyta, Togetic, Marill, Snubbull, Ralts, Swablu, Feebas, Cherubi, Cottonee, Dedenne, Hatenna, Smoliv, and more.
 
----
+
 
 ## Mighty Pokémon & Incense Encounters
 
@@ -68,20 +68,20 @@ Ticket Holders:
 - Unown W (first appearance), Unown I, L, D  
 - Uxie, Mesprit, Azelf as rare Mighty Pokémon
 
----
+
 
 ## Raids
 
 - **Shadow Raids (5★):** Shadow Darkrai, Shadow Cresselia  
 - **Raids (3★):** Bewear (w/Wilderness Cape)  
 
----
+
 
 ## Egg Hatches
 
 **5 km Eggs** during event: Mime Jr., Sandile, Pawniard, Carbink, Impidimp, Tinkatink
 
----
+
 
 ## Bonuses & Ticket Details
 
@@ -105,7 +105,7 @@ Ticket Holders:
 **Ticket Cost:** $11.99 USD (or local equivalent)  
 **Web Store Purchase Bonus:** Flower Crown avatar item + 10 Max Revives + 10 Rare Candy + 3 Premium Passes + 1 Egg Incubator + 144 Reward Points  
 
----
+
 
 ## Special Research Paths
 
@@ -114,7 +114,7 @@ Choose between two exclusive paths (ticket-holders only):
 - **Dark Detective:** +1 XL Candy for Dark-type Mighty Pokémon (level 31+) + Bonus Stardust  
 - **Fairy Fanatic:** +1 XL Candy for Fairy-type Mighty Pokémon (level 31+) + Bonus Stardust  
 
----
+
 
 ## Avatar Items
 
@@ -123,7 +123,7 @@ Choose between two exclusive paths (ticket-holders only):
 - **Grimmsnarl Hairstyle:** GO Pass Deluxe reward  
 - **New Avatar Pose:** Unlocked via Special Research completion  
 
----
+
 
 ## Additional Features
 
@@ -131,7 +131,7 @@ Choose between two exclusive paths (ticket-holders only):
 - 🗺️ **Routes Exploration:** More Pokémon spawns & extra Buddy Candy  
 - 🏠 **Pokémon HOME Update:** Safari Ball visual transfer support coming soon  
 
----
+
 
 ## DFW Meetup Locations
 
@@ -143,7 +143,7 @@ Join local trainers in the DFW area to enjoy the event together!
 
 Coordinate via your local **Campfire groups** for raid trains, trades, and photo ops.
 
----
+
 
 ## Preparation Tips
 

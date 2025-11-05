@@ -12,6 +12,26 @@
     <meta name="apple-mobile-web-app-title" content="DFW PoGO">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        // Use marked defaults and enable GFM + line breaks
+        marked.setOptions({
+            gfm: true,
+            breaks: true
+        });
+
+        // Function to toggle collapsible sections
+        function toggleCollapsible(header) {
+            header.classList.toggle('collapsed');
+            const content = header.nextElementSibling;
+            content.classList.toggle('collapsed');
+            
+            if (content.classList.contains('collapsed')) {
+                content.style.maxHeight = '0';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -270,15 +290,73 @@
             }).join('');
         }
 
+        // Turn flat HTML (from marked) into top-level, non-nested collapsible sections
+        function transformToCollapsibles(html) {
+            const source = document.createElement('div');
+            source.innerHTML = html;
+            const nodes = Array.from(source.childNodes);
+
+            const out = document.createDocumentFragment();
+
+            let i = 0;
+            // Append any nodes before the first H2 directly
+            while (i < nodes.length && !(nodes[i].nodeType === 1 && nodes[i].tagName === 'H2')) {
+                out.appendChild(nodes[i].cloneNode(true));
+                i++;
+            }
+
+            while (i < nodes.length) {
+                const node = nodes[i];
+                if (!(node.nodeType === 1 && node.tagName === 'H2')) {
+                    // If something unexpected appears, append and continue
+                    out.appendChild(node.cloneNode(true));
+                    i++;
+                    continue;
+                }
+
+                // Create collapsible wrapper
+                const coll = document.createElement('div');
+                coll.className = 'collapsible';
+
+                const header = document.createElement('div');
+                header.className = 'collapsible-header';
+                header.setAttribute('onclick', 'toggleCollapsible(this)');
+                header.innerHTML = node.innerHTML; // use inner content of H2
+
+                const content = document.createElement('div');
+                content.className = 'collapsible-content';
+
+                // Gather following nodes until next H2
+                i++;
+                while (i < nodes.length && !(nodes[i].nodeType === 1 && nodes[i].tagName === 'H2')) {
+                    content.appendChild(nodes[i].cloneNode(true));
+                    i++;
+                }
+
+                // Ensure content has an initial maxHeight so transitions work
+                content.style.maxHeight = content.scrollHeight + 'px';
+
+                coll.appendChild(header);
+                coll.appendChild(content);
+                out.appendChild(coll);
+            }
+
+            const container = document.createElement('div');
+            container.appendChild(out);
+            return container.innerHTML;
+        }
+
         function renderSignature() {
             const container = document.getElementById('signature-content');
-            
+
             if (!signatureData) {
                 container.innerHTML = '<div class="error">No signature event found. Please ensure signature.md exists in your repository.</div>';
                 return;
             }
-            
-            container.innerHTML = `<div class="signature-card">${signatureData}</div>`;
+
+            // Post-process the parsed markdown HTML to create flat (non-nested) collapsible sections
+            const processed = transformToCollapsibles(signatureData);
+            container.innerHTML = `<div class="signature-card">${processed}</div>`;
         }
 
         function renderCampfire() {
