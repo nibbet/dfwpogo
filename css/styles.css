@@ -110,6 +110,72 @@ body {
     padding: 0 1rem;
 }
 
+/* Signature card header & layout improvements */
+.signature-card {
+    background: linear-gradient(135deg, rgba(110,70,166,0.03) 0%, rgba(28,48,89,0.02) 100%);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(110,70,166,0.08);
+    margin-bottom: 1.5rem;
+}
+
+.signature-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.signature-header h1 {
+    margin: 0;
+    color: #6E46A6;
+    font-size: 1.6rem;
+}
+
+.signature-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.meta-item {
+    background: rgba(110,70,166,0.08);
+    color: #1C3059;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+
+
+.signature-section {
+    margin-bottom: 1rem;
+}
+
+.signature-section h2 {
+    margin: 0 0 0.5rem 0;
+    color: #6E46A6;
+    font-size: 1.15rem;
+}
+
+/* Use the same card styling as event cards for readable sub-boxes */
+.signature-section .event-card {
+    background: linear-gradient(135deg, #f6f8fb 0%, #ebf1fb 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.signature-section .event-card h3 {
+    margin-top: 0;
+    color: #243870;
+}
+
+.signature-section h3 { color: #1C3059; }
+
 .nav-container {
     position: relative;
     margin-bottom: 2rem;
@@ -226,23 +292,7 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.signature-card {
-    /* Toned signature event background to match site palette (purple/navy) */
-    /* Use a very subtle purple/navy tint instead of bright yellow so the card feels cohesive */
-    background: linear-gradient(135deg, rgba(110,70,166,0.06) 0%, rgba(28,48,89,0.04) 100%);
-    border: 1px solid #D95829; /* keep accent border for emphasis */
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    /* slightly stronger shadow to lift the card when the background is darker */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
-}
-
-.signature-card h2 {
-    color: #6E46A6;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
+/* Removed duplicate .signature-card block and outdated h2 styling */
 
 .event-type {
     display: inline-block;

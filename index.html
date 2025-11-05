@@ -50,9 +50,9 @@
             </div>
 
             <div id="signature-tab" class="tab-content" style="display:none;">
-                    <div id="signature-content" class="markdown-content">
-                        <div class="loading">Loading signature event...</div>
-                    </div>
+                <div id="signature-content" class="markdown-content">
+                    <div class="loading">Loading signature event...</div>
+                </div>
             </div>
 
             <div id="campfire-tab" class="tab-content" style="display:none;">
@@ -287,8 +287,147 @@
                 return;
             }
 
-            // Render the processed markdown HTML directly; headers remain styled (purple)
-            container.innerHTML = `<div class="signature-card">${signatureData}</div>`;
+            // Parse the pre-rendered HTML from marked and reflow into a clearer structure
+            const temp = document.createElement('div');
+            temp.innerHTML = signatureData;
+
+            // Extract title (first H1) and metadata paragraph (first P after H1)
+            const h1 = temp.querySelector('h1');
+            const titleText = h1 ? h1.textContent.trim() : '';
+
+            let metaP = null;
+            if (h1) {
+                let sib = h1.nextElementSibling;
+                while (sib && sib.tagName !== 'P') sib = sib.nextElementSibling;
+                metaP = sib;
+            } else {
+                metaP = temp.querySelector('p');
+            }
+
+            const metaItems = [];
+            if (metaP) {
+                // split on <br> to preserve the labeled lines
+                    const parts = metaP.innerHTML.split(/<br\s*\/?/i).map(s => s.trim()).filter(Boolean);
+                    parts.forEach(p => {
+                        const text = p.replace(/<[^>]+>/g, '').trim();
+                        if (!text) return;
+                        const idx = text.indexOf(':');
+                        let key = '', value = '';
+                        if (idx !== -1) {
+                            key = text.slice(0, idx).trim();
+                            value = text.slice(idx + 1).trim();
+                        } else {
+                            value = text;
+                        }
+                        metaItems.push({ key, value, raw: text });
+                    });
+                    metaP.remove();
+            }
+
+            if (h1) h1.remove();
+
+            // Build card
+            const card = document.createElement('div');
+            card.className = 'signature-card';
+
+            const header = document.createElement('div');
+            header.className = 'signature-header';
+            const titleEl = document.createElement('h1');
+            titleEl.textContent = titleText || 'Signature Event';
+            header.appendChild(titleEl);
+
+            if (metaItems.length) {
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'signature-meta';
+                    const iconFor = (k) => {
+                        const key = (k || '').toLowerCase();
+                        if (/date|dates/.test(key)) return '📅';
+                        if (/time/.test(key)) return '🕒';
+                        if (/location|venue|where/.test(key)) return '📍';
+                        if (/ticket|tickets|rsvp|pass/.test(key)) return '🎟️';
+                        if (/cost|price/.test(key)) return '💲';
+                        return 'ℹ️';
+                    };
+                    metaItems.forEach(mi => {
+                        const span = document.createElement('span');
+                        span.className = 'meta-item';
+                        const icon = iconFor(mi.key);
+                        const text = mi.value || mi.raw;
+                        span.textContent = `${icon} ${text}`;
+                        metaDiv.appendChild(span);
+                    });
+                header.appendChild(metaDiv);
+            }
+
+            card.appendChild(header);
+
+            // Collect all H2 nodes to build sections
+                const rawH2s = Array.from(temp.querySelectorAll('h2'));
+
+                // Optional TL;DR summary — use the first paragraph BEFORE the first H2 (to avoid duplicating section content)
+                let summaryPara = null;
+                if (rawH2s.length) {
+                    const firstH2 = rawH2s[0];
+                    let n = temp.firstChild;
+                    while (n && n !== firstH2) {
+                        if (n.nodeType === 1 && n.tagName === 'P' && (n.textContent || '').trim()) {
+                            summaryPara = n;
+                            break;
+                        }
+                        n = n.nextSibling;
+                    }
+                }
+                const tldr = summaryPara ? (summaryPara.textContent || '').split(/\.\s+/)[0] : '';
+
+            // Build sections: for each H2, gather its following nodes until the next H2
+            const allH2 = rawH2s; // reuse previously collected nodes
+            if (allH2.length === 0) {
+                // If no H2s, just append remaining content
+                const intro = document.createElement('div');
+                intro.className = 'signature-section';
+                intro.innerHTML = temp.innerHTML;
+                card.appendChild(intro);
+            } else {
+                // Add a TL;DR under the header if we have one
+                if (tldr) {
+                    const summ = document.createElement('div');
+                    summ.className = 'signature-summary';
+                    summ.textContent = tldr;
+                    header.appendChild(summ);
+                }
+
+                allH2.forEach((h2) => {
+                    const section = document.createElement('div');
+                    section.className = 'signature-section';
+
+                    // Add the section heading as a purple H2 above the box
+                    const secHeading = document.createElement('h2');
+                    secHeading.innerHTML = h2.innerHTML;
+                    section.appendChild(secHeading);
+
+                    // Create an event-like card box for this section's content
+                    const box = document.createElement('div');
+                    box.className = 'event-card';
+
+                    // Gather nodes until next h2 into markdown-content inside the box
+                    const md = document.createElement('div');
+                    md.className = 'markdown-content';
+
+                    let node = h2.nextSibling;
+                    while (node && !(node.nodeType === 1 && node.tagName === 'H2')) {
+                        const next = node.nextSibling;
+                        md.appendChild(node.cloneNode(true));
+                        node = next;
+                    }
+
+                    box.appendChild(md);
+                    section.appendChild(box);
+                    card.appendChild(section);
+                });
+            }
+
+            container.innerHTML = '';
+            container.appendChild(card);
         }
 
             
@@ -355,9 +494,7 @@
             // Load events
             const eventsMarkdown = await loadMarkdownFile('events.md');
             if (eventsMarkdown) {
-                console.log('Loaded markdown:', eventsMarkdown.substring(0, 500) + '...');
                 eventsData = parseEvents(eventsMarkdown);
-                console.log('Parsed events:', eventsData);
                 renderEvents();
             } else {
                 console.error('Failed to load events.md');

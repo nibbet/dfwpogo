@@ -1,30 +1,29 @@
-# GO Wild Area 2025 — Global
-
+# GO Wild Area 2025
 ## Event Overview 🎯
 
-The wilderness of Galar is calling, Trainers! Experience the **GO Wild Area 2025: Global** event — a worldwide celebration with rare spawns, Shadow Raids, and debut Pokémon.
+The wilderness of Galar is calling, Trainers! Experience the **GO Wild Area 2025: Global** event — a worldwide celebration filled with rare encounters, Shadow Raids, and exciting debuts.
 
 - **Dates:** November 15–16, 2025  
 - **Time:** 10:00 AM – 6:00 PM (local time)  
 - **Location:** Global (play from anywhere)  
 - **Ticket (optional):** $11.99 USD (or local equivalent)
 
----
+
 
 ## Highlights & Features ✨
 
-- Debuts: Impidimp, Morgrem, Grimmsnarl (shiny available)  
-- Shadow Raids (5★): Shadow Darkrai, Shadow Cresselia  
-- Costumed Pokémon: Bewear (Wilderness Cape) in 3★ Raids  
-- Max Battles: Gigantamax Grimmsnarl in 6★ Max Battles  
-- New Shinies: Unown W, Hatenna, Impidimp  
-- New catch background and event visuals  
+- Debuts: **Impidimp, Morgrem, Grimmsnarl** (with shiny forms)  
+- Shadow Raids (5★): **Shadow Darkrai** and **Shadow Cresselia**  
+- Costumed Pokémon: **Bewear (Wilderness Cape)** in 3★ Raids  
+- Max Battles: **Gigantamax Grimmsnarl** in 6★ Max Battles  
+- New Shinies: **Unown W**, **Hatenna**, **Impidimp**  
+- Special catch backgrounds and themed visuals  
 
----
+
 
 ## Habitats & Schedule 🗺️
 
-Two alternating habitats will rotate every hour throughout both event days.
+Two alternating habitats rotate every hour throughout both event days.
 
 ### Habitat Rotation (Local Time)
 - **10:00 AM:** Lurking Dark Hour (Dark-type Pokémon)  
@@ -37,16 +36,14 @@ Two alternating habitats will rotate every hour throughout both event days.
 - **5:00 PM:** Fanciful Fairy Hour (Fairy-type Pokémon)  
 
 ### Lurking Dark Hour
-Common / notable spawns include:  
-Alolan Meowth, Gastly, Hoothoot, Murkrow, Sneasel, Houndour, Poochyena, Galarian Zigzagoon, Stunky, Scrafty, Zorua, Foongus, Deino, Phantump, Impidimp, and Dreepy.
+Common spawns: Alolan Meowth, Gastly, Murkrow, Sneasel, Houndour, Galarian Zigzagoon, Stunky, Scrafty, Zorua, Deino, Impidimp, Dreepy, and more.
 
 ### Fanciful Fairy Hour
-Common / notable spawns include:  
-Clefairy, Alolan Vulpix, Jigglypuff, Galarian Ponyta, Togetic, Marill, Snubbull, Ralts, Swablu, Feebas, Cherubi, Cottonee, Dedenne, Hatenna, and Smoliv.
+Common spawns: Clefairy, Alolan Vulpix, Jigglypuff, Galarian Ponyta, Togetic, Ralts, Marill, Snubbull, Dedenne, Hatenna, Smoliv, and more.
 
----
 
-## Mighty Pokémon & Incense
+
+## Mighty Pokémon & Raids 💥
 
 ### Saturday — November 15
 Wigglytuff, Galarian Rapidash, Tyranitar, Mawile, Absol, Golurk, Hatterene, Obstagoon, Meowscarada
@@ -54,87 +51,81 @@ Wigglytuff, Galarian Rapidash, Tyranitar, Mawile, Absol, Golurk, Hatterene, Obst
 ### Sunday — November 16
 Alolan Ninetales, Galarian Weezing, Granbull, Houndoom, Gardevoir, Honchkrow, Garchomp, Drapion, Weavile
 
-### Incense (Both Days)
-- **All trainers:** Alolan Ninetales, Galarian Rapidash, Tyranitar, Mawile, Absol, Garchomp, Drapion, Weavile  
-- **Ticket holders (additional rares):** Unown W, Unown I/L/D; Uxie, Mesprit, Azelf  
+### Raids
+- **5★ Shadow Raids:** Shadow Darkrai, Shadow Cresselia  
+- **3★ Raids:** Bewear (Wilderness Cape)  
 
----
+### Incense Encounters
+- **All Trainers:** Alolan Ninetales, Galarian Rapidash, Tyranitar, Mawile, Absol, Garchomp, Drapion, Weavile  
+- **Ticket Holders:** Additional Unown (W, I, L, D) and Lake Trio (Uxie, Mesprit, Azelf)  
 
-## Raids & Eggs
+### Eggs
+- **5 km Eggs:** Mime Jr., Sandile, Pawniard, Carbink, Impidimp, Tinkatink  
 
-- **Shadow Raids (5★):** Shadow Darkrai, Shadow Cresselia  
-- **Raids (3★):** Bewear (Wilderness Cape)  
 
-**5 km Eggs:** Mime Jr., Sandile, Pawniard, Carbink, Impidimp, Tinkatink  
 
----
+## Bonuses & Ticket Details 🎟️
 
-## Bonuses & Ticket Details
-
-**Free for all trainers**
+**Free for All Trainers**
 - 3 free raid passes/day from Gyms  
 - Max particle cap: 1,600  
 - 3 GO Snapshot surprise encounters/day  
 
-**Ticket holder bonuses**
+**Ticket Holder Bonuses**
 - Increased shiny odds (not guaranteed)  
-- 2× catch candy  
-- ½ egg hatch distance (during event)  
-- 2-hour lures + 2-hour incense  
+- 2× Catch Candy  
+- ½ Egg Hatch Distance (during event)  
+- 2-hour Lures + 2-hour Incense  
 - Up to 6 free raid passes/day  
 - Max particle cap: 3,200  
 - Reduced cost to unlock/power Max Moves  
-- 6 special trades/day at ½ stardust cost  
-- Special research (choose one path)  
+- 6 special trades/day at ½ Stardust cost  
+- Exclusive Special Research paths  
 - 6 GO Snapshot encounters/day  
 
-**Ticket:** $11.99 USD (or local equivalent)  
+**Ticket Price:** $11.99 USD (or local equivalent)  
+**Web Store Bonus:** Flower Crown avatar + 10 Max Revives + 10 Rare Candy + 3 Premium Passes + 1 Egg Incubator + 144 Reward Points  
 
-**Web store bonus:** Flower Crown avatar + 10 Max Revives + 10 Rare Candy + 3 Premium Passes + 1 Egg Incubator + 144 Reward Points  
 
----
 
-## Special Research Paths
+## Special Research & Avatar Items 🧩
 
-- **Dark Detective** — Rewards favor Dark-type Mighty Pokémon (XL candy boost for level 31+) + bonus stardust  
-- **Fairy Fanatic** — Rewards favor Fairy-type Mighty Pokémon (XL candy boost for level 31+) + bonus stardust  
+### Research Paths
+- **Dark Detective:** Focused on Dark-type Mighty Pokémon; bonus XL Candy (Lv.31+) and Stardust  
+- **Fairy Fanatic:** Focused on Fairy-type Mighty Pokémon; bonus XL Candy (Lv.31+) and Stardust  
 
----
-
-## Avatar Items & Rewards
-
-- Flower Crown (web store bonus)  
+### Avatar Items
+- Flower Crown (Web Store bonus)  
 - Bewear Onsie & Morgrem Hairstyle (in-game shop)  
 - Grimmsnarl Hairstyle (GO Pass Deluxe)  
-- New avatar pose (special research reward)  
+- New Avatar Pose (Special Research reward)  
 
----
 
-## Additional Features
 
-- **Supply Balloons:** Hourly drops of Safari Balls (ticket holders)  
-- **Routes Exploration:** Extra spawns & buddy candy  
-- **Pokémon HOME:** Upcoming Safari Ball transfer visuals  
+## Additional Features 🌍
 
----
+- **Supply Balloons:** Hourly Safari Ball drops for ticket holders  
+- **Routes Exploration:** Increased Buddy Candy and Pokémon spawns  
+- **Pokémon HOME Integration:** Safari Ball transfer visuals coming soon  
 
-## DFW Meetup Locations
+
+
+## DFW Meetup Locations 📍
 
 Join local trainers at:
-
 - **Klyde Warren Park (Dallas)** — 10 AM–6 PM  
 - **Sundance Square (Fort Worth)** — 11 AM–5 PM  
 - **Legacy West (Plano)** — 12 PM–4 PM  
 
-Coordinate via Campfire groups for raid trains, trades, and meetups.  
+Coordinate through Campfire groups for raids, trades, and group photos.
 
----
 
-## Preparation Tips
 
-- Stock up on Poké Balls & berries  
+## Preparation Tips 🔋
+
+- Stock up on Poké Balls & Berries  
 - Clear storage for new Pokémon and items  
 - Bring battery packs and chargers  
-- Stay hydrated and check weather  
-- Download offline maps  
-- Join local Campfire groups for coordination  
+- Stay hydrated and check local weather  
+- Download offline maps of your play area  
+- Join Campfire groups for coordination  
