@@ -435,3 +435,127 @@ body {
         font-size: 0.95rem;
     }
 }
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #0a1628 0%, #2d1a4d 100%);
+        color: #e0e0e0;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #2d1a4d 0%, #0a1628 100%);
+    }
+
+    .header h1 {
+        color: #ffffff;
+    }
+
+    .header p {
+        color: #e0e0e0;
+    }
+
+    .mobile-nav-toggle {
+        background: #1e1e1e;
+        color: #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .nav-tabs.mobile-open {
+        background: #1e1e1e;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .tab-btn {
+        background: #1e1e1e;
+        color: #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tab-btn:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    .tab-btn.active {
+        background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+        color: white;
+    }
+
+    .content-area {
+        background: #1e1e1e;
+        color: #e0e0e0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .event-card {
+        background: linear-gradient(135deg, #252525 0%, #2a2a2a 100%);
+        color: #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .event-card:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    .event-card h3 {
+        color: #ffffff;
+    }
+
+    .signature-card {
+        background: linear-gradient(135deg, rgba(110,70,166,0.15) 0%, rgba(28,48,89,0.1) 100%);
+        border: 1px solid rgba(110,70,166,0.3);
+    }
+
+    .signature-header h1 {
+        color: #a78bda;
+    }
+
+    .meta-item {
+        background: rgba(110,70,166,0.25);
+        color: #e0e0e0;
+    }
+
+    .signature-section h2 {
+        color: #a78bda;
+    }
+
+    .signature-section .event-card {
+        background: linear-gradient(135deg, #252525 0%, #2a2a2a 100%);
+    }
+
+    .signature-section .event-card h3 {
+        color: #e0e0e0;
+    }
+
+    .markdown-content h2 {
+        color: #a78bda;
+    }
+
+    .markdown-content h3 {
+        color: #8db4f0;
+    }
+
+    .markdown-content p {
+        color: #e0e0e0;
+    }
+
+    .markdown-content li {
+        color: #e0e0e0;
+    }
+
+    .loading {
+        color: #a78bda;
+    }
+
+    .error {
+        background: #3a1f1f;
+        border-color: #D95829;
+        color: #f08572;
+    }
+
+    @media (max-width: 768px) {
+        .nav-container.fixed {
+            background: rgba(30,30,30,0.98);
+        }
+    }
+}
