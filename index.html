@@ -146,68 +146,68 @@
             if (titleMatch) {
                 const newTitle = titleMatch[1].trim();
                 updateSignatureTitle(newTitle);
-                showSignatureTab();
-            } else {
-                // Try to use cached title if available and not expired
-                const cachedTitle = getCachedTitle();
-                if (cachedTitle) {
-                    signatureTitle = cachedTitle;
-                    updateSignatureTabLabel();
-                    showSignatureTab();
-                } else {
-                    hideSignatureTab();
-                }
-            }
-            return marked.parse(markdown);
-        }
-
-        function updateSignatureTitle(newTitle) {
-            signatureTitle = newTitle;
-            // Cache the new title
-            localStorage.setItem(STORAGE_KEYS.TITLE, newTitle);
-            localStorage.setItem(STORAGE_KEYS.LAST_UPDATED, Date.now().toString());
             updateSignatureTabLabel();
-        }
 
-        function getCachedTitle() {
             const lastUpdated = parseInt(localStorage.getItem(STORAGE_KEYS.LAST_UPDATED) || '0');
-            const cachedTitle = localStorage.getItem(STORAGE_KEYS.TITLE);
-            
-            // Check if cache exists and isn't expired
-            if (cachedTitle && Date.now() - lastUpdated < CACHE_DURATION) {
-                return cachedTitle;
-            }
-            
-            // Clear expired cache
-            localStorage.removeItem(STORAGE_KEYS.TITLE);
-            localStorage.removeItem(STORAGE_KEYS.LAST_UPDATED);
-            return null;
-        }
+                if (!markdown) return [];
 
-        function updateSignatureTabLabel() {
-            const tabBtn = document.getElementById('signature-tab-btn');
-            if (!tabBtn) return;
-            
-            // Shorten title if it's too long
-            const displayTitle = signatureTitle.length > 25 
-                ? signatureTitle.substring(0, 22) + '...' 
-                : signatureTitle;
-            tabBtn.innerHTML = `🌟 ${displayTitle}`;
-            tabBtn.setAttribute('onclick', `showTab('signature', '🌟 ${displayTitle}')`);
-        }
+                const events = [];
+                const sections = markdown.split('##').filter(s => s.trim());
+                // Use fixed date for today: Nov 5, 2025
+                const today = new Date(2025, 10, 5); // Month is 0-based
 
-        function hideSignatureTab() {
-            const tabBtn = document.getElementById('signature-tab-btn');
-            if (tabBtn) {
-                tabBtn.classList.add('hiding');
-                // Wait for transition before hiding
-                setTimeout(() => {
-                    // If we previously moved the tab, attempt to restore its original position
-                    const navTabs = document.getElementById('nav-tabs');
-                    if (tabBtn.dataset && tabBtn.dataset.originalIndex) {
-                        const originalIndex = parseInt(tabBtn.dataset.originalIndex, 10);
-                        // If originalIndex is within bounds, insert before that child, otherwise append
-                        if (!isNaN(originalIndex) && originalIndex < navTabs.children.length) {
+                sections.forEach(section => {
+                    const lines = section.trim().split('\n');
+                    const title = lines[0].trim();
+                    const content = lines.slice(1).join('\n');
+
+                    const dateMatch = content.match(/\*\*Date:\*\*\s*(.+)/);
+                    const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
+                    const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
+                    const timeMatch = content.match(/\*\*Time\*\*\s*:?\s*(.+)/);
+
+                    // Remove the metadata lines from content before parsing (allow optional colon or not)
+                    let cleanContent = content
+                        .replace(/\*\*Date:\*\*[^\n]*\n?/g, '')
+                        .replace(/\*\*Featured Pokemon:\*\*[^\n]*\n?/g, '')
+                        .replace(/\*\*Type:\*\*[^\n]*\n?/g, '')
+                        .replace(/\*\*Time\*\*\s*:?.*\n?/g, '')
+                        .trim();
+
+                    // Parse the date for filtering
+                    let eventDate = null;
+                    if (dateMatch) {
+                        // Try to parse the first date in the string (handles ranges like Nov 1–2, 2025)
+                        let dateStr = dateMatch[1].split(/[–-]/)[0].trim();
+                        // Add year if missing
+                        if (!/\d{4}/.test(dateStr) && /\d{4}/.test(dateMatch[1])) {
+                            dateStr += ', ' + dateMatch[1].match(/\d{4}/)[0];
+                        }
+                        eventDate = new Date(dateStr);
+                    }
+
+                    // Only include events that are today or in the future, or if date is missing
+                    let isUpcoming = true;
+                    if (eventDate instanceof Date && !isNaN(eventDate)) {
+                        // Compare only the date part (ignore time)
+                        const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+                        const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                        isUpcoming = eventDay >= todayDay;
+                    }
+
+                    if (isUpcoming) {
+                        events.push({
+                            title,
+                            date: dateMatch ? dateMatch[1].trim() : 'TBA',
+                            time: timeMatch ? timeMatch[1].trim() : '',
+                            pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
+                            type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
+                            content: marked.parse(cleanContent)
+                        });
+                    }
+                });
+
+                return events;
                             navTabs.insertBefore(tabBtn, navTabs.children[originalIndex]);
                         } else {
                             navTabs.appendChild(tabBtn);
@@ -519,46 +519,71 @@
         // Initialize sticky mobile nav behavior
         function setupStickyMobileNav() {
             const navContainer = document.querySelector('.nav-container');
-            if (!navContainer) return;
-
-            let navTop = navContainer.getBoundingClientRect().top + window.scrollY;
-
-            function updateNav() {
-                // Only use sticky behavior on narrow viewports
-                if (window.innerWidth > 768) {
-                    navContainer.classList.remove('fixed');
-                    document.body.classList.remove('nav-fixed');
-                    document.body.style.removeProperty('--nav-height');
-                    return;
-                }
-
-                const navHeight = navContainer.getBoundingClientRect().height;
-                // Save nav height to a CSS variable so we can pad content
-                document.body.style.setProperty('--nav-height', `${navHeight}px`);
-
-                if (window.scrollY > navTop) {
                     if (!navContainer.classList.contains('fixed')) {
-                        navContainer.classList.add('fixed');
                         document.body.classList.add('nav-fixed');
-                    }
                 } else {
-                    if (navContainer.classList.contains('fixed')) {
-                        navContainer.classList.remove('fixed');
-                        document.body.classList.remove('nav-fixed');
-                    }
-                }
-            }
+            if (!markdown) return [];
 
-            // Recalculate anchor position on resize/paint
-            function recompute() {
-                navTop = navContainer.getBoundingClientRect().top + window.scrollY;
-                updateNav();
-            }
+            const events = [];
+            const sections = markdown.split('##').filter(s => s.trim());
+            // Use the user's current date
+            const today = new Date();
 
-            window.addEventListener('scroll', updateNav, { passive: true });
+            sections.forEach(section => {
+                const lines = section.trim().split('\n');
+                const title = lines[0].trim();
+                const content = lines.slice(1).join('\n');
+
+                const dateMatch = content.match(/\*\*Date:\*\*\s*(.+)/);
+                const pokemonMatch = content.match(/\*\*Featured Pokemon:\*\*\s*(.+)/);
+                const typeMatch = content.match(/\*\*Type:\*\*\s*(.+)/);
+                const timeMatch = content.match(/\*\*Time\*\*\s*:?\s*(.+)/);
+
+                // Remove the metadata lines from content before parsing (allow optional colon or not)
+                let cleanContent = content
+                    .replace(/\*\*Date:\*\*[^
             window.addEventListener('resize', recompute);
+                    .replace(/\*\*Featured Pokemon:\*\*[^
             // run once to set initial state
+                    .replace(/\*\*Type:\*\*[^
             recompute();
+                    .replace(/\*\*Time\*\*\s*:?.*\n?/g, '')
+                    .trim();
+
+                // Parse the date for filtering
+                let eventDate = null;
+                if (dateMatch) {
+                    // Try to parse the first date in the string (handles ranges like Nov 1–2, 2025)
+                    let dateStr = dateMatch[1].split(/[–-]/)[0].trim();
+                    // Add year if missing
+                    if (!/\d{4}/.test(dateStr) && /\d{4}/.test(dateMatch[1])) {
+                        dateStr += ', ' + dateMatch[1].match(/\d{4}/)[0];
+                    }
+                    eventDate = new Date(dateStr);
+                }
+
+                // Only include events that are today or in the future, or if date is missing
+                let isUpcoming = true;
+                if (eventDate instanceof Date && !isNaN(eventDate)) {
+                    // Compare only the date part (ignore time)
+                    const eventDay = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+                    const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    isUpcoming = eventDay >= todayDay;
+                }
+
+                if (isUpcoming) {
+                    events.push({
+                        title,
+                        date: dateMatch ? dateMatch[1].trim() : 'TBA',
+                        time: timeMatch ? timeMatch[1].trim() : '',
+                        pokemon: pokemonMatch ? pokemonMatch[1].trim() : '',
+                        type: typeMatch ? typeMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'event',
+                        content: marked.parse(cleanContent)
+                    });
+                }
+            });
+
+            return events;
         }
 
         init();
