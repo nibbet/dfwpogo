@@ -6,13 +6,15 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Dark navy -> purple gradient aligned with Pokémon GO themed palette */
+    background: linear-gradient(135deg, #1C3059 0%, #6E46A6 100%);
     min-height: 100vh;
     color: #333;
 }
 
 .header {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    /* Strong themed header using purple -> navy */
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
     padding: 2rem;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -35,7 +37,8 @@ body {
     /* Stronger baseline to avoid being overridden by other rules */
     display: inline-block !important;
     margin-top: 0.75rem !important;
-    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%) !important; /* Discord blurple style */
+    /* Use themed purple -> navy for strong CTA while keeping white text for contrast */
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%) !important;
     color: #fff !important;
     text-decoration: none !important;
     padding: 0.6rem 1rem !important;
@@ -188,7 +191,7 @@ body {
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
     color: white;
 }
 
@@ -208,7 +211,8 @@ body {
 }
 
 .event-card {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    /* keep cards light for readability but slightly cooler tint to match theme */
+    background: linear-gradient(135deg, #f6f8fb 0%, #ebf1fb 100%);
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -221,8 +225,9 @@ body {
 }
 
 .signature-card {
-    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-    border: 3px solid #d63031;
+    /* Highlight signature events with a bold yellow -> orange gradient */
+    background: linear-gradient(135deg, #F2B90F 0%, #D95829 50%);
+    border: 1px solid #D95829;
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -230,7 +235,7 @@ body {
 }
 
 .signature-card h2 {
-    color: #d63031;
+    color: #D95829;
     font-size: 2rem;
     margin-bottom: 1rem;
 }
@@ -244,34 +249,33 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.type-raid { background: #ff6b6b; color: white; }
-.type-spotlight { background: #ffd93d; color: #333; }
-.type-spotlight-hour { background: #ffd93d; color: #333; }
-.type-community { background: #6bcf7f; color: white; }
-.type-raid-day { background: #c44569; color: white; }
-.type-raid-hour { background: #ff7f50; color: white; } /* Coral */
-.type-max-battle { background: #4834d4; color: white; } /* Deep Purple */
-.type-go-battle-league { background: #686de0; color: white; } /* Electric Blue */
-.type-trade-day { background: #2ecc71; color: white; } /* Emerald */
-.type-shadow-raid { background: #2c3e50; color: white; } /* Dark Navy */
-.type-g-max-battle { background: #e056fd; color: white; } /* Bright Purple */
+.type-raid { background: #D95829; color: white; }
+.type-spotlight { background: #F2B90F; color: #1C3059; }
+.type-spotlight-hour { background: #F2B90F; color: #1C3059; }
+.type-community { background: #0F8C46; color: white; }
+.type-raid-day { background: #D95829; color: white; }
+.type-raid-hour { background: #D95829; color: white; } /* Coral-ish for urgency */
+.type-max-battle { background: #6E46A6; color: white; } /* Purple for major battles */
+.type-go-battle-league { background: #6E46A6; color: white; }
+.type-trade-day { background: #0F8C46; color: white; } /* Green for trading */
+.type-shadow-raid { background: #1C3059; color: white; } /* Dark navy */
+.type-g-max-battle { background: #6E46A6; color: white; } /* Legendary/rare */
 
-/* Also add aliases for non-hyphenated versions */
-.type-raidhour { background: #ff7f50; color: white; }
-.type-maxbattle { background: #4834d4; color: white; }
-.type-gobattleleague { background: #686de0; color: white; }
-.type-tradeday { background: #2ecc71; color: white; }
-.type-shadowraid { background: #2c3e50; color: white; }
-.type-gmaxbattle { background: #e056fd; color: white; }
+.type-raidhour { background: #D95829; color: white; }
+.type-maxbattle { background: #6E46A6; color: white; }
+.type-gobattleleague { background: #6E46A6; color: white; }
+.type-tradeday { background: #0F8C46; color: white; }
+.type-shadowraid { background: #1C3059; color: white; }
+.type-gmaxbattle { background: #6E46A6; color: white; }
 
 .markdown-content h2 {
-    color: #667eea;
+    color: #6E46A6;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 .markdown-content h3 {
-    color: #764ba2;
+    color: #1C3059;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -293,16 +297,16 @@ body {
 .loading {
     text-align: center;
     padding: 2rem;
-    color: #667eea;
+    color: #6E46A6;
 }
 
 .error {
-    background: #ffe0e0;
-    border: 2px solid #ff6b6b;
+    background: #fff4f2; /* subtle warm tint */
+    border: 2px solid #D95829;
     border-radius: 10px;
     padding: 1rem;
     margin: 1rem 0;
-    color: #d63031;
+    color: #D95829;
 }
 
 @media (max-width: 768px) {
