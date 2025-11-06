@@ -451,44 +451,50 @@
                 return;
             }
 
-            // Parse campfire markdown and extract groups
+            // Parse campfire markdown - simple format with bold names and links
             const groups = [];
-            const sections = campfireData.split('###').filter(s => s.trim());
+            const lines = campfireData.split('\n');
             
-            sections.forEach(section => {
-                const lines = section.trim().split('\n');
-                const name = lines[0].trim();
-                const content = lines.slice(1).join('\n');
+            let currentGroup = null;
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
                 
-                // Extract metadata
-                const ambassadorMatch = content.match(/\*\*Ambassador:\*\*\s*(.+)/);
-                const linkMatch = content.match(/\*\*Link:\*\*\s*\[Join Group\]\((.+?)\)/);
-                const verifiedMatch = content.match(/\*\*Verified:\*\*\s*(.+)/);
+                // Check for bold group name (e.g., **Group Name**)
+                const nameMatch = line.match(/^\*\*(.+?)\*\*$/);
+                if (nameMatch) {
+                    if (currentGroup) {
+                        groups.push(currentGroup);
+                    }
+                    currentGroup = {
+                        name: nameMatch[1].trim(),
+                        link: null
+                    };
+                }
                 
-                groups.push({
-                    name,
-                    ambassador: ambassadorMatch ? ambassadorMatch[1].trim() : 'None',
-                    link: linkMatch ? linkMatch[1].trim() : null,
-                    verified: verifiedMatch ? verifiedMatch[1].trim() : 'Unknown'
-                });
-            });
+                // Check for link (e.g., [Join Group](url))
+                const linkMatch = line.match(/\[Join Group\]\((.+?)\)/);
+                if (linkMatch && currentGroup) {
+                    currentGroup.link = linkMatch[1].trim();
+                }
+            }
+            
+            // Don't forget the last group
+            if (currentGroup) {
+                groups.push(currentGroup);
+            }
 
             // Render groups as cards similar to events
             container.innerHTML = `
                 <div class="event-grid">
                     ${groups.map(group => {
-                        const verifiedIcon = group.verified.includes('✅') || group.verified.toLowerCase().includes('yes') ? '✅' : 
-                                           group.verified.includes('❌') || group.verified.toLowerCase().includes('no') ? '❌' : '❓';
-                        const verifiedClass = verifiedIcon === '✅' ? 'verified' : verifiedIcon === '❌' ? 'unverified' : 'unknown';
                         const joinButton = group.link ? 
                             `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
                             '<span class="join-btn disabled">Link Not Available</span>';
                         
                         return `
                             <div class="event-card campfire-card">
-                                <span class="event-type type-campfire ${verifiedClass}">${verifiedIcon} ${verifiedClass.toUpperCase()}</span>
+                                <span class="event-type type-campfire">🔥 CAMPFIRE</span>
                                 <h3>${group.name}</h3>
-                                <p><strong>👤 Ambassador:</strong> ${group.ambassador}</p>
                                 <div class="campfire-actions">
                                     ${joinButton}
                                 </div>
