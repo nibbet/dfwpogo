@@ -322,6 +322,51 @@ body {
 .type-shadowraid { background: #1C3059; color: white; }
 .type-gmaxbattle { background: #6E46A6; color: white; }
 
+/* Campfire-specific styles */
+.type-campfire { background: #FF6B35; color: white; }
+.type-campfire.verified { background: #0F8C46; }
+.type-campfire.unverified { background: #D95829; }
+.type-campfire.unknown { background: #6E46A6; }
+
+.campfire-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.campfire-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.join-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B35 0%, #D95829 100%);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.join-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.join-btn.disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.join-btn.disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 .markdown-content h2 {
     color: #6E46A6;
     margin-top: 1.5rem;

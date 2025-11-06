@@ -1,31 +1,103 @@
-# DFW Pokémon GO Communities and Niantic Ambassadors
+# DFW Campfire Groups
 
-A compiled list of Pokémon GO communities across the Dallas–Fort Worth area and whether they have a **Niantic Community Ambassador**.
+### Coppell
 
----
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWI1ODFjNWRjLTA0NjctNGFkMi04OTUwLTM0NDU3NDJlZmVhNSZpPXRydWU=)
+- **Verified:** ❌ No
 
-| Community Name | Ambassador Status | Link |
-|----------------|-------------------|------|
-| Heights Park Raid Squad | ✅ Has a Niantic Community Ambassador | [Join Heights Park Raid Squad](#) |
-| Garland Go Group | ✅ Has a Niantic Community Ambassador | [Join Garland Go Group](#) |
-| Plano Raiders | ✅ Has a Niantic Community Ambassador | [Join Plano Raiders](#) |
-| ACFB | ✅ Has a Niantic Community Ambassador | [Join ACFB](#) |
-| GPI Pokémon | ✅ Has a Niantic Community Ambassador | [Join GPI Pokémon](#) |
-| Allen PoGO | ✅ Has a Niantic Community Ambassador | [Join Allen PoGO](#) |
-| My Frisco Pokémon | ✅ Has a Niantic Community Ambassador | [Join My Frisco Pokémon](#) |
-| The Colony PokéBallers | ✅ Has a Niantic Community Ambassador | [Join The Colony PokéBallers](#) |
-| Crawford Raids | ✅ Has a Niantic Community Ambassador | [Join Crawford Raids](#) |
-| SeaGo Bruce Central Park | ✅ Has a Niantic Community Ambassador | [Join SeaGo Bruce Central Park](#) |
-| POGO Mansfield | ❌ Does Not Have a Community Ambassador | [Join POGO Mansfield](#) |
-| DFW Traders | ❌ Does Not Have a Community Ambassador | [Join DFW Traders](#) |
-| Southlake Town Square Trainers | ❌ Does Not Have a Community Ambassador | [Join Southlake Town Square Trainers](#) |
-| Hurst, Euless, Bedford TX | ❌ Does Not Have a Community Ambassador | [Join Hurst, Euless, Bedford TX](#) |
-| South Fort Worth | ✅ Has a Niantic Community Ambassador | [Join South Fort Worth](#) |
-| Coppell | ❌ Does Not Have a Community Ambassador | [Join Coppell](#) |
-| UTA POGO | ❌ Does Not Have a Community Ambassador | [Join UTA POGO](#) |
+### Desoto, Tx
 
----
+- **Ambassador:** None
+- **Link:** Not provided
+- **Verified:** ❌ No
 
+### DFW Area Pokémon Go
 
-**Last Updated:** November 2025
+- **Ambassador:** TheNibbet
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTJiMmJhNjhlLWEwM2EtNDgwNi05NTQ4LWI2ZTNmOTBkN2JhNSZpPXRydWU=)
+- **Verified:** ✅ Yes
 
+### DFW Traders
+
+- **Ambassador:** KnottedRainbow
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWM1ODY4Y2Y4LWIyMGQtNDg4Ny05NzRiLWJmMzg1MTJlYWRhMiZpPXRydWU=)
+- **Verified:** ❌ No
+
+### Garland Go Group
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTc0Y2QzNTVlLWM3ZGMtNDJhZC1hNGQ2LTBhYTViODNiZjM1ZiZpPXRydWU=)
+- **Verified:** ✅ Yes
+
+### Hurst, Euless, Bedford TX
+
+- **Ambassador:** KenardBastion
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTZjMThhNzc0LWQ5NWUtNDUxZC05NTExLTI4MzhmY2UwYTIwOCZpPXRydWU=)
+- **Verified:** ❌ No
+
+### Plano Raiders
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTVhNDY5OTRlLWRiNzEtNDUzMS04MmQ0LTEyYTVmZWY3ZWZjYiZpPXRydWU=)
+- **Verified:** ✅ Yes
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=)
+- **Verified:** Unknown
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=)
+- **Verified:** ❌ No
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=))
+- **Verified:** Unknown
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=)
+- **Verified:** ❌ No
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=)
+- **Verified:** Unknown
+
+### POGO Mansfield
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWUwMTEyY2ZkLWZjZDYtNGQ4MC04OTBiLTU0NGM1MGE0ZjA3NCZpPXRydWU=)
+- **Verified:** Unknown
+
+### Seagoville
+
+- **Ambassador:** None
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTliMmM5MzE5LWJhOTEtNDIzMi1hYzNiLWEwYjJhYWRlZTJjNSZpPXRydWU=)
+- **Verified:** ✅ Yes
+
+### Southlake Town Square Trainers
+
+- **Ambassador:** accessgodliness
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTg4NGQ4YzdmLTYyMjctNDdjOC04ODNiLWFiYjNhMzZjZGQ0MiZpPXRydWU=)
+- **Verified:** ❌ No
+
+### The Colony PokeBallers
+
+- **Ambassador:** Shackster
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWU5OTVmNTBmLTM0MDctNDgyZC1iZTJiLTg0NGI2NjMyZTFmZiZpPXRydWU=)
+- **Verified:** ❌ No
+
+### UTA POGO
+
+- **Ambassador:** Svein(real name) GodzillaPonage(Campfire name)
+- **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTBlNjM5NWI0LWM2ZjItNGU1Zi04MDVhLWM5NzBjY2FiN2IwNyZpPXRydWU=)
+- **Verified:** ❌ No

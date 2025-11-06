@@ -57,7 +57,7 @@
 
             <div id="campfire-tab" class="tab-content" style="display:none;">
                 <h2>Local Campfire Groups</h2>
-                <div id="campfire-list" class="markdown-content">
+                <div id="campfire-list">
                     <div class="loading">Loading Campfire groups...</div>
                 </div>
             </div>
@@ -450,8 +450,53 @@
                 container.innerHTML = '<div class="error">No Campfire groups found. Please ensure campfire.md exists in your repository.</div>';
                 return;
             }
+
+            // Parse campfire markdown and extract groups
+            const groups = [];
+            const sections = campfireData.split('###').filter(s => s.trim());
             
-            container.innerHTML = marked.parse(campfireData);
+            sections.forEach(section => {
+                const lines = section.trim().split('\n');
+                const name = lines[0].trim();
+                const content = lines.slice(1).join('\n');
+                
+                // Extract metadata
+                const ambassadorMatch = content.match(/\*\*Ambassador:\*\*\s*(.+)/);
+                const linkMatch = content.match(/\*\*Link:\*\*\s*\[Join Group\]\((.+?)\)/);
+                const verifiedMatch = content.match(/\*\*Verified:\*\*\s*(.+)/);
+                
+                groups.push({
+                    name,
+                    ambassador: ambassadorMatch ? ambassadorMatch[1].trim() : 'None',
+                    link: linkMatch ? linkMatch[1].trim() : null,
+                    verified: verifiedMatch ? verifiedMatch[1].trim() : 'Unknown'
+                });
+            });
+
+            // Render groups as cards similar to events
+            container.innerHTML = `
+                <div class="event-grid">
+                    ${groups.map(group => {
+                        const verifiedIcon = group.verified.includes('✅') || group.verified.toLowerCase().includes('yes') ? '✅' : 
+                                           group.verified.includes('❌') || group.verified.toLowerCase().includes('no') ? '❌' : '❓';
+                        const verifiedClass = verifiedIcon === '✅' ? 'verified' : verifiedIcon === '❌' ? 'unverified' : 'unknown';
+                        const joinButton = group.link ? 
+                            `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
+                            '<span class="join-btn disabled">Link Not Available</span>';
+                        
+                        return `
+                            <div class="event-card campfire-card">
+                                <span class="event-type type-campfire ${verifiedClass}">${verifiedIcon} ${verifiedClass.toUpperCase()}</span>
+                                <h3>${group.name}</h3>
+                                <p><strong>👤 Ambassador:</strong> ${group.ambassador}</p>
+                                <div class="campfire-actions">
+                                    ${joinButton}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
         }
 
         function showTab(tabName, tabLabel) {
