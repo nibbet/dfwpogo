@@ -467,7 +467,8 @@
                     }
                     currentGroup = {
                         name: nameMatch[1].trim(),
-                        link: null
+                        link: null,
+                        ambassador: null
                     };
                 }
                 
@@ -475,6 +476,12 @@
                 const linkMatch = line.match(/\[Join Group\]\((.+?)\)/);
                 if (linkMatch && currentGroup) {
                     currentGroup.link = linkMatch[1].trim();
+                }
+
+                // Check for ambassador led line (e.g., Ambassador Led: Yes/No)
+                const ambassadorMatch = line.match(/^Ambassador\s+Led:\s*(Yes|No)\b/i);
+                if (ambassadorMatch && currentGroup) {
+                    currentGroup.ambassador = ambassadorMatch[1].charAt(0).toUpperCase() + ambassadorMatch[1].slice(1).toLowerCase();
                 }
             }
             
@@ -490,11 +497,18 @@
                         const joinButton = group.link ? 
                             `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
                             '<span class="join-btn disabled">Link Not Available</span>';
+                                                const ambassadorLine = typeof group.ambassador === 'string' && group.ambassador
+                                                        ? (() => {
+                                                                const val = (group.ambassador || '').toLowerCase();
+                                                                const cls = val === 'yes' ? 'ambassador-yes' : (val === 'no' ? 'ambassador-no' : 'ambassador-unknown');
+                                                                return `<div class=\"campfire-meta\"><span class=\"meta-item ambassador-badge ${cls}\">👥 Ambassador Led: ${group.ambassador}</span></div>`;
+                                                            })()
+                                                        : '';
                         
                         return `
                             <div class="event-card campfire-card">
-                                <span class="event-type type-campfire">🔥 CAMPFIRE</span>
                                 <h3>${group.name}</h3>
+                                ${ambassadorLine}
                                 <div class="campfire-actions">
                                     ${joinButton}
                                 </div>

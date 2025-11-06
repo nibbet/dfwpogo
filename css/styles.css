@@ -367,6 +367,31 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Campfire meta badge container */
+.campfire-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.25rem 0 0.5rem;
+}
+
+/* Color-coded ambassador badges */
+.meta-item.ambassador-badge {
+    font-weight: 700;
+}
+.meta-item.ambassador-yes {
+    background: rgba(15, 140, 70, 0.14);
+    color: #0F8C46;
+}
+.meta-item.ambassador-no {
+    background: rgba(217, 88, 41, 0.14);
+    color: #D95829;
+}
+.meta-item.ambassador-unknown {
+    background: rgba(110, 70, 166, 0.14);
+    color: #6E46A6;
+}
+
 .markdown-content h2 {
     color: #6E46A6;
     margin-top: 1.5rem;
