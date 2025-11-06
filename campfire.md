@@ -14,11 +14,11 @@ Ambassador Led: No
 
 **Garland Go Group**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTc0Y2QzNTVlLWM3ZGMtNDJhZC1hNGQ2LTBhYTViODNiZjM1ZiZpPXRydWU=)  
-Ambassador Led: No
+Ambassador Led: Yes
 
 **Hurst, Euless, Bedford TX**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTZjMThhNzc0LWQ5NWUtNDUxZC05NTExLTI4MzhmY2UwYTIwOCZpPXRydWU=)  
-Ambassador Led: Yes
+Ambassador Led: No
 
 **Plano Raiders**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTVhNDY5OTRlLWRiNzEtNDUzMS04MmQ0LTEyYTVmZWY3ZWZjYiZpPXRydWU=)  
@@ -30,11 +30,11 @@ Ambassador Led: No
 
 **Seagoville**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTliMmM5MzE5LWJhOTEtNDIzMi1hYzNiLWEwYjJhYWRlZTJjNSZpPXRydWU=)  
-Ambassador Led: No
+Ambassador Led: Yes
 
 **Southlake Town Square Trainers**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTg4NGQ4YzdmLTYyMjctNDdjOC04ODNiLWFiYjNhMzZjZGQ0MiZpPXRydWU=)  
-Ambassador Led: Yes
+Ambassador Led: No
 
 **The Colony PokeBallers**  
 [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPWU5OTVmNTBmLTM0MDctNDgyZC1iZTJiLTg0NGI2NjMyZTFmZiZpPXRydWU=)  
