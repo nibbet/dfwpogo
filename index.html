@@ -446,41 +446,46 @@
         function renderCampfire() {
             const container = document.getElementById('campfire-list');
             
+            console.log('renderCampfire called, campfireData:', campfireData ? `${campfireData.length} chars` : 'null');
+            
             if (!campfireData) {
                 container.innerHTML = '<div class="error">No Campfire groups found. Please ensure campfire.md exists in your repository.</div>';
                 return;
             }
 
-            // Parse campfire markdown - simple format with bold names and links
+            // Parse campfire markdown - format uses ### headers and bullet points
             const groups = [];
             const lines = campfireData.split('\n');
+            console.log('Total lines in campfire.md:', lines.length);
             
             let currentGroup = null;
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
                 
-                // Check for bold group name (e.g., **Group Name**)
-                // Be flexible about trailing spaces or other characters
-                const nameMatch = line.match(/^\*\*(.+?)\*\*/);
-                if (nameMatch) {
+                // Check for H3 header (### Group Name)
+                const headerMatch = line.match(/^###\s+(.+)$/);
+                if (headerMatch) {
                     if (currentGroup) {
                         groups.push(currentGroup);
                     }
                     currentGroup = {
-                        name: nameMatch[1].trim(),
+                        name: headerMatch[1].trim(),
                         link: null,
                         ambassador: null
                     };
+                    continue;
                 }
                 
-                // Check for link (e.g., [Join Group](url))
+                // Check for link in various formats:
+                // Direct: [Join Group](url)
+                // Bullet: - **Link:** [Join Group](url)
                 const linkMatch = line.match(/\[Join Group\]\((.+?)\)/);
                 if (linkMatch && currentGroup) {
                     currentGroup.link = linkMatch[1].trim();
                 }
 
-                // Check for ambassador led line (e.g., Ambassador Led: Yes/No)
-                const ambassadorMatch = line.match(/^Ambassador\s+Led:\s*(Yes|No)\b/i);
+                // Check for ambassador led line: - **Ambassador Led:** ✅ Yes or ❌ No
+                const ambassadorMatch = line.match(/Ambassador\s+Led:\*\*\s*[✅❌]?\s*(Yes|No)/i);
                 if (ambassadorMatch && currentGroup) {
                     currentGroup.ambassador = ambassadorMatch[1].charAt(0).toUpperCase() + ambassadorMatch[1].slice(1).toLowerCase();
                 }
@@ -490,6 +495,8 @@
             if (currentGroup) {
                 groups.push(currentGroup);
             }
+
+            console.log('Parsed groups:', groups.length, groups);
 
             // Sort: Ambassador Led Yes first, then No, then Unknown
             const sortedGroups = groups.slice().sort((a, b) => {
@@ -505,9 +512,12 @@
 
             // If nothing parsed, show a helpful message
             if (!sortedGroups.length) {
-                container.innerHTML = '<div class="error">No Campfire groups could be parsed. Please verify campfire.md uses the format: <strong>**Group Name**</strong> on one line, a [Join Group](url) link on the next, and \'Ambassador Led: Yes/No\' on the third.</div>';
+                console.error('No groups parsed from campfire.md');
+                container.innerHTML = '<div class="error">No Campfire groups could be parsed. Please verify campfire.md uses the format: <strong>### Group Name</strong> on one line, a [Join Group](url) link, and \'- **Ambassador Led:** ✅ Yes/❌ No\' line.</div>';
                 return;
             }
+
+            console.log('Rendering', sortedGroups.length, 'sorted groups');
 
             // Render groups as cards similar to events
             container.innerHTML = `
