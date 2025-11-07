@@ -31,25 +31,25 @@
     <div class="container">
         <div class="nav-container">
             <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
-                <span class="current-tab">📅 Events</span>
+                <span class="current-tab">🌟 Signature Events</span>
                 <span class="hamburger">☰</span>
             </button>
             <div class="nav-tabs" id="nav-tabs">
-                <button class="tab-btn active" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
-                <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
+                <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
+                <button id="signature-tab-btn" class="tab-btn active" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
                 <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
             </div>
         </div>
 
         <div class="content-area">
-            <div id="events-tab" class="tab-content">
+            <div id="events-tab" class="tab-content" style="display:none;">
                 <h2>Upcoming Events</h2>
                 <div id="events-list" class="event-grid">
                     <div class="loading">Loading events...</div>
                 </div>
             </div>
 
-            <div id="signature-tab" class="tab-content" style="display:none;">
+            <div id="signature-tab" class="tab-content">
                 <div id="signature-content" class="markdown-content">
                     <div class="loading">Loading signature event...</div>
                 </div>
