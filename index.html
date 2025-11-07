@@ -376,6 +376,17 @@
             // Collect all H2 nodes to build sections
                 const rawH2s = Array.from(temp.querySelectorAll('h2'));
 
+            // Remove all content before the first H2 (intro paragraphs, etc.)
+            if (rawH2s.length > 0) {
+                const firstH2 = rawH2s[0];
+                let node = temp.firstChild;
+                while (node && node !== firstH2) {
+                    const next = node.nextSibling;
+                    node.remove();
+                    node = next;
+                }
+            }
+
             // Build sections: for each H2, gather its following nodes until the next H2
             const allH2 = rawH2s; // reuse previously collected nodes
             if (allH2.length === 0) {
