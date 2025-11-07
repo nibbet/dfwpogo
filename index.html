@@ -376,21 +376,6 @@
             // Collect all H2 nodes to build sections
                 const rawH2s = Array.from(temp.querySelectorAll('h2'));
 
-                // Optional TL;DR summary — use the first paragraph BEFORE the first H2 (to avoid duplicating section content)
-                let summaryPara = null;
-                if (rawH2s.length) {
-                    const firstH2 = rawH2s[0];
-                    let n = temp.firstChild;
-                    while (n && n !== firstH2) {
-                        if (n.nodeType === 1 && n.tagName === 'P' && (n.textContent || '').trim()) {
-                            summaryPara = n;
-                            break;
-                        }
-                        n = n.nextSibling;
-                    }
-                }
-                const tldr = summaryPara ? (summaryPara.textContent || '').split(/\.\s+/)[0] : '';
-
             // Build sections: for each H2, gather its following nodes until the next H2
             const allH2 = rawH2s; // reuse previously collected nodes
             if (allH2.length === 0) {
@@ -400,14 +385,6 @@
                 intro.innerHTML = temp.innerHTML;
                 card.appendChild(intro);
             } else {
-                // Add a TL;DR under the header if we have one
-                if (tldr) {
-                    const summ = document.createElement('div');
-                    summ.className = 'signature-summary';
-                    summ.textContent = tldr;
-                    header.appendChild(summ);
-                }
-
                 allH2.forEach((h2) => {
                     const section = document.createElement('div');
                     section.className = 'signature-section';
