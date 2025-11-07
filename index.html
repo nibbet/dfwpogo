@@ -460,7 +460,8 @@
                 const line = lines[i].trim();
                 
                 // Check for bold group name (e.g., **Group Name**)
-                const nameMatch = line.match(/^\*\*(.+?)\*\*$/);
+                // Be flexible about trailing spaces or other characters
+                const nameMatch = line.match(/^\*\*(.+?)\*\*/);
                 if (nameMatch) {
                     if (currentGroup) {
                         groups.push(currentGroup);
@@ -490,21 +491,38 @@
                 groups.push(currentGroup);
             }
 
+            // Sort: Ambassador Led Yes first, then No, then Unknown
+            const sortedGroups = groups.slice().sort((a, b) => {
+                const val = v => {
+                    if (!v || typeof v !== 'string') return 2; // Unknown
+                    const s = v.toLowerCase();
+                    if (s === 'yes') return 0;
+                    if (s === 'no') return 1;
+                    return 2;
+                };
+                return val(a.ambassador) - val(b.ambassador);
+            });
+
+            // If nothing parsed, show a helpful message
+            if (!sortedGroups.length) {
+                container.innerHTML = '<div class="error">No Campfire groups could be parsed. Please verify campfire.md uses the format: <strong>**Group Name**</strong> on one line, a [Join Group](url) link on the next, and \'Ambassador Led: Yes/No\' on the third.</div>';
+                return;
+            }
+
             // Render groups as cards similar to events
             container.innerHTML = `
                 <div class="event-grid">
-                    ${groups.map(group => {
+                    ${sortedGroups.map(group => {
                         const joinButton = group.link ? 
                             `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
                             '<span class="join-btn disabled">Link Not Available</span>';
-                                                const ambassadorLine = typeof group.ambassador === 'string' && group.ambassador
-                                                        ? (() => {
-                                                                const val = (group.ambassador || '').toLowerCase();
-                                                                const cls = val === 'yes' ? 'ambassador-yes' : (val === 'no' ? 'ambassador-no' : 'ambassador-unknown');
-                                                                return `<div class=\"campfire-meta\"><span class=\"meta-item ambassador-badge ${cls}\">👥 Ambassador Led: ${group.ambassador}</span></div>`;
-                                                            })()
-                                                        : '';
-                        
+                        const ambassadorLine = typeof group.ambassador === 'string' && group.ambassador
+                            ? (() => {
+                                const val = (group.ambassador || '').toLowerCase();
+                                const cls = val === 'yes' ? 'ambassador-yes' : (val === 'no' ? 'ambassador-no' : 'ambassador-unknown');
+                                return `<div class=\"campfire-meta\"><span class=\"meta-item ambassador-badge ${cls}\">👥 Ambassador Led: ${group.ambassador}</span></div>`;
+                              })()
+                            : '';
                         return `
                             <div class="event-card campfire-card">
                                 <h3>${group.name}</h3>
