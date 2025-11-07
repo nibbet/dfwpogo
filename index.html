@@ -220,6 +220,13 @@
                 : signatureTitle;
             tabBtn.innerHTML = `🌟 ${displayTitle}`;
             tabBtn.setAttribute('onclick', `showTab('signature', '🌟 ${displayTitle}')`);
+            
+            // Update mobile nav toggle text if signature tab is active
+            const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+            const isActive = tabBtn.classList.contains('active');
+            if (mobileToggle && isActive) {
+                mobileToggle.textContent = `🌟 ${displayTitle}`;
+            }
         }
 
         function hideSignatureTab() {
@@ -559,6 +566,15 @@
             signatureData = parseSignatureEvent(signatureMarkdown || '');
             if (signatureData) {
                 renderSignature();
+                // Update mobile nav toggle after signature title is loaded
+                const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+                const tabBtn = document.getElementById('signature-tab-btn');
+                if (mobileToggle && tabBtn && tabBtn.classList.contains('active')) {
+                    const displayTitle = signatureTitle.length > 25 
+                        ? signatureTitle.substring(0, 22) + '...' 
+                        : signatureTitle;
+                    mobileToggle.textContent = `🌟 ${displayTitle}`;
+                }
             }
 
             // Load campfire groups
