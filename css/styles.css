@@ -429,6 +429,126 @@ body {
     margin: 0.25rem 0 0.5rem;
 }
 
+/* Install to Home Screen Banner */
+.install-banner {
+    position: fixed;
+    bottom: 80px; /* Above Discord button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 500px;
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 10000;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.install-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+}
+
+.install-banner-text {
+    flex: 1;
+}
+
+.install-banner-text strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.install-banner-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+.install-banner-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.install-btn {
+    background: white;
+    color: #6E46A6;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.install-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.install-dismiss {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.install-dismiss:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 480px) {
+    .install-banner {
+        bottom: 70px;
+        width: calc(100% - 1rem);
+    }
+    
+    .install-banner-content {
+        padding: 0.875rem 1rem;
+    }
+    
+    .install-banner-text strong {
+        font-size: 1rem;
+    }
+    
+    .install-banner-text p {
+        font-size: 0.85rem;
+    }
+    
+    .install-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
 /* Color-coded ambassador badges */
 .meta-item.ambassador-badge {
     font-weight: 700;

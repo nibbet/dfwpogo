@@ -64,6 +64,20 @@
         </div>
     </div>
 
+    <!-- Add to Home Screen Banner -->
+    <div id="install-banner" class="install-banner" style="display: none;">
+        <div class="install-banner-content">
+            <div class="install-banner-text">
+                <strong>📱 Install DFW PoGO</strong>
+                <p>Add to your home screen for quick access!</p>
+            </div>
+            <div class="install-banner-actions">
+                <button id="install-button" class="install-btn">Install</button>
+                <button id="install-dismiss" class="install-dismiss">✕</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ==========================================
         // MAINTENANCE MODE - Change to true to enable
@@ -603,6 +617,91 @@
 
         init();
         setupStickyMobileNav();
+        
+        // Add to Home Screen functionality
+        let deferredPrompt;
+        const installBanner = document.getElementById('install-banner');
+        const installButton = document.getElementById('install-button');
+        const dismissButton = document.getElementById('install-dismiss');
+
+        // Check if already installed or dismissed
+        const isInstalled = localStorage.getItem('pwa-installed') === 'true';
+        const isDismissed = localStorage.getItem('install-banner-dismissed') === 'true';
+
+        // Listen for the beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the default browser install prompt
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show our custom banner if not dismissed and not installed
+            if (!isInstalled && !isDismissed) {
+                setTimeout(() => {
+                    installBanner.style.display = 'block';
+                }, 3000); // Show after 3 seconds
+            }
+        });
+
+        // Install button click handler
+        if (installButton) {
+            installButton.addEventListener('click', async () => {
+                if (!deferredPrompt) {
+                    return;
+                }
+                
+                // Show the install prompt
+                deferredPrompt.prompt();
+                
+                // Wait for the user's response
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    localStorage.setItem('pwa-installed', 'true');
+                }
+                
+                // Clear the deferred prompt
+                deferredPrompt = null;
+                
+                // Hide the banner
+                installBanner.style.display = 'none';
+            });
+        }
+
+        // Dismiss button click handler
+        if (dismissButton) {
+            dismissButton.addEventListener('click', () => {
+                installBanner.style.display = 'none';
+                localStorage.setItem('install-banner-dismissed', 'true');
+                
+                // Auto-show again after 7 days
+                setTimeout(() => {
+                    localStorage.removeItem('install-banner-dismissed');
+                }, 7 * 24 * 60 * 60 * 1000);
+            });
+        }
+
+        // Detect if app was launched from home screen
+        window.addEventListener('appinstalled', () => {
+            localStorage.setItem('pwa-installed', 'true');
+            installBanner.style.display = 'none';
+        });
+
+        // For iOS Safari - show a different message since they don't support beforeinstallprompt
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isStandalone = window.navigator.standalone === true;
+        
+        if (isIOS && !isStandalone && !isDismissed) {
+            setTimeout(() => {
+                const iosBanner = document.getElementById('install-banner');
+                const iosText = iosBanner.querySelector('.install-banner-text');
+                iosText.innerHTML = `
+                    <strong>📱 Install DFW PoGO</strong>
+                    <p>Tap <span style="font-size: 1.2em;">⎋</span> then "Add to Home Screen"</p>
+                `;
+                installButton.style.display = 'none'; // Hide install button on iOS
+                iosBanner.style.display = 'block';
+            }, 3000);
+        }
     </script>
     <footer class="site-footer">
         <div class="container">
