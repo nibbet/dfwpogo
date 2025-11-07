@@ -1,3 +1,24 @@
+/* Signature tab link styles */
+.signature-card a,
+.signature-section-card a,
+.signature-overview a {
+    color: #6E46A6;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.18s, background 0.18s;
+    border-radius: 4px;
+    padding: 0 2px;
+    word-break: break-all;
+}
+
+.signature-card a:hover,
+.signature-section-card a:hover,
+.signature-overview a:hover {
+    color: #fff;
+    background: #6E46A6;
+    text-decoration: none;
+}
 * {
     margin: 0;
     padding: 0;
