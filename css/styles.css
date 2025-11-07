@@ -119,6 +119,60 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.signature-header-card {
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    color: white;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.signature-header-card h1 {
+    color: white;
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.signature-overview {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+}
+
+.signature-overview p {
+    margin-bottom: 1rem;
+}
+
+.signature-overview ul {
+    margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.signature-overview li {
+    margin-bottom: 0.35rem;
+}
+
+.signature-overview strong {
+    color: white;
+    font-weight: 700;
+}
+
+.signature-section-card {
+    margin-bottom: 1.5rem;
+}
+
+.signature-section-card h2 {
+    color: #6E46A6;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(110,70,166,0.2);
+}
+
+.signature-section-card h3 {
+    color: #1C3059;
+    font-size: 1.15rem;
+    margin: 1rem 0 0.5rem 0;
+}
+
 .signature-header {
     display: flex;
     flex-direction: column;

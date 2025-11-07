@@ -299,135 +299,82 @@
                 return;
             }
 
-            // Parse the pre-rendered HTML from marked and reflow into a clearer structure
+            // Parse the pre-rendered HTML from marked
             const temp = document.createElement('div');
             temp.innerHTML = signatureData;
 
-            // Extract title (first H1) and metadata paragraph (first P after H1)
+            // Extract title from H1
             const h1 = temp.querySelector('h1');
-            const titleText = h1 ? h1.textContent.trim() : '';
-
-            let metaP = null;
-            if (h1) {
-                let sib = h1.nextElementSibling;
-                while (sib && sib.tagName !== 'P') sib = sib.nextElementSibling;
-                metaP = sib;
-            } else {
-                metaP = temp.querySelector('p');
-            }
-
-            const metaItems = [];
-            if (metaP) {
-                // split on <br> to preserve the labeled lines
-                    const parts = metaP.innerHTML.split(/<br\s*\/?/i).map(s => s.trim()).filter(Boolean);
-                    parts.forEach(p => {
-                        const text = p.replace(/<[^>]+>/g, '').trim();
-                        if (!text) return;
-                        const idx = text.indexOf(':');
-                        let key = '', value = '';
-                        if (idx !== -1) {
-                            key = text.slice(0, idx).trim();
-                            value = text.slice(idx + 1).trim();
-                        } else {
-                            value = text;
-                        }
-                        metaItems.push({ key, value, raw: text });
-                    });
-                    metaP.remove();
-            }
-
+            const titleText = h1 ? h1.textContent.trim() : 'Signature Event';
             if (h1) h1.remove();
 
-            // Build card
-            const card = document.createElement('div');
-            card.className = 'signature-card';
-
-            const header = document.createElement('div');
-            header.className = 'signature-header';
-            const titleEl = document.createElement('h1');
-            titleEl.textContent = titleText || 'Signature Event';
-            header.appendChild(titleEl);
-
-            if (metaItems.length) {
-                const metaDiv = document.createElement('div');
-                metaDiv.className = 'signature-meta';
-                    const iconFor = (k) => {
-                        const key = (k || '').toLowerCase();
-                        if (/date|dates/.test(key)) return '📅';
-                        if (/time/.test(key)) return '🕒';
-                        if (/location|venue|where/.test(key)) return '📍';
-                        if (/ticket|tickets|rsvp|pass/.test(key)) return '🎟️';
-                        if (/cost|price/.test(key)) return '💲';
-                        return 'ℹ️';
-                    };
-                    metaItems.forEach(mi => {
-                        const span = document.createElement('span');
-                        span.className = 'meta-item';
-                        const icon = iconFor(mi.key);
-                        const text = mi.value || mi.raw;
-                        span.textContent = `${icon} ${text}`;
-                        metaDiv.appendChild(span);
-                    });
-                header.appendChild(metaDiv);
-            }
-
-            card.appendChild(header);
-
-            // Collect all H2 nodes to build sections
-                const rawH2s = Array.from(temp.querySelectorAll('h2'));
-
-            // Remove all content before the first H2 (intro paragraphs, etc.)
-            if (rawH2s.length > 0) {
-                const firstH2 = rawH2s[0];
-                let node = temp.firstChild;
-                while (node && node !== firstH2) {
+            // Extract the first H2 section for metadata
+            const firstH2 = temp.querySelector('h2');
+            let metaContent = null;
+            if (firstH2 && firstH2.textContent.includes('Overview')) {
+                // Get all content between first H2 and second H2
+                metaContent = document.createElement('div');
+                let node = firstH2.nextSibling;
+                const secondH2 = Array.from(temp.querySelectorAll('h2'))[1];
+                while (node && node !== secondH2) {
                     const next = node.nextSibling;
-                    node.remove();
+                    if (node.nodeType === 1 || (node.nodeType === 3 && node.textContent.trim())) {
+                        metaContent.appendChild(node.cloneNode(true));
+                    }
                     node = next;
                 }
+                firstH2.remove();
             }
 
-            // Build sections: for each H2, gather its following nodes until the next H2
-            const allH2 = rawH2s; // reuse previously collected nodes
-            if (allH2.length === 0) {
-                // If no H2s, just append remaining content
-                const intro = document.createElement('div');
-                intro.className = 'signature-section';
-                intro.innerHTML = temp.innerHTML;
-                card.appendChild(intro);
-            } else {
-                allH2.forEach((h2) => {
-                    const section = document.createElement('div');
-                    section.className = 'signature-section';
-
-                    // Add the section heading as a purple H2 above the box
-                    const secHeading = document.createElement('h2');
-                    secHeading.innerHTML = h2.innerHTML;
-                    section.appendChild(secHeading);
-
-                    // Create an event-like card box for this section's content
-                    const box = document.createElement('div');
-                    box.className = 'event-card';
-
-                    // Gather nodes until next h2 into markdown-content inside the box
-                    const md = document.createElement('div');
-                    md.className = 'markdown-content';
-
-                    let node = h2.nextSibling;
-                    while (node && !(node.nodeType === 1 && node.tagName === 'H2')) {
-                        const next = node.nextSibling;
-                        md.appendChild(node.cloneNode(true));
-                        node = next;
-                    }
-
-                    box.appendChild(md);
-                    section.appendChild(box);
-                    card.appendChild(section);
-                });
-            }
-
+            // Build the card
             container.innerHTML = '';
-            container.appendChild(card);
+            
+            // Create header card with title and overview
+            const headerCard = document.createElement('div');
+            headerCard.className = 'signature-card signature-header-card';
+            
+            const title = document.createElement('h1');
+            title.textContent = titleText;
+            headerCard.appendChild(title);
+            
+            if (metaContent && metaContent.innerHTML.trim()) {
+                const overview = document.createElement('div');
+                overview.className = 'signature-overview';
+                overview.innerHTML = metaContent.innerHTML;
+                headerCard.appendChild(overview);
+            }
+            
+            container.appendChild(headerCard);
+
+            // Process remaining H2 sections as individual cards
+            const allH2s = Array.from(temp.querySelectorAll('h2'));
+            
+            allH2s.forEach((h2) => {
+                const sectionCard = document.createElement('div');
+                sectionCard.className = 'event-card signature-section-card';
+                
+                // Add section title
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.innerHTML = h2.innerHTML;
+                sectionCard.appendChild(sectionTitle);
+                
+                // Collect content until next H2
+                const content = document.createElement('div');
+                content.className = 'markdown-content';
+                
+                let node = h2.nextSibling;
+                const nextH2 = allH2s[allH2s.indexOf(h2) + 1];
+                while (node && node !== nextH2) {
+                    const next = node.nextSibling;
+                    if (node.nodeType === 1 || (node.nodeType === 3 && node.textContent.trim())) {
+                        content.appendChild(node.cloneNode(true));
+                    }
+                    node = next;
+                }
+                
+                sectionCard.appendChild(content);
+                container.appendChild(sectionCard);
+            });
         }
 
             
