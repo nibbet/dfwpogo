@@ -223,6 +223,43 @@ body {
     font-size: 0.9rem;
 }
 
+/* Inverse/meta badges on the purple header card */
+.signature-header-card .meta-item,
+.meta-item.meta-inverse {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Make links on header card readable on dark background */
+.signature-header-card a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.signature-header-card a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+/* CTA-style chip link in header */
+.signature-header-card .meta-item.meta-link {
+    text-decoration: none;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+}
+.signature-header-card .meta-item.meta-link:hover {
+    background: rgba(255,255,255,0.28);
+}
+
+/* Optional: adjust clock badge spacing specifically */
+.last-updated-badge {
+    margin-left: 0;
+}
+
 
 
 

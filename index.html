@@ -35,8 +35,9 @@
                 <span class="hamburger">☰</span>
             </button>
             <div class="nav-tabs" id="nav-tabs">
-                <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
                 <button id="signature-tab-btn" class="tab-btn active" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
+                <button id="meetup-tab-btn" class="tab-btn" onclick="showTab('meetup', '📍 Meetup Locations')">📍 Meetup Locations</button>
+                <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
                 <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
             </div>
         </div>
@@ -54,6 +55,11 @@
                     <div class="loading">Loading signature event...</div>
                 </div>
             </div>
+                <div id="meetup-tab" class="tab-content" style="display:none;">
+                    <div id="meetup-content" class="markdown-content">
+                        <div class="loading">Loading meetup info...</div>
+                    </div>
+                </div>
 
             <div id="campfire-tab" class="tab-content" style="display:none;">
                 <h2>Local Campfire Groups</h2>
@@ -87,12 +93,16 @@
         let eventsData = [];
         let campfireData = '';
         let signatureData = '';
+    let meetupData = '';
         let signatureTitle = localStorage.getItem('lastSignatureTitle') || 'Signature Events';
+    let meetupTitle = localStorage.getItem('lastMeetupTitle') || 'Meetup Locations';
 
         // Constants for localStorage
         const STORAGE_KEYS = {
             TITLE: 'lastSignatureTitle',
-            LAST_UPDATED: 'signatureTitleLastUpdated'
+            LAST_UPDATED: 'signatureTitleLastUpdated',
+            MEETUP_TITLE: 'lastMeetupTitle',
+            MEETUP_LAST_UPDATED: 'meetupTitleLastUpdated'
         };
 
         // Cache duration (24 hours in milliseconds)
@@ -185,6 +195,70 @@
                 }
             }
             return marked.parse(markdown);
+        }
+
+        function parseMeetupEvent(markdown) {
+            if (!markdown || !markdown.trim()) {
+                hideMeetupTab();
+                return '';
+            }
+            const titleMatch = markdown.match(/^#\s+(.+)$/m);
+            if (titleMatch) {
+                const newTitle = titleMatch[1].trim();
+                updateMeetupTitle(newTitle);
+                showMeetupTab();
+            } else {
+                const cached = getCachedMeetupTitle();
+                if (cached) {
+                    meetupTitle = cached;
+                    updateMeetupTabLabel();
+                    showMeetupTab();
+                } else {
+                    hideMeetupTab();
+                }
+            }
+            return marked.parse(markdown);
+        }
+
+        function updateMeetupTitle(newTitle) {
+            meetupTitle = newTitle;
+            localStorage.setItem(STORAGE_KEYS.MEETUP_TITLE, newTitle);
+            localStorage.setItem(STORAGE_KEYS.MEETUP_LAST_UPDATED, Date.now().toString());
+            updateMeetupTabLabel();
+        }
+
+        function getCachedMeetupTitle() {
+            const lastUpdated = parseInt(localStorage.getItem(STORAGE_KEYS.MEETUP_LAST_UPDATED) || '0');
+            const cached = localStorage.getItem(STORAGE_KEYS.MEETUP_TITLE);
+            if (cached && Date.now() - lastUpdated < CACHE_DURATION) return cached;
+            localStorage.removeItem(STORAGE_KEYS.MEETUP_TITLE);
+            localStorage.removeItem(STORAGE_KEYS.MEETUP_LAST_UPDATED);
+            return null;
+        }
+
+        function updateMeetupTabLabel() {
+            const tabBtn = document.getElementById('meetup-tab-btn');
+            if (!tabBtn) return;
+            const displayTitle = meetupTitle.length > 22 ? meetupTitle.substring(0,19) + '…' : meetupTitle;
+            tabBtn.innerHTML = `📍 ${displayTitle}`;
+            tabBtn.setAttribute('onclick', `showTab('meetup', '📍 ${displayTitle}')`);
+            const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+            if (mobileToggle && tabBtn.classList.contains('active')) mobileToggle.textContent = `📍 ${displayTitle}`;
+        }
+
+        function hideMeetupTab() {
+            const tabBtn = document.getElementById('meetup-tab-btn');
+            if (tabBtn) {
+                tabBtn.style.display = 'none';
+                if (tabBtn.classList.contains('active')) showTab('signature','🌟 Signature Events');
+            }
+            const tab = document.getElementById('meetup-tab');
+            if (tab) tab.style.display = 'none';
+        }
+
+        function showMeetupTab() {
+            const tabBtn = document.getElementById('meetup-tab-btn');
+            if (tabBtn) tabBtn.style.display = '';
         }
 
         function updateSignatureTitle(newTitle) {
@@ -364,6 +438,18 @@
                 overview.innerHTML = metaContent.innerHTML;
                 headerCard.appendChild(overview);
             }
+
+            // Add quick link to Meetup Locations tab inside the header card
+            const meetupDisplayTitle = (meetupTitle && meetupTitle.length > 22) ? (meetupTitle.substring(0,19) + '…') : (meetupTitle || 'Meetup Locations');
+            const meetupCta = document.createElement('a');
+            meetupCta.href = '#meetup';
+            meetupCta.className = 'meta-item meta-link meta-inverse';
+            meetupCta.textContent = `📍 ${meetupDisplayTitle}`;
+            meetupCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                showTab('meetup', `📍 ${meetupDisplayTitle}`);
+            });
+            headerCard.appendChild(meetupCta);
             
             container.appendChild(headerCard);
 
@@ -395,6 +481,106 @@
                 
                 sectionCard.appendChild(content);
                 container.appendChild(sectionCard);
+            });
+        }
+
+        function renderMeetup() {
+            const container = document.getElementById('meetup-content');
+            if (!meetupData) {
+                container.innerHTML = '<div class="error">No meetup info found. Ensure signature_meetup.md exists.</div>';
+                return;
+            }
+            const temp = document.createElement('div');
+            temp.innerHTML = meetupData;
+            const h1 = temp.querySelector('h1');
+            if (h1) h1.remove();
+            const sections = Array.from(temp.querySelectorAll('h2'));
+            
+            // Sort Saturday and Sunday location lists alphabetically by location name
+            const sortLocationList = (rootHeading) => {
+                if (!rootHeading) return;
+                let nodes = [];
+                let n = rootHeading.nextSibling;
+                while (n && !(n.nodeType === 1 && n.tagName === 'H2')) {
+                    nodes.push(n);
+                    n = n.nextSibling;
+                }
+                // Extract list items (lines starting with -, * and containing a dash time marker)
+                const locationBlocks = [];
+                let buffer = [];
+                nodes.forEach(node => {
+                    if (node.nodeType === 3 && !node.textContent.trim()) return; // skip pure whitespace text nodes
+                    buffer.push(node);
+                    if (node.nodeType === 1 && node.tagName === 'BR') return; // ignore breaks
+                    // Heuristic: a line with time markers or ends with 'PM'/'AM' stored separately
+                });
+                // Simpler approach: rebuild innerHTML, split lines, sort, re-inject
+                const contentHTML = nodes.map(nd => nd.outerHTML || nd.textContent).join('\n');
+                const lines = contentHTML.split(/\n/).map(l => l.trim()).filter(l => l.length);
+                // Only sort if this looks like a meetup list (contains 'AM' or 'PM')
+                if (lines.some(l => /(AM|PM)/.test(l))) {
+                    // Group pairs: location line + optional time line following starting with '-' or '*'
+                    const grouped = [];
+                    for (let i=0; i<lines.length; i++) {
+                        const line = lines[i];
+                        if (/^(?:-|\*)\s*\[?.+?(AM|PM)/i.test(line) || /\bAM\b|\bPM\b/.test(line)) {
+                            grouped.push({name: line, extra: ''});
+                        } else {
+                            // Try to attach lines that are not headings but follow
+                            if (grouped.length) {
+                                grouped[grouped.length-1].extra += (grouped[grouped.length-1].extra? '\n':'') + line;
+                            }
+                        }
+                    }
+                    grouped.sort((a,b) => a.name.localeCompare(b.name, undefined, {sensitivity:'base'}));
+                    const rebuilt = grouped.map(g => g.extra ? `${g.name}\n${g.extra}` : g.name).join('\n');
+                    // Replace original block
+                    // Remove original nodes
+                    nodes.forEach(nd => nd.remove());
+                    // Inject sorted lines as paragraphs for simplicity
+                    rebuilt.split(/\n/).forEach(line => {
+                        const p = document.createElement('p');
+                        p.innerHTML = line;
+                        rootHeading.parentNode.insertBefore(p, n); // insert before next section heading or end
+                    });
+                }
+            };
+            // Apply sorting to headings containing 'Saturday' or 'Sunday'
+            sections.forEach(h => {
+                if (/Saturday/i.test(h.textContent) || /Sunday/i.test(h.textContent)) {
+                    sortLocationList(h);
+                }
+            });
+            container.innerHTML = '';
+            // Simple header card
+            const headCard = document.createElement('div');
+            headCard.className = 'signature-card signature-header-card';
+            const titleEl = document.createElement('h1');
+            titleEl.textContent = meetupTitle || 'Meetup Locations';
+            headCard.appendChild(titleEl);
+            // Last updated badge
+            const updatedSpan = document.createElement('span');
+            updatedSpan.className = 'meta-item meta-inverse last-updated-badge';
+            const now = new Date();
+            updatedSpan.textContent = `🕒 Last Updated: ${now.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'})}`;
+            headCard.appendChild(updatedSpan);
+            container.appendChild(headCard);
+            sections.forEach(h2 => {
+                const card = document.createElement('div');
+                card.className = 'event-card signature-section-card';
+                const secTitle = document.createElement('h2');
+                secTitle.innerHTML = h2.innerHTML;
+                card.appendChild(secTitle);
+                const content = document.createElement('div');
+                content.className = 'markdown-content';
+                let node = h2.nextSibling;
+                while (node && !(node.nodeType===1 && node.tagName==='H2')) {
+                    const next = node.nextSibling;
+                    content.appendChild(node.cloneNode(true));
+                    node = next;
+                }
+                card.appendChild(content);
+                container.appendChild(card);
             });
         }
 
@@ -582,6 +768,13 @@
             if (campfireMarkdown) {
                 campfireData = campfireMarkdown;
                 renderCampfire();
+            }
+
+            // Load meetup markdown
+            const meetupMarkdown = await loadMarkdownFile('signature_meetup.md');
+            meetupData = parseMeetupEvent(meetupMarkdown || '');
+            if (meetupData) {
+                renderMeetup();
             }
         }
 

@@ -87,20 +87,10 @@ Alolan Ninetales, Galarian Weezing, Granbull, Houndoom, Gardevoir, Honchkrow, Ga
 - **Routes Exploration:** Increased Buddy Candy and Pokémon spawns
 - **Pokémon HOME Integration:** Safari Ball transfer visuals coming soon
 
-## DFW Meetup Locations 📍
-### Saturday
-- [Klyde Warren Park \(Dallas\) 10 AM–6 PM](https://campfire.nianticlabs.com/discover/meetup/edb4239f-7485-41a3-ac8f-b93d7ff63881)
-- Haggard Parl (Plano) 10 AM–6 PM
-- **Garland City Square (Garland)** 10 AM - 6 PM
-### Sunday
-- [NorthPark Center \(Dallas\) 12 PM–6 PM](https://cmpf.re/FW9zAg)
-* Haggard Parl (Plano) 10 AM–6 PM
-- **Garland City Square (Garland)** 10 AM - 6 PM
-- **FIve Star Complete (The Colony)** 10 AM - 6 PM
 ## Preparation Tips 🔋
 - Stock up on Poké Balls & Berries
 - Clear storage for new Pokémon and items
 - Bring battery packs and chargers
 - Stay hydrated and check local weather
 - Download offline maps of your play area
-- Join Campfire/Discord groups to coordiante for raids, trades, and group photos.
+- Join Campfire/Discord groups to coordinate for raids, trades, and group photos.
