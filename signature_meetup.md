@@ -8,13 +8,13 @@
   - 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/aeXtLX)
   - 10 AM - 6 PM
-- [FIve Star Complete (The Colony)](https://cmpf.re/IBm4sY)
+- [FIve Star Complex (The Colony)](https://cmpf.re/IBm4sY)
   - 10 AM - 6 PM
 - [Frisco Commons (Frisco)](https://cmpf.re/Tibxc8)
   - 10 AM - 6 PM
 - [Crawford Memorial Park (South East Dallas)](https://cmpf.re/1G9zRX)
   - 10 AM - 6 PM
-- [Bruce Central Park (Seagovill)](https://cmpf.re/oes4ZH)
+- [Bruce Central Park (Seagoville)](https://cmpf.re/oes4ZH)
   - 10 AM - 6 PM
 
 ### Sunday
@@ -24,11 +24,11 @@
   * 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/wrc41s)
   - 10 AM - 6 PM
-- [FIve Star Complete (The Colony)](https://cmpf.re/bYidFU) 
+- [FIve Star Complex (The Colony)](https://cmpf.re/bYidFU) 
   - 10 AM - 6 PM
 - Crawford Memorial Park (South East Dallas)
   - 10 AM - 6 PM
-- [Bruce Central Park (Seagovill)](https://cmpf.re/lkEuU5)
+- [Bruce Central Park (Seagoville)](https://cmpf.re/lkEuU5)
   - 10 AM - 6 PM
 
 Happy hunting and enjoy connecting with the community!
