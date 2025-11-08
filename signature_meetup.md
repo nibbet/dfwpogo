@@ -1,4 +1,4 @@
-# GO Wild Meetups
+# Go Wild Meetups
 
 ## DFW Meetup Locations 📍
 ### Saturday

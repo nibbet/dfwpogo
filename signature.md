@@ -1,4 +1,4 @@
-# GO Wild Area 2025
+# Go Wild Area 2025
 ## Event Overview 🎯
 The wilderness of Galar is calling, Trainers! Experience the **GO Wild Area 2025: Global** event — a worldwide celebration filled with rare encounters, Shadow Raids, and exciting debuts.
 - **Dates:** November 15–16, 2025
