@@ -856,6 +856,7 @@
             function recompute() {
                 navTop = navContainer.getBoundingClientRect().top + window.scrollY;
                 updateNav();
+                setupSwipeNavigation(); // Re-evaluate swipe on resize
             }
 
             window.addEventListener('scroll', updateNav, { passive: true });
@@ -889,11 +890,16 @@
                     if (mobileToggle && tabBtn.classList.contains('active')) {
                         mobileToggle.textContent = `⏳ ${displayTitle}`;
                     }
+                    return `⏳ ${displayTitle}`;
                 }
+                return `⏳ ${title}`;
             }
-            await updateLeadupTabLabelFromMarkdown();
+            const leadupLabel = await updateLeadupTabLabelFromMarkdown();
             init();
             setupStickyMobileNav();
+            setupSwipeNavigation();
+            // Ensure the Lead-Up tab content is visible on load
+            showTab('leadup', leadupLabel);
         });
         
         // Add to Home Screen functionality
@@ -979,6 +985,64 @@
                 installButton.style.display = 'none'; // Hide install button on iOS
                 iosBanner.style.display = 'block';
             }, 3000);
+        }
+
+        // Swipe navigation for mobile
+        function setupSwipeNavigation() {
+            const contentArea = document.querySelector('.content-area');
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+
+            // Only enable on smaller screens
+            if (window.innerWidth > 768) {
+                return;
+            }
+
+            contentArea.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+                touchStartY = event.changedTouches[0].screenY;
+            }, { passive: true });
+
+            contentArea.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                touchEndY = event.changedTouches[0].screenY;
+                handleSwipeGesture();
+            }, { passive: true });
+
+            function handleSwipeGesture() {
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+                const swipeThreshold = 50; // Minimum distance for a swipe
+
+                // Ensure it's a horizontal swipe and not a scroll
+                if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) < Math.abs(deltaY)) {
+                    return;
+                }
+
+                const navTabs = document.getElementById('nav-tabs');
+                const visibleTabs = Array.from(navTabs.querySelectorAll('.tab-btn')).filter(
+                    tab => tab.style.display !== 'none'
+                );
+                
+                if (visibleTabs.length <= 1) return;
+
+                const currentIndex = visibleTabs.findIndex(tab => tab.classList.contains('active'));
+                if (currentIndex === -1) return;
+
+                let nextIndex;
+                if (deltaX < 0) { // Swipe Left
+                    nextIndex = (currentIndex + 1) % visibleTabs.length;
+                } else { // Swipe Right
+                    nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
+                }
+
+                const nextTab = visibleTabs[nextIndex];
+                if (nextTab) {
+                    nextTab.click(); // Simulate a click to trigger the showTab function
+                }
+            }
         }
     </script>
     <footer class="site-footer">

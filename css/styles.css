@@ -344,6 +344,45 @@ body {
 
 .signature-section h3 { color: #1C3059; }
 
+/* Table Styles */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures the border-radius is respected by children */
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.markdown-content th {
+    background-color: #6E46A6;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.markdown-content tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.markdown-content tr:hover {
+    background-color: #f1f1f1;
+}
+
+.markdown-content tr:last-child td {
+    border-bottom: none;
+}
+
+
 .nav-container {
     position: relative;
     margin-bottom: 2rem;
@@ -397,8 +436,12 @@ body {
     margin-top: 0.5rem;
 }
 
+.content-area {
+    touch-action: pan-y; /* Allow vertical scroll, but handle horizontal with JS */
+}
+
 .tab-btn {
-    background: white;
+    background: none;
     border: none;
     padding: 1rem 2rem;
     border-radius: 10px;
