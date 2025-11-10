@@ -68,9 +68,6 @@
             </div>
         </div>
 
-        <!-- Hover Tab Navigation -->
-        <div class="tab-nav-arrow left" id="tab-nav-left" onclick="navigateTabs('prev')">‹</div>
-        <div class="tab-nav-arrow right" id="tab-nav-right" onclick="navigateTabs('next')">›</div>
     </div>
 
     <!-- Add to Home Screen Banner -->
@@ -387,6 +384,21 @@
                 container.innerHTML = '<div class="error">No events found. Please ensure events.md exists in your repository.</div>';
                 return;
             }
+            // Inject a header/description card once per load
+            const tabRoot = document.getElementById('events-tab');
+            if (tabRoot && !document.getElementById('events-header-card')) {
+                const headerCard = document.createElement('div');
+                headerCard.className = 'signature-card signature-header-card';
+                headerCard.id = 'events-header-card';
+                const titleEl = document.createElement('h1');
+                titleEl.textContent = 'Pokémon GO Events';
+                headerCard.appendChild(titleEl);
+                const overview = document.createElement('div');
+                overview.className = 'signature-overview';
+                overview.innerHTML = '<p>Browse upcoming local and global Pokémon GO happenings: raid hours, spotlight hours, Max Battles, weekends and special events. Only future events are shown.</p>';
+                headerCard.appendChild(overview);
+                tabRoot.insertBefore(headerCard, tabRoot.firstChild);
+            }
             
             container.innerHTML = eventsData.map(event => {
                 // event.content comes pre-parsed (HTML) and metadata lines were removed in parseEvents
@@ -600,6 +612,11 @@
             const now = new Date();
             updatedSpan.textContent = `🕒 Last Updated: ${now.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'})}`;
             headCard.appendChild(updatedSpan);
+            // Overview description for meetup tab
+            const overviewBlock = document.createElement('div');
+            overviewBlock.className = 'signature-overview';
+            overviewBlock.innerHTML = '<p>Find suggested community meetup locations for event days. Times indicate when local trainers are most active—coordinate, raid and explore together.</p>';
+            headCard.appendChild(overviewBlock);
             container.appendChild(headCard);
             sections.forEach(h2 => {
                 const card = document.createElement('div');
@@ -620,6 +637,49 @@
             });
 
             // Enhance any tables for better mobile behavior
+            applyTableEnhancements(container);
+        }
+
+        // Render lead-up tab with header + overview similar to signature
+        function renderLeadup(markdown) {
+            const container = document.getElementById('leadup-content');
+            if (!container) return;
+            const html = marked.parse(markdown);
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            // Find first heading (h1 or h2) for title
+            const heading = temp.querySelector('h1, h2');
+            const titleText = heading ? heading.textContent.trim() : 'Lead-Up Week';
+            if (heading) heading.remove();
+            // Collect initial paragraphs until next heading
+            let overviewHTML = '';
+            let node = temp.firstChild;
+            while (node) {
+                if (node.nodeType === 1 && /^(H1|H2|H3)$/.test(node.tagName)) break;
+                const next = node.nextSibling;
+                if (node.nodeType === 1 || (node.nodeType === 3 && node.textContent.trim())) {
+                    overviewHTML += node.outerHTML || node.textContent;
+                    node.remove();
+                } else if (node.nodeType === 3 && !node.textContent.trim()) {
+                    node.remove();
+                }
+                node = next;
+            }
+            container.innerHTML = '';
+            const headerCard = document.createElement('div');
+            headerCard.className = 'signature-card signature-header-card';
+            const h1 = document.createElement('h1');
+            h1.textContent = titleText;
+            headerCard.appendChild(h1);
+            const overview = document.createElement('div');
+            overview.className = 'signature-overview';
+            overview.innerHTML = overviewHTML || '<p>Countdown content leading into the main Signature Event. Includes spawns, raids, bonuses and preparation tips for the week.</p>';
+            headerCard.appendChild(overview);
+            container.appendChild(headerCard);
+            const remainderWrapper = document.createElement('div');
+            remainderWrapper.className = 'markdown-content';
+            remainderWrapper.innerHTML = temp.innerHTML;
+            container.appendChild(remainderWrapper);
             applyTableEnhancements(container);
         }
 
@@ -754,6 +814,13 @@
                 mobileToggle.textContent = tabLabel;
             }
 
+            // Update pill nav label
+            const pillLabel = document.getElementById('pill-nav-label');
+            if (pillLabel && tabLabel) {
+                // Strip emoji for a cleaner look in the pill
+                pillLabel.textContent = tabLabel.replace(/[\u{1F600}-\u{1F64F}]/gu, '').trim();
+            }
+
             // Close mobile nav after selection
             closeMobileNav();
         }
@@ -778,7 +845,7 @@
             }
         });
 
-        // Hover arrow navigation
+        // Pill navigation
         function navigateTabs(direction) {
             const navTabs = document.getElementById('nav-tabs');
             const visibleTabs = Array.from(navTabs.querySelectorAll('.tab-btn')).filter(
@@ -809,9 +876,7 @@
             // Load and render lead-up week
             const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
             if (leadupMarkdown) {
-                const container = document.getElementById('leadup-content');
-                container.innerHTML = marked.parse(leadupMarkdown);
-                applyTableEnhancements(container);
+                renderLeadup(leadupMarkdown);
             }
 
             // Load events
@@ -847,7 +912,6 @@
             }
         }
 
-        // Load content when page loads
         // Initialize sticky mobile nav behavior
         function setupStickyMobileNav() {
             const navContainer = document.querySelector('.nav-container');
@@ -1019,6 +1083,14 @@
             <a class="discord-btn sticky" href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord server">Join our Discord Server</a>
         </div>
     </footer>
+
+    <!-- Mobile Pill Navigation -->
+    <div class="mobile-pill-nav" id="mobile-pill-nav">
+        <button class="pill-nav-btn" onclick="navigateTabs('prev')">‹</button>
+        <span class="pill-nav-label" id="pill-nav-label">Lead-Up Week</span>
+        <button class="pill-nav-btn" onclick="navigateTabs('next')">›</button>
+    </div>
+
     <script>
         // Register service worker if supported
         if ('serviceWorker' in navigator) {

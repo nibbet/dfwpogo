@@ -868,45 +868,83 @@ body {
     }
 }
 
-/* New styles for hover navigation arrows */
-.tab-nav-arrow {
+/* Mobile Pill Navigation */
+.mobile-pill-nav {
+    display: none; /* Hidden by default */
     position: fixed;
-    bottom: 50%;
-    transform: translateY(50%);
-    width: 50px;
-    height: 50px;
-    background-color: rgba(110, 70, 166, 0.5);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 300px;
+    background-color: rgba(28, 48, 89, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: white;
-    font-size: 2rem;
-    line-height: 50px;
-    text-align: center;
+    border-radius: 999px; /* Pill shape */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: 1001;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    animation: slideUpPill 0.3s ease-out;
+}
+
+@keyframes slideUpPill {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.pill-nav-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 40px;
+    text-align: center;
     cursor: pointer;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    user-select: none;
+    transition: background-color 0.2s ease;
 }
 
-.tab-nav-arrow.left {
-    left: 15px;
+.pill-nav-btn:hover {
+    background: rgba(255,255,255,0.3);
 }
 
-.tab-nav-arrow.right {
-    right: 15px;
+.pill-nav-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-body:hover .tab-nav-arrow {
-    opacity: 1;
+@media (min-width: 769px) {
+    .mobile-pill-nav {
+        display: none !important; /* Ensure it's hidden on desktop */
+    }
 }
 
-.tab-nav-arrow:hover {
-    background-color: rgba(110, 70, 166, 0.8);
-}
-
-/* Hide arrows on small screens where they might be obtrusive */
-@media (max-width: 1024px) {
-    .tab-nav-arrow {
-        display: none;
+@media (max-width: 768px) {
+    .nav-container {
+        display: none; /* Hide the original top nav on mobile */
+    }
+    .mobile-pill-nav {
+        display: flex; /* Show the pill nav on mobile */
+    }
+    .container {
+        margin-top: 1rem; /* Adjust top margin since top nav is gone */
     }
 }
