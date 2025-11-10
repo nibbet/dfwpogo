@@ -147,6 +147,27 @@ body {
     margin-bottom: 1.5rem;
 }
 
+/* Dark card table variant inside purple header overview */
+.signature-header-card .signature-overview table {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+.signature-header-card .signature-overview thead th {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+.signature-header-card .signature-overview tbody td {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.signature-header-card .signature-overview tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.10);
+}
+.signature-header-card .signature-overview tbody tr:hover {
+    background: rgba(255,255,255,0.18);
+}
+
 .signature-header-card h1 {
     color: white;
     font-size: 2rem;
@@ -259,6 +280,36 @@ body {
 .last-updated-badge {
     margin-left: 0;
 }
+
+/* Scroll wrapper + hint for wide tables */
+.table-scroll {
+    position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0.75rem 0 1rem;
+    padding-bottom: 0.5rem;
+}
+.table-scroll::-webkit-scrollbar { height: 8px; }
+.table-scroll::-webkit-scrollbar-track { background: rgba(110,70,166,0.08); border-radius: 4px; }
+.table-scroll::-webkit-scrollbar-thumb { background: rgba(110,70,166,0.35); border-radius: 4px; }
+.table-scroll::-webkit-scrollbar-thumb:hover { background: rgba(110,70,166,0.5); }
+
+.scroll-hint {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background: rgba(110,70,166,0.75);
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease;
+}
+.table-scroll:not(:hover) .scroll-hint { opacity: 1; }
+@media (min-width: 900px) { .table-scroll .scroll-hint { display: none; } }
 
 
 
@@ -649,6 +700,38 @@ body {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
+
+/* Responsive table support for markdown sections */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid rgba(110,70,166,0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+.markdown-content thead th {
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+.markdown-content tbody td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid rgba(110,70,166,0.12);
+    vertical-align: top;
+}
+.markdown-content tbody tr:last-child td { border-bottom: none; }
+.markdown-content tbody tr:nth-child(even) { background: rgba(110,70,166,0.03); }
+.markdown-content tbody tr:hover { background: rgba(110,70,166,0.08); }
+
+/* Scroll wrapper for wide tables on mobile */
+.markdown-content table { display: block; overflow-x: auto; white-space: nowrap; }
+@media (min-width: 640px) { .markdown-content table { display: table; white-space: normal; } }
+
 
 .loading {
     text-align: center;

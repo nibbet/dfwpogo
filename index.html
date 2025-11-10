@@ -93,9 +93,9 @@
         let eventsData = [];
         let campfireData = '';
         let signatureData = '';
-    let meetupData = '';
+        let meetupData = '';
         let signatureTitle = localStorage.getItem('lastSignatureTitle') || 'Signature Events';
-    let meetupTitle = localStorage.getItem('lastMeetupTitle') || 'Meetup Locations';
+        let meetupTitle = localStorage.getItem('lastMeetupTitle') || 'Meetup Locations';
 
         // Constants for localStorage
         const STORAGE_KEYS = {
@@ -303,6 +303,23 @@
             }
         }
 
+        // Wrap tables to enable horizontal scrolling on mobile and add a visible hint
+        function applyTableEnhancements(root) {
+            if (!root) return;
+            const tables = root.querySelectorAll('.markdown-content table, .signature-overview table');
+            tables.forEach(table => {
+                if (table.parentElement && table.parentElement.classList.contains('table-scroll')) return;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-scroll';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+                const hint = document.createElement('div');
+                hint.className = 'scroll-hint';
+                hint.textContent = 'Scroll →';
+                wrapper.appendChild(hint);
+            });
+        }
+
         function hideSignatureTab() {
             const tabBtn = document.getElementById('signature-tab-btn');
             if (tabBtn) {
@@ -482,6 +499,9 @@
                 sectionCard.appendChild(content);
                 container.appendChild(sectionCard);
             });
+
+            // Enhance any tables for better mobile behavior
+            applyTableEnhancements(container);
         }
 
         function renderMeetup() {
@@ -582,6 +602,9 @@
                 card.appendChild(content);
                 container.appendChild(card);
             });
+
+            // Enhance any tables for better mobile behavior
+            applyTableEnhancements(container);
         }
 
             
@@ -687,6 +710,9 @@
                     }).join('')}
                 </div>
             `;
+
+            // Enhance any tables for better mobile behavior
+            applyTableEnhancements(container);
         }
 
         function showTab(tabName, tabLabel) {
