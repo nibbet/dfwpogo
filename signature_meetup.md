@@ -8,7 +8,7 @@
   - 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/aeXtLX)
   - 10 AM - 6 PM
-- [FIve Star Complex (The Colony)](https://cmpf.re/IBm4sY)
+- [Five Star Complex (The Colony)](https://cmpf.re/IBm4sY)
   - 10 AM - 6 PM
 - [Frisco Commons (Frisco)](https://cmpf.re/Tibxc8)
   - 10 AM - 6 PM
@@ -24,9 +24,9 @@
   * 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/wrc41s)
   - 10 AM - 6 PM
-- [FIve Star Complex (The Colony)](https://cmpf.re/bYidFU) 
+- [Five Star Complex (The Colony)](https://cmpf.re/bYidFU) 
   - 10 AM - 6 PM
-- Crawford Memorial Park (South East Dallas)
+- [Crawford Memorial Park (South East Dallas)](https://cmpf.re/1G9zRX)
   - 10 AM - 6 PM
 - [Bruce Central Park (Seagoville)](https://cmpf.re/lkEuU5)
   - 10 AM - 6 PM
