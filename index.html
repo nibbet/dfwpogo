@@ -35,10 +35,10 @@
                 <span class="hamburger">☰</span>
             </button>
             <div class="nav-tabs" id="nav-tabs">
-                <button id="signature-tab-btn" class="tab-btn active" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
+                <button id="leadup-tab-btn" class="tab-btn active" onclick="showTab('leadup', '⏳ Lead-Up Week')">⏳ Lead-Up Week</button>
+                <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
                 <button id="meetup-tab-btn" class="tab-btn" onclick="showTab('meetup', '📍 Meetup Locations')">📍 Meetup Locations</button>
                 <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
-                <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
             </div>
         </div>
 
@@ -50,21 +50,20 @@
                 </div>
             </div>
 
-            <div id="signature-tab" class="tab-content">
+            <div id="leadup-tab" class="tab-content" style="display:none;">
+                <div id="leadup-content" class="markdown-content">
+                    <div class="loading">Loading lead-up week...</div>
+                </div>
+            </div>
+
+            <div id="signature-tab" class="tab-content" style="display:none;">
                 <div id="signature-content" class="markdown-content">
                     <div class="loading">Loading signature event...</div>
                 </div>
             </div>
-                <div id="meetup-tab" class="tab-content" style="display:none;">
-                    <div id="meetup-content" class="markdown-content">
-                        <div class="loading">Loading meetup info...</div>
-                    </div>
-                </div>
-
-            <div id="campfire-tab" class="tab-content" style="display:none;">
-                <h2>Local Campfire Groups</h2>
-                <div id="campfire-list">
-                    <div class="loading">Loading Campfire groups...</div>
+            <div id="meetup-tab" class="tab-content" style="display:none;">
+                <div id="meetup-content" class="markdown-content">
+                    <div class="loading">Loading meetup info...</div>
                 </div>
             </div>
         </div>
@@ -765,6 +764,15 @@
         // Initialize - Load all markdown files
         async function init() {
             // Load events
+            // Load and render lead-up week
+            const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
+            if (leadupMarkdown) {
+                const container = document.getElementById('leadup-content');
+                container.innerHTML = marked.parse(leadupMarkdown);
+                applyTableEnhancements(container);
+            }
+
+            // Load events
             const eventsMarkdown = await loadMarkdownFile('events.md');
             if (eventsMarkdown) {
                 eventsData = parseEvents(eventsMarkdown);
@@ -787,13 +795,6 @@
                         : signatureTitle;
                     mobileToggle.textContent = `🌟 ${displayTitle}`;
                 }
-            }
-
-            // Load campfire groups
-            const campfireMarkdown = await loadMarkdownFile('campfire.md');
-            if (campfireMarkdown) {
-                campfireData = campfireMarkdown;
-                renderCampfire();
             }
 
             // Load meetup markdown
@@ -850,8 +851,37 @@
             recompute();
         }
 
-        init();
-        setupStickyMobileNav();
+        // Ensure DOM is ready before updating tab label
+        document.addEventListener('DOMContentLoaded', async () => {
+            async function updateLeadupTabLabelFromMarkdown() {
+                const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
+                let title = 'Lead-Up Week';
+                if (leadupMarkdown) {
+                    // Try to extract H1 or first H2
+                    const h1Match = leadupMarkdown.match(/^#\s+(.+)$/m);
+                    const h2Match = leadupMarkdown.match(/^##\s+(.+)$/m);
+                    if (h1Match) {
+                        title = h1Match[1].trim();
+                    } else if (h2Match) {
+                        title = h2Match[1].trim();
+                    }
+                }
+                const tabBtn = document.getElementById('leadup-tab-btn');
+                if (tabBtn) {
+                    const displayTitle = title.length > 22 ? title.substring(0,19) + '…' : title;
+                    tabBtn.innerHTML = `⏳ ${displayTitle}`;
+                    tabBtn.setAttribute('onclick', `showTab('leadup', '⏳ ${displayTitle}')`);
+                    // If leadup is active, update mobile nav
+                    const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+                    if (mobileToggle && tabBtn.classList.contains('active')) {
+                        mobileToggle.textContent = `⏳ ${displayTitle}`;
+                    }
+                }
+            }
+            await updateLeadupTabLabelFromMarkdown();
+            init();
+            setupStickyMobileNav();
+        });
         
         // Add to Home Screen functionality
         let deferredPrompt;
