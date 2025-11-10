@@ -467,6 +467,19 @@
             });
             headerCard.appendChild(meetupCta);
             
+            // Add quick link to Lead-Up Week tab next to Meetup
+            const leadupTabBtn = document.getElementById('leadup-tab-btn');
+            const leadupLabel = leadupTabBtn ? leadupTabBtn.textContent.trim() : '⏳ Lead-Up Week';
+            const leadupCta = document.createElement('a');
+            leadupCta.href = '#leadup';
+            leadupCta.className = 'meta-item meta-link meta-inverse';
+            leadupCta.textContent = leadupLabel;
+            leadupCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                showTab('leadup', leadupLabel);
+            });
+            headerCard.appendChild(leadupCta);
+            
             container.appendChild(headerCard);
 
             // Process remaining H2 sections as individual cards

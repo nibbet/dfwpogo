@@ -254,6 +254,11 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Add horizontal spacing between adjacent chips/links in the signature header */
+.signature-header-card .meta-item + .meta-item {
+    margin-left: 0.5rem;
+}
+
 /* Make links on header card readable on dark background */
 .signature-header-card a {
     color: #fff;
