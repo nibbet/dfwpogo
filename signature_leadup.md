@@ -1,6 +1,4 @@
-# Signature Road Events — November 10–14, 2025  
-
-## Into the Wild 2025  
+ ## Into the Wild 2025  
 **Date:** November 10 – 14, 2025  
 **Time:** 10:00 AM to 8:00 PM (local time)  
 **Type:** Global Event  
