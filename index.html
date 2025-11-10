@@ -870,6 +870,54 @@
             }
         }
 
+        // Toggle pill menu
+        function togglePillMenu() {
+            const menu = document.getElementById('pill-menu');
+            const isOpen = menu.style.display === 'block';
+            
+            if (!isOpen) {
+                // Populate menu with current tabs
+                const navTabs = document.getElementById('nav-tabs');
+                const visibleTabs = Array.from(navTabs.querySelectorAll('.tab-btn')).filter(
+                    tab => tab.style.display !== 'none'
+                );
+                
+                const menuTabsContainer = document.getElementById('pill-menu-tabs');
+                menuTabsContainer.innerHTML = visibleTabs.map(tab => {
+                    const isActive = tab.classList.contains('active');
+                    const tabText = tab.textContent.trim();
+                    const onclickAttr = tab.getAttribute('onclick');
+                    
+                    return `<button class="pill-menu-item ${isActive ? 'active' : ''}" onclick="${onclickAttr}; closePillMenu();">
+                        ${tabText}
+                    </button>`;
+                }).join('');
+                
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        function closePillMenu() {
+            const menu = document.getElementById('pill-menu');
+            menu.style.display = 'none';
+        }
+
+        // Close pill menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('pill-menu');
+            const pillLabel = document.getElementById('pill-nav-label');
+            const pillNav = document.getElementById('mobile-pill-nav');
+            
+            if (menu && menu.style.display === 'block' && 
+                !menu.contains(event.target) && 
+                !pillLabel.contains(event.target) &&
+                !pillNav.contains(event.target)) {
+                closePillMenu();
+            }
+        });
+
         // Initialize - Load all markdown files
         async function init() {
             // Load events
@@ -1087,8 +1135,19 @@
     <!-- Mobile Pill Navigation -->
     <div class="mobile-pill-nav" id="mobile-pill-nav">
         <button class="pill-nav-btn" onclick="navigateTabs('prev')">‹</button>
-        <span class="pill-nav-label" id="pill-nav-label">Lead-Up Week</span>
+        <span class="pill-nav-label" id="pill-nav-label" onclick="togglePillMenu()">Lead-Up Week</span>
         <button class="pill-nav-btn" onclick="navigateTabs('next')">›</button>
+    </div>
+
+    <!-- Mobile Pill Menu -->
+    <div class="pill-menu" id="pill-menu" style="display: none;">
+        <div class="pill-menu-content">
+            <div class="pill-menu-header">Navigation</div>
+            <div id="pill-menu-tabs"></div>
+            <a href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" class="pill-menu-discord">
+                🎮 Join Discord Server
+            </a>
+        </div>
     </div>
 
     <script>

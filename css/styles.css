@@ -25,12 +25,20 @@
     box-sizing: border-box;
 }
 
+html {
+    background: linear-gradient(135deg, #1C3059 0%, #6E46A6 100%);
+    min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* Dark navy -> purple gradient aligned with Pokémon GO themed palette */
     background: linear-gradient(135deg, #1C3059 0%, #6E46A6 100%);
-    min-height: 100vh;
+    background-attachment: fixed; /* Keep gradient fixed during scroll */
+    min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .header {
@@ -588,7 +596,7 @@ body {
 /* Install to Home Screen Banner */
 .install-banner {
     position: fixed;
-    bottom: 80px; /* Above Discord button */
+    bottom: 150px; /* Raise above pill nav + Discord button */
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 2rem);
@@ -683,7 +691,7 @@ body {
 
 @media (max-width: 480px) {
     .install-banner {
-        bottom: 70px;
+        bottom: 120px; /* extra room on very small screens */
         width: calc(100% - 1rem);
     }
     
@@ -872,7 +880,7 @@ body {
 .mobile-pill-nav {
     display: none; /* Hidden by default */
     position: fixed;
-    bottom: 20px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 88px); /* sit above sticky button */
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
@@ -883,7 +891,7 @@ body {
     color: white;
     border-radius: 999px; /* Pill shape */
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    z-index: 1001;
+    z-index: 11001; /* Above install banner and sticky discord */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -946,5 +954,107 @@ body {
     }
     .container {
         margin-top: 1rem; /* Adjust top margin since top nav is gone */
+        padding-bottom: 180px; /* Ensure content doesn't hide behind fixed UI */
+    }
+}
+
+/* Pill Menu Styles */
+.pill-menu {
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 150px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 300px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 11002;
+    animation: slideUpMenu 0.2s ease-out;
+}
+
+@keyframes slideUpMenu {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.pill-menu-content {
+    padding: 8px;
+}
+
+.pill-menu-header {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6E46A6;
+    padding: 8px 12px;
+    letter-spacing: 0.5px;
+}
+
+.pill-menu-item {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1C3059;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    margin-bottom: 2px;
+}
+
+.pill-menu-item:hover {
+    background: rgba(110, 70, 166, 0.1);
+}
+
+.pill-menu-item.active {
+    background: rgba(110, 70, 166, 0.15);
+    color: #6E46A6;
+}
+
+.pill-menu-discord {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    margin-top: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill-menu-discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+}
+
+.pill-nav-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .pill-menu {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .pill-menu {
+        display: none !important;
     }
 }
