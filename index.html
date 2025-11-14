@@ -91,6 +91,14 @@
         </div>
     </div>
 
+    <!-- Pull to Refresh Indicator (mobile only) -->
+    <div id="pull-to-refresh" class="pull-to-refresh" aria-hidden="true">
+        <div class="ptr-inner">
+            <span class="ptr-icon">↓</span>
+            <span class="ptr-text">Pull to refresh</span>
+        </div>
+    </div>
+
     <script>
         // ==========================================
         // MAINTENANCE MODE - Change to true to enable
@@ -1271,6 +1279,7 @@
             const leadupLabel = await updateLeadupTabLabelFromMarkdown();
             init();
             setupStickyMobileNav();
+            setupPullToRefresh();
             // Ensure the Lead-Up tab content is visible on load
             showTab('leadup', leadupLabel);
         });
@@ -1295,6 +1304,11 @@
             if (!isInstalled && !isDismissed) {
                 setTimeout(() => {
                     installBanner.style.display = 'block';
+                    // Lift bottom UI above the banner
+                    requestAnimationFrame(() => {
+                        const h = installBanner.getBoundingClientRect().height || 0;
+                        document.body.style.setProperty('--install-offset', (h + 12) + 'px');
+                    });
                 }, 3000); // Show after 3 seconds
             }
         });
@@ -1319,8 +1333,9 @@
                 // Clear the deferred prompt
                 deferredPrompt = null;
                 
-                // Hide the banner
+                // Hide the banner and reset offsets
                 installBanner.style.display = 'none';
+                document.body.style.setProperty('--install-offset', '0px');
             });
         }
 
@@ -1341,6 +1356,7 @@
         window.addEventListener('appinstalled', () => {
             localStorage.setItem('pwa-installed', 'true');
             installBanner.style.display = 'none';
+            document.body.style.setProperty('--install-offset', '0px');
         });
 
         // For iOS Safari - show a different message since they don't support beforeinstallprompt
@@ -1357,7 +1373,107 @@
                 `;
                 installButton.style.display = 'none'; // Hide install button on iOS
                 iosBanner.style.display = 'block';
+                requestAnimationFrame(() => {
+                    const h = iosBanner.getBoundingClientRect().height || 0;
+                    document.body.style.setProperty('--install-offset', (h + 12) + 'px');
+                });
             }, 3000);
+        }
+
+        // Update offset when banner dismissed explicitly
+        if (dismissButton) {
+            dismissButton.addEventListener('click', () => {
+                document.body.style.setProperty('--install-offset', '0px');
+            });
+        }
+
+        // Mobile Pull-to-Refresh
+        async function performRefresh() {
+            // Remember active tab
+            const activeBtn = document.querySelector('.tab-btn.active');
+            let activeTabName = 'leadup';
+            if (activeBtn) {
+                const attr = activeBtn.getAttribute('onclick') || '';
+                const m = attr.match(/showTab\('([^']+)'/);
+                if (m) activeTabName = m[1];
+            }
+            await init();
+            // Restore the active tab and label
+            const btnForTab = document.getElementById(`${activeTabName}-tab-btn`) || Array.from(document.querySelectorAll('.tab-btn')).find(b => (b.getAttribute('onclick')||'').includes(activeTabName));
+            let label = btnForTab ? btnForTab.textContent.trim() : '';
+            if (!label) {
+                const fallback = { leadup: '⏳ Lead-Up Week', signature: '🌟 Signature Events', meetup: '📍 Meetup Locations', events: '📅 Pokémon Go Events', wallpapers: '🖼 Wallpapers' };
+                label = fallback[activeTabName] || '';
+            }
+            showTab(activeTabName, label);
+        }
+
+        function setupPullToRefresh() {
+            const ptr = document.getElementById('pull-to-refresh');
+            if (!ptr) return;
+            let startY = 0;
+            let pulling = false;
+            let distance = 0;
+            const threshold = 70;
+            const maxPull = 120;
+            const icon = ptr.querySelector('.ptr-icon');
+            const text = ptr.querySelector('.ptr-text');
+
+            const isMobile = () => window.innerWidth <= 768;
+
+            function onTouchStart(e) {
+                if (!isMobile() || document.body.classList.contains('no-scroll')) return;
+                if (window.scrollY > 0) return;
+                startY = (e.touches ? e.touches[0].clientY : e.clientY) || 0;
+                pulling = true;
+                distance = 0;
+            }
+
+            function onTouchMove(e) {
+                if (!pulling) return;
+                const currentY = (e.touches ? e.touches[0].clientY : e.clientY) || 0;
+                distance = Math.max(0, Math.min(maxPull, currentY - startY));
+                if (distance > 0 && window.scrollY <= 0) {
+                    // prevent native overscroll
+                    e.preventDefault();
+                    ptr.style.height = distance + 'px';
+                    const rotate = Math.min(180, distance * 2);
+                    icon.style.transform = `rotate(${rotate}deg)`;
+                    text.textContent = distance > threshold ? 'Release to refresh' : 'Pull to refresh';
+                } else {
+                    onTouchEnd();
+                }
+            }
+
+            async function onTouchEnd() {
+                if (!pulling) return;
+                pulling = false;
+                if (distance > threshold) {
+                    ptr.classList.add('refreshing');
+                    ptr.style.height = '56px';
+                    icon.style.transform = 'rotate(360deg)';
+                    text.textContent = 'Refreshing…';
+                    try {
+                        await performRefresh();
+                    } finally {
+                        setTimeout(() => {
+                            ptr.classList.remove('refreshing');
+                            ptr.style.height = '0px';
+                            icon.style.transform = '';
+                            text.textContent = 'Pull to refresh';
+                        }, 300);
+                    }
+                } else {
+                    ptr.style.height = '0px';
+                    icon.style.transform = '';
+                }
+            }
+
+            window.addEventListener('touchstart', onTouchStart, { passive: true });
+            window.addEventListener('touchmove', onTouchMove, { passive: false });
+            window.addEventListener('touchend', onTouchEnd, { passive: true });
+            window.addEventListener('touchcancel', onTouchEnd, { passive: true });
+            window.addEventListener('resize', () => { ptr.style.height = '0px'; });
         }
     </script>
     <footer class="site-footer">

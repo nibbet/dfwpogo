@@ -596,7 +596,7 @@ body {
 /* Install to Home Screen Banner */
 .install-banner {
     position: fixed;
-    bottom: 150px; /* Raise above pill nav + Discord button */
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); /* true bottom placement */
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 2rem);
@@ -691,7 +691,7 @@ body {
 
 @media (max-width: 480px) {
     .install-banner {
-        bottom: 120px; /* extra room on very small screens */
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
         width: calc(100% - 1rem);
     }
     
@@ -880,7 +880,7 @@ body {
 .mobile-pill-nav {
     display: none; /* Hidden by default */
     position: fixed;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 88px); /* sit above sticky button */
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 88px + var(--install-offset, 0px)); /* rise above banner when visible */
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
@@ -1145,7 +1145,7 @@ body.no-scroll { overflow: hidden; }
 /* Pill Menu Styles */
 .pill-menu {
     position: fixed;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 150px);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 150px + var(--install-offset, 0px));
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
@@ -1241,4 +1241,49 @@ body.no-scroll { overflow: hidden; }
     .pill-menu {
         display: none !important;
     }
+}
+
+/* Pull-to-Refresh (mobile) */
+.pull-to-refresh {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: 12050;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.pull-to-refresh .ptr-inner {
+    background: rgba(28, 48, 89, 0.92);
+    color: #fff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.pull-to-refresh .ptr-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.pull-to-refresh.refreshing .ptr-icon {
+    animation: ptr-spin 0.8s linear infinite;
+}
+
+@keyframes ptr-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@media (min-width: 769px) {
+    .pull-to-refresh { display: none; }
 }
