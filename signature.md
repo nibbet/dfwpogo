@@ -40,7 +40,7 @@ Wigglytuff, Galarian Rapidash, Tyranitar, Mawile, Absol, Golurk, Hatterene, Obst
 Alolan Ninetales, Galarian Weezing, Granbull, Houndoom, Gardevoir, Honchkrow, Garchomp, Drapion, Weavile
 
 ### Raids
-- **5★ Shadow Raids:** Shadow Darkrai, Shadow Cresselia
+- **5★ Shadow Raids:** Shadow Cresselia (Saturday), Shadow Darkrai (Sunday)
 - **3★ Raids:** Bewear (Wilderness Cape)
 
 ### Incense Encounters
