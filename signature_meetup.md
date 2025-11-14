@@ -4,7 +4,7 @@
 ### Saturday
 - [Klyde Warren Park (Dallas)](https://campfire.nianticlabs.com/discover/meetup/edb4239f-7485-41a3-ac8f-b93d7ff63881)
   - 10 AM–6 PM
-- Haggard Park (Plano)
+- [Haggard Park (Plano)](https://cmpf.re/OY6qxb)
   - 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/aeXtLX)
   - 10 AM - 6 PM
@@ -20,7 +20,7 @@
 ### Sunday
 * [NorthPark Center (Dallas)](https://cmpf.re/FW9zAg)
   * 12 PM–6 PM
-* Haggard ParK (Plano) 
+* [Haggard ParK (Plano)](https://cmpf.re/Zxhr5p)
   * 10 AM–6 PM
 - [Garland City Square (Garland)](https://cmpf.re/wrc41s)
   - 10 AM - 6 PM
