@@ -39,6 +39,7 @@
                 <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
                 <button id="meetup-tab-btn" class="tab-btn" onclick="showTab('meetup', '📍 Meetup Locations')">📍 Meetup Locations</button>
                 <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
+                <button id="wallpapers-tab-btn" class="tab-btn" onclick="showTab('wallpapers', '🖼 Wallpapers')">🖼 Wallpapers</button>
             </div>
         </div>
 
@@ -64,6 +65,12 @@
             <div id="meetup-tab" class="tab-content" style="display:none;">
                 <div id="meetup-content" class="markdown-content">
                     <div class="loading">Loading meetup info...</div>
+                </div>
+            </div>
+
+            <div id="wallpapers-tab" class="tab-content" style="display:none;">
+                <div id="wallpapers-content" class="markdown-content">
+                    <div class="loading">Loading wallpapers...</div>
                 </div>
             </div>
         </div>
@@ -640,6 +647,219 @@
             applyTableEnhancements(container);
         }
 
+        // Render wallpapers from markdown (expected format: optional title, intro paragraph(s), then image markdown lines or list items with alt text)
+        function renderWallpapers(markdown) {
+            const container = document.getElementById('wallpapers-content');
+            if (!container) return;
+            const html = marked.parse(markdown);
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+
+            // Title
+            let heading = temp.querySelector('h1, h2');
+            const title = heading ? heading.textContent.trim() : 'Wallpapers';
+            if (heading) heading.remove();
+
+            // Collect intro nodes until first subsequent heading or gallery marker
+            let introHTML = '';
+            let node = temp.firstChild;
+            while (node) {
+                if (node.nodeType === 1 && /^(H1|H2|H3)$/.test(node.tagName)) break;
+                // Stop if we encounter a figure or an img which indicates start of gallery
+                if (node.nodeType === 1 && (node.tagName === 'IMG' || node.querySelector?.('img'))) break;
+                const next = node.nextSibling;
+                if (node.nodeType === 1 || (node.nodeType === 3 && node.textContent.trim())) {
+                    introHTML += node.outerHTML || node.textContent;
+                    node.remove();
+                } else if (node.nodeType === 3 && !node.textContent.trim()) {
+                    node.remove();
+                }
+                node = next;
+            }
+
+            // Build header card
+            container.innerHTML = '';
+            const headerCard = document.createElement('div');
+            headerCard.className = 'signature-card signature-header-card';
+            const h1 = document.createElement('h1');
+            h1.textContent = title;
+            headerCard.appendChild(h1);
+            const overview = document.createElement('div');
+            overview.className = 'signature-overview';
+            overview.innerHTML = introHTML || '<p>Download community-themed wallpapers sized for phones and desktops. Tap or long-press to save.</p>';
+            headerCard.appendChild(overview);
+            container.appendChild(headerCard);
+
+            // Prepare gallery with section filtering
+            const galleryWrapper = document.createElement('div');
+            galleryWrapper.className = 'wallpaper-gallery-wrapper';
+            const filtersBar = document.createElement('div');
+            filtersBar.className = 'wallpaper-filters';
+            const gallery = document.createElement('div');
+            gallery.className = 'wallpaper-grid';
+
+            // Parse sections (H2/H3) and associate following images until next heading
+            const sections = [];
+            const contentNodes = Array.from(temp.childNodes);
+            let currentSection = 'Misc';
+            sections.push(currentSection);
+            contentNodes.forEach(n => {
+                if (n.nodeType === 1 && /^(H2|H3)$/.test(n.tagName)) {
+                    currentSection = n.textContent.trim();
+                    if (!sections.includes(currentSection)) sections.push(currentSection);
+                    return; // move to next node
+                }
+                if (n.nodeType === 1) {
+                    const imgs = n.tagName === 'IMG' ? [n] : Array.from(n.querySelectorAll('img'));
+                    imgs.forEach(img => {
+                        const src = img.getAttribute('src');
+                        const alt = img.getAttribute('alt') || 'Wallpaper';
+                        if (!src) return;
+                        const item = document.createElement('div');
+                        item.className = 'wallpaper-item';
+                        item.dataset.section = currentSection;
+                        item.innerHTML = `
+                            <div class="wallpaper-thumb-wrapper">
+                                <img src="${src}" alt="${alt}" loading="lazy" class="wallpaper-thumb" />
+                                <button class="wallpaper-download" data-src="${src}" aria-label="Download ${alt}">⬇️</button>
+                            </div>
+                            <div class="wallpaper-caption">${alt}</div>
+                        `;
+                        gallery.appendChild(item);
+                    });
+                }
+            });
+
+            if (!gallery.children.length) {
+                const empty = document.createElement('div');
+                empty.className = 'error';
+                empty.innerHTML = 'No wallpapers found in <code>wallpapers.md</code>.';
+                container.appendChild(empty);
+                return;
+            }
+
+            // Build filter buttons
+            const uniqueSections = sections.filter((s, i) => sections.indexOf(s) === i);
+            const allBtn = document.createElement('button');
+            allBtn.className = 'filter-btn active';
+            allBtn.textContent = 'All';
+            allBtn.dataset.section = '*';
+            filtersBar.appendChild(allBtn);
+            uniqueSections.forEach(sec => {
+                // Skip creating a button for the default "Misc" catch-all section
+                if (sec === 'Misc') return;
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = sec;
+                btn.dataset.section = sec;
+                filtersBar.appendChild(btn);
+            });
+
+            filtersBar.addEventListener('click', e => {
+                const btn = e.target.closest('.filter-btn');
+                if (!btn) return;
+                filtersBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const section = btn.dataset.section;
+                gallery.querySelectorAll('.wallpaper-item').forEach(item => {
+                    if (section === '*' || item.dataset.section === section) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+
+            galleryWrapper.appendChild(filtersBar);
+            galleryWrapper.appendChild(gallery);
+            container.appendChild(galleryWrapper);
+
+            // Attach download handlers
+            gallery.addEventListener('click', async (e) => {
+                const btn = e.target.closest('.wallpaper-download');
+                if (!btn) return;
+                const url = btn.getAttribute('data-src');
+                try {
+                    const resp = await fetch(url);
+                    const blob = await resp.blob();
+                    const a = document.createElement('a');
+                    const filename = url.split('/').pop() || 'wallpaper.png';
+                    a.href = URL.createObjectURL(blob);
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+                } catch(err) {
+                    console.error('Download failed', err);
+                    alert('Download failed.');
+                }
+            });
+
+            // Fullscreen preview modal setup (create once per page lifecycle)
+            let modal = document.getElementById('wallpaper-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'wallpaper-modal';
+                modal.setAttribute('role', 'dialog');
+                modal.setAttribute('aria-modal', 'true');
+                modal.innerHTML = `
+                    <div class="wallpaper-modal-backdrop" data-close="true"></div>
+                    <div class="wallpaper-modal-content">
+                        <button class="wallpaper-modal-close" aria-label="Close preview" data-close="true">✕</button>
+                        <img class="wallpaper-modal-img" alt="Wallpaper preview" />
+                        <div class="wallpaper-modal-actions">
+                            <button class="wallpaper-modal-download" aria-label="Download this wallpaper">Download</button>
+                        </div>
+                    </div>`;
+                document.body.appendChild(modal);
+                // Close handlers
+                modal.addEventListener('click', (evt) => {
+                    if (evt.target.dataset.close) {
+                        modal.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                    }
+                });
+                document.addEventListener('keydown', (evt) => {
+                    if (evt.key === 'Escape' && modal.classList.contains('open')) {
+                        modal.classList.remove('open');
+                        document.body.classList.remove('no-scroll');
+                    }
+                });
+                modal.querySelector('.wallpaper-modal-download').addEventListener('click', async () => {
+                    const imgEl = modal.querySelector('.wallpaper-modal-img');
+                    const url = imgEl.getAttribute('src');
+                    try {
+                        const resp = await fetch(url);
+                        const blob = await resp.blob();
+                        const a = document.createElement('a');
+                        const filename = url.split('/').pop() || 'wallpaper.png';
+                        a.href = URL.createObjectURL(blob);
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+                    } catch (err) {
+                        console.error('Download failed', err);
+                        alert('Download failed.');
+                    }
+                });
+            }
+
+            // Open modal when clicking on wallpaper thumbnail (but not download button)
+            gallery.addEventListener('click', (e) => {
+                const img = e.target.closest('img.wallpaper-thumb');
+                // Ignore if download button was clicked (already handled above)
+                if (!img || e.target.closest('.wallpaper-download')) return;
+                const modalImg = modal.querySelector('.wallpaper-modal-img');
+                modalImg.src = img.getAttribute('src');
+                modal.classList.add('open');
+                document.body.classList.add('no-scroll');
+                // Focus close button for accessibility
+                modal.querySelector('.wallpaper-modal-close').focus();
+            });
+        }
         // Render lead-up tab with header + overview similar to signature
         function renderLeadup(markdown) {
             const container = document.getElementById('leadup-content');
@@ -957,6 +1177,20 @@
             meetupData = parseMeetupEvent(meetupMarkdown || '');
             if (meetupData) {
                 renderMeetup();
+            }
+
+            // Load wallpapers (optional)
+            const wallpapersMarkdown = await loadMarkdownFile('wallpapers.md');
+            if (wallpapersMarkdown) {
+                renderWallpapers(wallpapersMarkdown);
+                const btn = document.getElementById('wallpapers-tab-btn');
+                if (btn) btn.style.display = '';
+            } else {
+                // Hide the Wallpapers tab if not available
+                const btn = document.getElementById('wallpapers-tab-btn');
+                if (btn) btn.style.display = 'none';
+                const tab = document.getElementById('wallpapers-tab');
+                if (tab) tab.style.display = 'none';
             }
         }
 

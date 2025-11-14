@@ -899,6 +899,190 @@ body {
     animation: slideUpPill 0.3s ease-out;
 }
 
+/* Wallpapers Grid */
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.wallpaper-gallery-wrapper {
+    margin-top: 1rem;
+}
+
+.wallpaper-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: rgba(110,70,166,0.12);
+    color: #1C3059;
+    border: 1px solid rgba(110,70,166,0.25);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-btn:hover { background: rgba(110,70,166,0.22); }
+.filter-btn.active {
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.4);
+}
+
+.wallpaper-item {
+    background: linear-gradient(135deg, #f6f8fb 0%, #ebf1fb 100%);
+    border-radius: 12px;
+    padding: 0.5rem 0.5rem 0.75rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wallpaper-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+.wallpaper-thumb-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #ddd;
+}
+.wallpaper-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.wallpaper-download {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(110,70,166,0.85);
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: background 0.2s ease;
+}
+.wallpaper-download:hover { background: rgba(110,70,166,1); }
+.wallpaper-caption {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1C3059;
+    word-break: break-word;
+}
+@media (min-width: 600px) {
+    .wallpaper-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .wallpaper-caption { font-size: 0.8rem; }
+}
+@media (min-width: 1024px) {
+    .wallpaper-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+
+/* Wallpaper Preview Modal */
+body.no-scroll { overflow: hidden; }
+#wallpaper-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 12000;
+    font-family: inherit;
+}
+#wallpaper-modal.open { display: flex; align-items: center; justify-content: center; padding: 2.5vh 2vw; }
+.wallpaper-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,24,38,0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+.wallpaper-modal-content {
+    position: relative;
+    max-width: min(95vw, 1200px);
+    max-height: 90vh;
+    width: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f6fb 100%);
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: 0 12px 40px -8px rgba(0,0,0,0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow: hidden;
+}
+.wallpaper-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(110,70,166,0.85);
+    color: #fff;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: background 0.2s ease;
+}
+.wallpaper-modal-close:hover { background: rgba(110,70,166,1); }
+.wallpaper-modal-img {
+    width: 100%;
+    height: auto;
+    max-height: calc(90vh - 140px); /* leave space for padding & actions */
+    object-fit: contain;
+    flex: 1 1 auto;
+    border-radius: 8px;
+    background: #111;
+}
+.wallpaper-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+.wallpaper-modal-download {
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wallpaper-modal-download:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+.wallpaper-modal-download:active { transform: translateY(0); box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+
+@media (max-width: 640px) {
+    .wallpaper-modal-content {
+        padding: 0.9rem 0.9rem 0.75rem;
+        border-radius: 14px;
+    }
+    .wallpaper-modal-close { top: 6px; right: 6px; width: 32px; height: 32px; }
+    .wallpaper-modal-download { padding: 0.55rem 1rem; font-size: 0.8rem; }
+}
+
 @keyframes slideUpPill {
     from {
         opacity: 0;
