@@ -2,7 +2,7 @@
 .signature-card a,
 .signature-section-card a,
 .signature-overview a {
-    color: #6E46A6;
+    color: var(--link-color);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -16,7 +16,7 @@
 .signature-section-card a:hover,
 .signature-overview a:hover {
     color: #fff;
-    background: #6E46A6;
+    background: var(--link-color);
     text-decoration: none;
 }
 * {
@@ -25,28 +25,102 @@
     box-sizing: border-box;
 }
 
+/* CSS Variables for Light/Dark Mode */
+:root {
+    --bg-gradient-start: #1C3059;
+    --bg-gradient-end: #6E46A6;
+    --header-gradient-start: #6E46A6;
+    --header-gradient-end: #1C3059;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --card-bg: #ffffff;
+    --card-bg-gradient-start: rgba(110,70,166,0.03);
+    --card-bg-gradient-end: rgba(28,48,89,0.02);
+    --card-border: rgba(110,70,166,0.08);
+    --event-card-bg-start: #f6f8fb;
+    --event-card-bg-end: #ebf1fb;
+    --nav-bg: #ffffff;
+    --nav-border: #ddd;
+    --table-header-bg: #6E46A6;
+    --table-row-even: #f9f9f9;
+    --table-row-hover: #f1f1f1;
+    --table-border: #e0e0e0;
+    --meta-bg: rgba(110,70,166,0.08);
+    --meta-color: #1C3059;
+    --section-heading: #6E46A6;
+    --section-subheading: #1C3059;
+    --link-color: #6E46A6;
+    --error-bg: #fff3cd;
+    --error-border: #ffc107;
+    --error-text: #856404;
+    --footer-bg: #f4f4f4;
+    --footer-border: #e7e7e7;
+    --signature-header-bg-start: #6E46A6;
+    --signature-header-bg-end: #1C3059;
+    --signature-header-text: #ffffff;
+    --signature-overview-text: rgba(255, 255, 255, 0.95);
+}
+
+body.dark-mode {
+    --bg-gradient-start: #0a0e1a;
+    --bg-gradient-end: #1a0a2e;
+    --header-gradient-start: #2d1b4e;
+    --header-gradient-end: #0f1729;
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --card-bg: #1e1e2e;
+    --card-bg-gradient-start: rgba(110,70,166,0.15);
+    --card-bg-gradient-end: rgba(28,48,89,0.15);
+    --card-border: rgba(110,70,166,0.3);
+    --event-card-bg-start: #1a1a2e;
+    --event-card-bg-end: #16162a;
+    --nav-bg: #1e1e2e;
+    --nav-border: #3f3f46;
+    --table-header-bg: #5a3a8a;
+    --table-row-even: #252535;
+    --table-row-hover: #2a2a3a;
+    --table-border: #3f3f46;
+    --meta-bg: rgba(110,70,166,0.25);
+    --meta-color: #c4b5fd;
+    --section-heading: #a78bfa;
+    --section-subheading: #8b9dc3;
+    --link-color: #a78bfa;
+    --error-bg: #422006;
+    --error-border: #78350f;
+    --error-text: #fcd34d;
+    --footer-bg: #1e1e2e;
+    --footer-border: #3f3f46;
+    --signature-header-bg-start: #2d1b4e;
+    --signature-header-bg-end: #0f1729;
+    --signature-header-text: #e4e4e7;
+    --signature-overview-text: rgba(228, 228, 231, 0.95);
+}
+
 html {
-    background: linear-gradient(135deg, #1C3059 0%, #6E46A6 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+    transition: background 0.3s ease;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Dark navy -> purple gradient aligned with Pokémon GO themed palette */
-    background: linear-gradient(135deg, #1C3059 0%, #6E46A6 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     background-attachment: fixed; /* Keep gradient fixed during scroll */
     min-height: 100dvh; /* Use dynamic viewport height for mobile browsers */
-    color: #333;
+    color: var(--text-primary);
     margin: 0;
     padding: 0;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
 .header {
     /* Strong themed header using purple -> navy */
-    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    background: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-end) 100%);
     padding: 2rem;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    transition: background 0.3s ease;
 }
 
 /* Section headers are styled below for static display (no collapsible behavior) */
@@ -87,11 +161,12 @@ body {
 
 /* Footer that holds the join button */
 .site-footer {
-    background-color: #f4f4f4;
+    background-color: var(--footer-bg);
     padding: 2rem 0;
     text-align: center;
     margin-top: 2rem;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid var(--footer-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 /* Ensure footer-placed button looks like a button on desktop even if 'sticky' class is present */
@@ -112,26 +187,73 @@ body {
     }
 }
 
-/* Sticky bottom-center variant */
+/* Sticky bottom-center variant - Desktop only */
 .discord-btn.sticky {
-    position: fixed;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    /* slightly larger shadow for floating effect */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    display: none; /* Hidden on mobile by default */
 }
 
-/* Ensure the sticky button doesn't hug the edges on very small screens */
-@media (max-width: 420px) {
+@media (min-width: 769px) {
     .discord-btn.sticky {
+        display: inline-block;
+        position: fixed;
+        bottom: 18px;
         left: 50%;
         transform: translateX(-50%);
-        width: calc(100% - 32px);
-        max-width: 420px;
-        padding: 0.6rem 1rem;
-        border-radius: 12px;
+        z-index: 9999;
+        /* slightly larger shadow for floating effect */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    outline: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1) rotate(15deg);
+}
+
+.dark-mode-toggle:active {
+    transform: scale(0.95);
+}
+
+.dark-mode-toggle .toggle-icon {
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+body.dark-mode .dark-mode-toggle .toggle-icon {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+        top: 0.75rem;
+        right: 0.75rem;
     }
 }
 
@@ -143,18 +265,20 @@ body {
 
 /* Signature card header & layout improvements */
 .signature-card {
-    background: linear-gradient(135deg, rgba(110,70,166,0.03) 0%, rgba(28,48,89,0.02) 100%);
+    background: linear-gradient(135deg, var(--card-bg-gradient-start) 0%, var(--card-bg-gradient-end) 100%);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
-    border: 1px solid rgba(110,70,166,0.08);
+    border: 1px solid var(--card-border);
     margin-bottom: 1.5rem;
+    transition: background 0.3s ease, border 0.3s ease;
 }
 
 .signature-header-card {
-    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--signature-header-bg-start) 0%, var(--signature-header-bg-end) 100%);
+    color: var(--signature-header-text);
     padding: 2rem;
     margin-bottom: 1.5rem;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Dark card table variant inside purple header overview */
@@ -179,32 +303,38 @@ body {
 }
 
 .signature-header-card h1 {
-    color: white;
+    color: var(--signature-header-text);
     font-size: 2rem;
     margin: 0 0 1rem 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
 }
 
 .signature-overview {
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--signature-overview-text) !important;
     line-height: 1.6;
+    transition: color 0.3s ease;
 }
 
 .signature-overview p {
     margin-bottom: 1rem;
+    color: inherit !important;
 }
 
 .signature-overview ul {
     margin: 0.5rem 0 0.5rem 1.5rem;
+    color: inherit !important;
 }
 
 .signature-overview li {
     margin-bottom: 0.35rem;
+    color: inherit !important;
 }
 
 .signature-overview strong {
-    color: white;
+    color: var(--signature-header-text) !important;
     font-weight: 700;
+    transition: color 0.3s ease;
 }
 
 .signature-section-card {
@@ -212,17 +342,19 @@ body {
 }
 
 .signature-section-card h2 {
-    color: #6E46A6;
+    color: var(--section-heading);
     font-size: 1.5rem;
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(110,70,166,0.2);
+    border-bottom: 2px solid var(--card-border);
+    transition: color 0.3s ease;
 }
 
 .signature-section-card h3 {
-    color: #1C3059;
+    color: var(--section-subheading);
     font-size: 1.15rem;
     margin: 1rem 0 0.5rem 0;
+    transition: color 0.3s ease;
 }
 
 .signature-header {
@@ -246,12 +378,13 @@ body {
 }
 
 .meta-item {
-    background: rgba(110,70,166,0.08);
-    color: #1C3059;
+    background: var(--meta-bg);
+    color: var(--meta-color);
     padding: 0.35rem 0.6rem;
     border-radius: 999px;
     font-weight: 600;
     font-size: 0.9rem;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Inverse/meta badges on the purple header card */
@@ -341,18 +474,23 @@ body {
 
 /* Use the same card styling as event cards for readable sub-boxes */
 .signature-section .event-card {
-    background: linear-gradient(135deg, #f6f8fb 0%, #ebf1fb 100%);
+    background: linear-gradient(135deg, var(--event-card-bg-start) 0%, var(--event-card-bg-end) 100%);
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    transition: background 0.3s ease;
 }
 
 .signature-section .event-card h3 {
     margin-top: 0;
-    color: #243870;
+    color: var(--section-subheading);
+    transition: color 0.3s ease;
 }
 
-.signature-section h3 { color: #1C3059; }
+.signature-section h3 { 
+    color: var(--section-subheading);
+    transition: color 0.3s ease;
+}
 
 /* Table Styles */
 .markdown-content table {
@@ -369,11 +507,12 @@ body {
 .markdown-content td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--table-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .markdown-content th {
-    background-color: #6E46A6;
+    background-color: var(--table-header-bg);
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
@@ -381,11 +520,11 @@ body {
 }
 
 .markdown-content tr:nth-of-type(even) {
-    background-color: #f9f9f9;
+    background-color: var(--table-row-even);
 }
 
 .markdown-content tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--table-row-hover);
 }
 
 .markdown-content tr:last-child td {
@@ -447,15 +586,15 @@ body {
 }
 
 .tab-btn {
-    background: white;
-    color: #1C3059;
+    background: var(--nav-bg);
+    color: var(--section-subheading);
     border: none;
     padding: 1rem 2rem;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    transition: all 0.3s, opacity 0.3s, transform 0.3s;
+    transition: all 0.3s, opacity 0.3s, transform 0.3s, background 0.3s ease, color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: auto; /* default to auto so tabs can sit side-by-side */
     flex: 1 1 auto; /* allow equal-width tabs across the row */
@@ -482,11 +621,12 @@ body {
 }
 
 .content-area {
-    background: white;
+    background: var(--card-bg);
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     min-height: 400px;
+    transition: background 0.3s ease;
 }
 
 .event-grid {
@@ -498,16 +638,26 @@ body {
 
 .event-card {
     /* keep cards light for readability but slightly cooler tint to match theme */
-    background: linear-gradient(135deg, #f6f8fb 0%, #ebf1fb 100%);
+    background: linear-gradient(135deg, var(--event-card-bg-start) 0%, var(--event-card-bg-end) 100%);
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s, background 0.3s ease;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.event-card h3 {
+    color: var(--section-subheading);
+    transition: color 0.3s ease;
+}
+
+.event-card p {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 /* Removed duplicate .signature-card block and outdated h2 styling */
@@ -731,15 +881,17 @@ body {
 }
 
 .markdown-content h2 {
-    color: #6E46A6;
+    color: var(--section-heading);
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .markdown-content h3 {
-    color: #1C3059;
+    color: var(--section-subheading);
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .markdown-content ul {
@@ -754,6 +906,8 @@ body {
 .markdown-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 /* Responsive table support for markdown sections */
@@ -762,9 +916,10 @@ body {
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.9rem;
-    background: #fff;
-    border: 1px solid rgba(110,70,166,0.15);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 .markdown-content thead th {
     background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
@@ -795,12 +950,13 @@ body {
 }
 
 .error {
-    background: #fff4f2; /* subtle warm tint */
-    border: 2px solid #D95829;
+    background: var(--error-bg);
+    border: 2px solid var(--error-border);
     border-radius: 10px;
     padding: 1rem;
     margin: 1rem 0;
-    color: #D95829;
+    color: var(--error-text);
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -876,27 +1032,40 @@ body {
     }
 }
 
-/* Mobile Pill Navigation */
-.mobile-pill-nav {
+/* Mobile Hamburger Menu Button */
+.mobile-menu-btn {
     display: none; /* Hidden by default */
     position: fixed;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 88px + var(--install-offset, 0px)); /* rise above banner when visible */
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 40px);
-    max-width: 300px;
-    background-color: rgba(28, 48, 89, 0.9);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 88px + var(--install-offset, 0px));
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #6E46A6 0%, #1C3059 100%);
+    border: none;
+    border-radius: 50%;
     color: white;
-    border-radius: 999px; /* Pill shape */
+    font-size: 1.5rem;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    z-index: 11001; /* Above install banner and sticky discord */
+    cursor: pointer;
+    z-index: 11001;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 5px;
-    animation: slideUpPill 0.3s ease-out;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+.hamburger-icon {
+    display: block;
+    line-height: 1;
 }
 
 /* Wallpapers Grid */
@@ -984,8 +1153,9 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     text-align: center;
-    color: #1C3059;
+    color: var(--section-subheading);
     word-break: break-word;
+    transition: color 0.3s ease;
 }
 @media (min-width: 600px) {
     .wallpaper-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
@@ -1083,49 +1253,9 @@ body.no-scroll { overflow: hidden; }
     .wallpaper-modal-download { padding: 0.55rem 1rem; font-size: 0.8rem; }
 }
 
-@keyframes slideUpPill {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-.pill-nav-btn {
-    background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    line-height: 40px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.pill-nav-btn:hover {
-    background: rgba(255,255,255,0.3);
-}
-
-.pill-nav-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-align: center;
-    flex-grow: 1;
-    padding: 0 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 @media (min-width: 769px) {
-    .mobile-pill-nav {
-        display: none !important; /* Ensure it's hidden on desktop */
+    .mobile-menu-btn {
+        display: none !important;
     }
 }
 
@@ -1133,55 +1263,55 @@ body.no-scroll { overflow: hidden; }
     .nav-container {
         display: none; /* Hide the original top nav on mobile */
     }
-    .mobile-pill-nav {
-        display: flex; /* Show the pill nav on mobile */
+    .mobile-menu-btn {
+        display: flex; /* Show hamburger button on mobile */
     }
     .container {
-        margin-top: 1rem; /* Adjust top margin since top nav is gone */
-        padding-bottom: 180px; /* Ensure content doesn't hide behind fixed UI */
+        margin-top: 1rem;
+        padding-bottom: 100px;
     }
 }
 
-/* Pill Menu Styles */
-.pill-menu {
+/* Mobile Navigation Menu */
+.mobile-menu {
     position: fixed;
     bottom: calc(env(safe-area-inset-bottom, 0px) + 150px + var(--install-offset, 0px));
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 40px);
-    max-width: 300px;
-    background: white;
+    right: 20px;
+    width: 280px;
+    background: var(--nav-bg);
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     z-index: 11002;
     animation: slideUpMenu 0.2s ease-out;
+    transition: background 0.3s ease;
 }
 
 @keyframes slideUpMenu {
     from {
         opacity: 0;
-        transform: translateX(-50%) translateY(10px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
 }
 
-.pill-menu-content {
+.mobile-menu-content {
     padding: 8px;
 }
 
-.pill-menu-header {
+.mobile-menu-header {
     font-weight: 700;
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: #6E46A6;
+    color: var(--section-heading);
     padding: 8px 12px;
     letter-spacing: 0.5px;
+    transition: color 0.3s ease;
 }
 
-.pill-menu-item {
+.mobile-menu-item {
     display: block;
     width: 100%;
     background: transparent;
@@ -1190,23 +1320,23 @@ body.no-scroll { overflow: hidden; }
     text-align: left;
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1C3059;
+    color: var(--section-subheading);
     cursor: pointer;
     border-radius: 8px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.3s ease;
     margin-bottom: 2px;
 }
 
-.pill-menu-item:hover {
+.mobile-menu-item:hover {
     background: rgba(110, 70, 166, 0.1);
 }
 
-.pill-menu-item.active {
-    background: rgba(110, 70, 166, 0.15);
-    color: #6E46A6;
+.mobile-menu-item.active {
+    background: var(--meta-bg);
+    color: var(--section-heading);
 }
 
-.pill-menu-discord {
+.mobile-menu-discord {
     display: block;
     width: 100%;
     background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
@@ -1221,24 +1351,13 @@ body.no-scroll { overflow: hidden; }
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.pill-menu-discord:hover {
+.mobile-menu-discord:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
 }
 
-.pill-nav-label {
-    cursor: pointer;
-    user-select: none;
-}
-
-@media (max-width: 768px) {
-    .pill-menu {
-        display: block;
-    }
-}
-
 @media (min-width: 769px) {
-    .pill-menu {
+    .mobile-menu {
         display: none !important;
     }
 }

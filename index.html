@@ -26,18 +26,22 @@
     <div class="header">
         <h1>DFW Pokémon Go</h1>
         <p>Your guide to local community events and Campfire groups</p>
+        <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+            <span class="toggle-icon">🌙</span>
+        </button>
     </div>
 
     <div class="container">
         <div class="nav-container">
             <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
-                <span class="current-tab">🌟 Signature Events</span>
+                <span class="current-tab"></span>
                 <span class="hamburger">☰</span>
             </button>
             <div class="nav-tabs" id="nav-tabs">
-                <button id="leadup-tab-btn" class="tab-btn active" onclick="showTab('leadup', '⏳ Lead-Up Week')">⏳ Lead-Up Week</button>
                 <button id="signature-tab-btn" class="tab-btn" onclick="showTab('signature', '🌟 Signature Events')">🌟 Signature Events</button>
+                <button id="leadup-tab-btn" class="tab-btn" onclick="showTab('leadup', '⏳ Lead-Up Week')">⏳ Lead-Up Week</button>
                 <button id="meetup-tab-btn" class="tab-btn" onclick="showTab('meetup', '📍 Meetup Locations')">📍 Meetup Locations</button>
+                <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
                 <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
                 <button id="wallpapers-tab-btn" class="tab-btn" onclick="showTab('wallpapers', '🖼 Wallpapers')">🖼 Wallpapers</button>
             </div>
@@ -65,6 +69,12 @@
             <div id="meetup-tab" class="tab-content" style="display:none;">
                 <div id="meetup-content" class="markdown-content">
                     <div class="loading">Loading meetup info...</div>
+                </div>
+            </div>
+
+            <div id="campfire-tab" class="tab-content" style="display:none;">
+                <div id="campfire-list" class="event-grid">
+                    <div class="loading">Loading Campfire groups...</div>
                 </div>
             </div>
 
@@ -273,6 +283,21 @@
 
         function showMeetupTab() {
             const tabBtn = document.getElementById('meetup-tab-btn');
+            if (tabBtn) tabBtn.style.display = '';
+        }
+
+        function hideLeadupTab() {
+            const tabBtn = document.getElementById('leadup-tab-btn');
+            if (tabBtn) {
+                tabBtn.style.display = 'none';
+                if (tabBtn.classList.contains('active')) showTab('signature','🌟 Signature Events');
+            }
+            const tab = document.getElementById('leadup-tab');
+            if (tab) tab.style.display = 'none';
+        }
+
+        function showLeadupTab() {
+            const tabBtn = document.getElementById('leadup-tab-btn');
             if (tabBtn) tabBtn.style.display = '';
         }
 
@@ -872,6 +897,14 @@
         function renderLeadup(markdown) {
             const container = document.getElementById('leadup-content');
             if (!container) return;
+            
+            // Check if markdown is empty or whitespace only
+            if (!markdown || !markdown.trim()) {
+                hideLeadupTab();
+                return;
+            }
+            
+            showLeadupTab();
             const html = marked.parse(markdown);
             const temp = document.createElement('div');
             temp.innerHTML = html;
@@ -920,6 +953,22 @@
             if (!campfireData) {
                 container.innerHTML = '<div class="error">No Campfire groups found. Please ensure campfire.md exists in your repository.</div>';
                 return;
+            }
+
+            // Inject a header/description card once per load
+            const tabRoot = document.getElementById('campfire-tab');
+            if (tabRoot && !document.getElementById('campfire-header-card')) {
+                const headerCard = document.createElement('div');
+                headerCard.className = 'signature-card signature-header-card';
+                headerCard.id = 'campfire-header-card';
+                const titleEl = document.createElement('h1');
+                titleEl.textContent = 'Campfire Groups';
+                headerCard.appendChild(titleEl);
+                const overview = document.createElement('div');
+                overview.className = 'signature-overview';
+                overview.innerHTML = '<p>Join local Pokémon GO communities on Campfire. Connect with nearby trainers, coordinate raids, and participate in group activities. Ambassador-led groups are officially recognized by Niantic.</p>';
+                headerCard.appendChild(overview);
+                tabRoot.insertBefore(headerCard, tabRoot.firstChild);
             }
 
             // Parse campfire markdown - format uses ### headers and bullet points
@@ -1042,15 +1091,9 @@
                 mobileToggle.textContent = tabLabel;
             }
 
-            // Update pill nav label
-            const pillLabel = document.getElementById('pill-nav-label');
-            if (pillLabel && tabLabel) {
-                // Strip emoji for a cleaner look in the pill
-                pillLabel.textContent = tabLabel.replace(/[\u{1F600}-\u{1F64F}]/gu, '').trim();
-            }
-
-            // Close mobile nav after selection
+            // Close mobile nav and menu after selection
             closeMobileNav();
+            closeMobileMenu();
         }
 
         function toggleMobileNav() {
@@ -1098,9 +1141,9 @@
             }
         }
 
-        // Toggle pill menu
-        function togglePillMenu() {
-            const menu = document.getElementById('pill-menu');
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
             const isOpen = menu.style.display === 'block';
             
             if (!isOpen) {
@@ -1110,13 +1153,13 @@
                     tab => tab.style.display !== 'none'
                 );
                 
-                const menuTabsContainer = document.getElementById('pill-menu-tabs');
+                const menuTabsContainer = document.getElementById('mobile-menu-tabs');
                 menuTabsContainer.innerHTML = visibleTabs.map(tab => {
                     const isActive = tab.classList.contains('active');
                     const tabText = tab.textContent.trim();
                     const onclickAttr = tab.getAttribute('onclick');
                     
-                    return `<button class="pill-menu-item ${isActive ? 'active' : ''}" onclick="${onclickAttr}; closePillMenu();">
+                    return `<button class="mobile-menu-item ${isActive ? 'active' : ''}" onclick="${onclickAttr}; closeMobileMenu();">
                         ${tabText}
                     </button>`;
                 }).join('');
@@ -1127,22 +1170,20 @@
             }
         }
 
-        function closePillMenu() {
-            const menu = document.getElementById('pill-menu');
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
             menu.style.display = 'none';
         }
 
-        // Close pill menu when clicking outside
+        // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
-            const menu = document.getElementById('pill-menu');
-            const pillLabel = document.getElementById('pill-nav-label');
-            const pillNav = document.getElementById('mobile-pill-nav');
+            const menu = document.getElementById('mobile-menu');
+            const menuBtn = document.getElementById('mobile-menu-btn');
             
             if (menu && menu.style.display === 'block' && 
                 !menu.contains(event.target) && 
-                !pillLabel.contains(event.target) &&
-                !pillNav.contains(event.target)) {
-                closePillMenu();
+                !menuBtn.contains(event.target)) {
+                closeMobileMenu();
             }
         });
 
@@ -1151,9 +1192,8 @@
             // Load events
             // Load and render lead-up week
             const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
-            if (leadupMarkdown) {
-                renderLeadup(leadupMarkdown);
-            }
+            // renderLeadup handles empty/missing content and hides tab if needed
+            renderLeadup(leadupMarkdown || '');
 
             // Load events
             const eventsMarkdown = await loadMarkdownFile('events.md');
@@ -1185,6 +1225,14 @@
             meetupData = parseMeetupEvent(meetupMarkdown || '');
             if (meetupData) {
                 renderMeetup();
+            }
+
+            // Load campfire groups
+            campfireData = await loadMarkdownFile('campfire.md');
+            if (campfireData) {
+                renderCampfire();
+            } else {
+                console.error('Failed to load campfire.md');
             }
 
             // Load wallpapers (optional)
@@ -1247,12 +1295,77 @@
             recompute();
         }
 
+        // Dark Mode Toggle
+        function initDarkMode() {
+            const toggle = document.getElementById('dark-mode-toggle');
+            if (!toggle) {
+                console.error('Dark mode toggle button not found');
+                return;
+            }
+            
+            const toggleIcon = toggle.querySelector('.toggle-icon');
+            if (!toggleIcon) {
+                console.error('Toggle icon not found');
+                return;
+            }
+            
+            // Function to apply dark mode
+            function applyDarkMode(isDark) {
+                if (isDark) {
+                    document.body.classList.add('dark-mode');
+                    toggleIcon.textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    toggleIcon.textContent = '🌙';
+                }
+            }
+            
+            // Check for saved preference first, then system preference
+            const savedMode = localStorage.getItem('dark-mode');
+            
+            if (savedMode === 'enabled' || savedMode === 'disabled') {
+                // User has explicitly set a preference
+                applyDarkMode(savedMode === 'enabled');
+            } else {
+                // No saved preference, check system preference
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                applyDarkMode(prefersDark);
+            }
+            
+            // Listen for system preference changes
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            darkModeMediaQuery.addEventListener('change', (e) => {
+                // Only auto-switch if user hasn't manually set a preference
+                const savedMode = localStorage.getItem('dark-mode');
+                if (savedMode !== 'enabled' && savedMode !== 'disabled') {
+                    applyDarkMode(e.matches);
+                }
+            });
+            
+            // Toggle button click handler
+            toggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    toggleIcon.textContent = '☀️';
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    toggleIcon.textContent = '🌙';
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+            });
+        }
+
         // Ensure DOM is ready before updating tab label
         document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize dark mode first
+            initDarkMode();
+            
             async function updateLeadupTabLabelFromMarkdown() {
                 const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
                 let title = 'Lead-Up Week';
-                if (leadupMarkdown) {
+                let hasContent = leadupMarkdown && leadupMarkdown.trim();
+                if (hasContent) {
                     // Try to extract H1 or first H2
                     const h1Match = leadupMarkdown.match(/^#\s+(.+)$/m);
                     const h2Match = leadupMarkdown.match(/^##\s+(.+)$/m);
@@ -1263,7 +1376,7 @@
                     }
                 }
                 const tabBtn = document.getElementById('leadup-tab-btn');
-                if (tabBtn) {
+                if (tabBtn && hasContent) {
                     const displayTitle = title.length > 22 ? title.substring(0,19) + '…' : title;
                     tabBtn.innerHTML = `⏳ ${displayTitle}`;
                     tabBtn.setAttribute('onclick', `showTab('leadup', '⏳ ${displayTitle}')`);
@@ -1274,14 +1387,38 @@
                     }
                     return `⏳ ${displayTitle}`;
                 }
-                return `⏳ ${title}`;
+                return hasContent ? `⏳ ${title}` : null;
             }
             const leadupLabel = await updateLeadupTabLabelFromMarkdown();
             init();
             setupStickyMobileNav();
             setupPullToRefresh();
-            // Ensure the Lead-Up tab content is visible on load
-            showTab('leadup', leadupLabel);
+            
+            // Wait a tick for init() to finish loading signature data
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            // Prioritize showing Signature tab first if it exists
+            const signatureBtn = document.getElementById('signature-tab-btn');
+            const signatureBtnVisible = signatureBtn && signatureBtn.style.display !== 'none';
+            
+            if (signatureBtnVisible) {
+                // Show signature tab with its actual event name
+                const signatureLabel = signatureBtn.textContent.trim();
+                showTab('signature', signatureLabel);
+            } else if (leadupLabel) {
+                // Fall back to leadup if signature is hidden
+                showTab('leadup', leadupLabel);
+            } else {
+                // Last resort: show events tab
+                showTab('events', '📅 Pokémon Go Events');
+            }
+            
+            // Ensure mobile nav shows the active tab text on load
+            const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+            const activeBtn = document.querySelector('.tab-btn.active');
+            if (mobileToggle && activeBtn) {
+                mobileToggle.textContent = activeBtn.textContent.trim();
+            }
         });
         
         // Add to Home Screen functionality
@@ -1482,19 +1619,17 @@
         </div>
     </footer>
 
-    <!-- Mobile Pill Navigation -->
-    <div class="mobile-pill-nav" id="mobile-pill-nav">
-        <button class="pill-nav-btn" onclick="navigateTabs('prev')">‹</button>
-        <span class="pill-nav-label" id="pill-nav-label" onclick="togglePillMenu()">Lead-Up Week</span>
-        <button class="pill-nav-btn" onclick="navigateTabs('next')">›</button>
-    </div>
+    <!-- Mobile Hamburger Menu Button -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+        <span class="hamburger-icon">☰</span>
+    </button>
 
-    <!-- Mobile Pill Menu -->
-    <div class="pill-menu" id="pill-menu" style="display: none;">
-        <div class="pill-menu-content">
-            <div class="pill-menu-header">Navigation</div>
-            <div id="pill-menu-tabs"></div>
-            <a href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" class="pill-menu-discord">
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu" id="mobile-menu" style="display: none;">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">Navigation</div>
+            <div id="mobile-menu-tabs"></div>
+            <a href="https://discord.gg/Yc6rg2a5xe" target="_blank" rel="noopener noreferrer" class="mobile-menu-discord">
                 🎮 Join Discord Server
             </a>
         </div>
