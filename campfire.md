@@ -1,4 +1,6 @@
-### DFW Area Pokémon Go
+
+
+### DFW Area Pokémon Go ![LOGO](img/campfire/DFWPOGO.png)
 - **Link:** [Join Group](https://campfire.onelink.me/eBr8?af_dp=campfire://&af_force_deeplink=true&deep_link_sub1=cj1jbHVicyZjPTJiMmJhNjhlLWEwM2EtNDgwNi05NTQ4LWI2ZTNmOTBkN2JhNSZpPXRydWU=)
 - **Ambassador Led:** ✅ Yes
 

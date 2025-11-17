@@ -258,9 +258,16 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 2rem auto;
     padding: 0 1rem;
+}
+
+/* Allow even wider layouts on very large screens */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
 }
 
 /* Signature card header & layout improvements */
@@ -691,14 +698,55 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
 .type-gmaxbattle { background: #6E46A6; color: white; }
 
 /* Campfire-specific styles */
-.type-campfire { background: #FF6B35; color: white; }
-.type-campfire.verified { background: #0F8C46; }
-.type-campfire.unverified { background: #D95829; }
-.type-campfire.unknown { background: #6E46A6; }
+/* Campfire ambassador badge: neutral style */
+.type-campfire,
+.type-campfire.verified,
+.type-campfire.unverified,
+.type-campfire.unknown {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font-weight: normal;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
 
 .campfire-card {
     display: flex;
     flex-direction: column;
+}
+
+.campfire-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.campfire-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.campfire-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: rgba(0,0,0,0.06);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    flex: 0 0 44px;
+}
+
+.campfire-logo-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FF6B35 0%, #D95829 100%);
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 .campfire-actions {
@@ -735,13 +783,7 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Campfire meta badge container */
-.campfire-meta {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin: 0.25rem 0 0.5rem;
-}
+
 
 /* Install to Home Screen Banner */
 .install-banner {
@@ -863,22 +905,7 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
     }
 }
 
-/* Color-coded ambassador badges */
-.meta-item.ambassador-badge {
-    font-weight: 700;
-}
-.meta-item.ambassador-yes {
-    background: rgba(15, 140, 70, 0.14);
-    color: #0F8C46;
-}
-.meta-item.ambassador-no {
-    background: rgba(217, 88, 41, 0.14);
-    color: #D95829;
-}
-.meta-item.ambassador-unknown {
-    background: rgba(110, 70, 166, 0.14);
-    color: #6E46A6;
-}
+
 
 .markdown-content h2 {
     color: var(--section-heading);

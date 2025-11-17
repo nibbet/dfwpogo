@@ -986,10 +986,19 @@
                     if (currentGroup) {
                         groups.push(currentGroup);
                     }
+                    // Support optional image markdown in the header line
+                    let nameText = headerMatch[1].trim();
+                    let logoFromHeader = null;
+                    const headerImgMatch = nameText.match(/!\[[^\]]*\]\(([^)]+)\)/i); // allow relative or absolute
+                    if (headerImgMatch) {
+                        logoFromHeader = headerImgMatch[1].trim();
+                        nameText = nameText.replace(/!\[[^\]]*\]\([^)]*\)/, '').trim();
+                    }
                     currentGroup = {
-                        name: headerMatch[1].trim(),
+                        name: nameText,
                         link: null,
-                        ambassador: null
+                        ambassador: null,
+                        logo: logoFromHeader
                     };
                     continue;
                 }
@@ -1007,6 +1016,27 @@
                 if (ambassadorMatch && currentGroup) {
                     currentGroup.ambassador = ambassadorMatch[1].charAt(0).toUpperCase() + ambassadorMatch[1].slice(1).toLowerCase();
                 }
+
+                // Detect logo image: allow markdown image, HTML <img>, or a Logo: URL line
+                if (currentGroup && !currentGroup.logo) {
+                    // Markdown image
+                    const imgMd = line.match(/!\[[^\]]*\]\(([^)]+)\)/i); // markdown image (relative or absolute)
+                    if (imgMd) {
+                        currentGroup.logo = imgMd[1].trim();
+                        continue;
+                    }
+                    // HTML image
+                    const imgHtml = line.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+                    if (imgHtml) {
+                        currentGroup.logo = imgHtml[1].trim();
+                        continue;
+                    }
+                    // Logo: URL (supports with or without ** and parentheses)
+                    const logoLine = line.match(/logo\s*:?\s*\(?\s*([^\s)]+)\s*\)?/i); // Logo: path or URL
+                    if (logoLine) {
+                        currentGroup.logo = logoLine[1].trim();
+                    }
+                }
             }
             
             // Don't forget the last group
@@ -1015,6 +1045,18 @@
             }
 
             console.log('Parsed groups:', groups.length, groups);
+
+            // Normalize relative logo paths: remove leading './' and auto-prefix folder when only a filename is given
+            groups.forEach(g => {
+                if (g.logo && !/^https?:\/\//i.test(g.logo)) {
+                    let clean = g.logo.replace(/^\.\/+/, '').trim();
+                    // If user provided just a filename (no slash), assume img/campfire directory
+                    if (!clean.includes('/')) {
+                        clean = 'img/campfire/' + clean;
+                    }
+                    g.logo = clean;
+                }
+            });
 
             // Sort: Ambassador Led Yes first, then No, then Unknown
             const sortedGroups = groups.slice().sort((a, b) => {
@@ -1037,32 +1079,41 @@
 
             console.log('Rendering', sortedGroups.length, 'sorted groups');
 
-            // Render groups as cards similar to events
-            container.innerHTML = `
-                <div class="event-grid">
-                    ${sortedGroups.map(group => {
-                        const joinButton = group.link ? 
-                            `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
-                            '<span class="join-btn disabled">Link Not Available</span>';
-                        const ambassadorLine = typeof group.ambassador === 'string' && group.ambassador
-                            ? (() => {
-                                const val = (group.ambassador || '').toLowerCase();
-                                const cls = val === 'yes' ? 'ambassador-yes' : (val === 'no' ? 'ambassador-no' : 'ambassador-unknown');
-                                return `<div class=\"campfire-meta\"><span class=\"meta-item ambassador-badge ${cls}\">👥 Ambassador Led: ${group.ambassador}</span></div>`;
-                              })()
-                            : '';
-                        return `
-                            <div class="event-card campfire-card">
-                                <h3>${group.name}</h3>
-                                ${ambassadorLine}
-                                <div class="campfire-actions">
-                                    ${joinButton}
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
+            // Render groups as cards matching event card layout
+            container.innerHTML = sortedGroups.map(group => {
+                const ambassadorType = (() => {
+                    if (!group.ambassador || typeof group.ambassador !== 'string') return 'campfire';
+                    const val = group.ambassador.toLowerCase();
+                    if (val === 'yes') return 'campfire verified';
+                    if (val === 'no') return 'campfire unverified';
+                    return 'campfire unknown';
+                })();
+                
+                const ambassadorLabel = group.ambassador 
+                    ? `Ambassador Led: ${group.ambassador}`
+                    : 'Ambassador Status Unknown';
+                
+                const logoHTML = group.logo 
+                    ? `<img class="campfire-logo" src="${group.logo}" alt="${group.name} logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'campfire-logo campfire-logo-fallback',textContent:'🔥'}));">`
+                    : `<div class="campfire-logo campfire-logo-fallback">🔥</div>`;
+                
+                const joinButton = group.link ? 
+                    `<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">🔥 Join Group</a>` : 
+                    '<span class="join-btn disabled">Link Not Available</span>';
+                
+                return `
+                    <div class="event-card campfire-card">
+                        <div class="campfire-header">
+                            ${logoHTML}
+                            <h3>${group.name}</h3>
+                        </div>
+                        <span class="event-type type-${ambassadorType}">${ambassadorLabel.toUpperCase()}</span>
+                        <div class="campfire-actions">
+                            ${joinButton}
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
             // Enhance any tables for better mobile behavior
             applyTableEnhancements(container);
