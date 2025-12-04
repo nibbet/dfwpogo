@@ -1,4 +1,7 @@
+# December Events
+
 ## Max Monday – Darumaka
+
 **Date:** December 1, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -14,8 +17,8 @@ Heat things up as Darumaka takes over the Power Spots for the first December Max
   - Increased Max Battle rewards  
   - Chance for boosted IVs  
 
-
 ## Spotlight Hour – Cranidos  
+
 **Date:** December 2, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
@@ -23,8 +26,8 @@ Heat things up as Darumaka takes over the Power Spots for the first December Max
 
 Clear out your storage and load up on extra transfer candy with this fossil favorite!  
 
-
 ## Raid Hour – Cobalion, Terrakion, Virizion  
+
 **Date:** December 3, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
@@ -32,8 +35,8 @@ Clear out your storage and load up on extra transfer candy with this fossil favo
 
 The Swords of Justice return for a legendary triple-feature raid night!  
 
-
 ## Community Day – Day 1  
+
 **Date:** December 6, 2025  
 **Time:** 2:00 PM – 5:00 PM  
 **Type:** Community Day  
@@ -46,8 +49,8 @@ Kick off the annual recap event featuring every Community Day Pokémon from 2025
   - Exclusive moves available  
   - Seasonal bonuses  
 
-
 ## Community Day – Day 2  
+
 **Date:** December 7, 2025  
 **Time:** 2:00 PM – 5:00 PM  
 **Type:** Community Day  
@@ -60,8 +63,8 @@ The celebration continues with more chances to catch Community Day favorites!
   - Exclusive moves  
   - High spawn rates  
 
-
 ## Max Monday – Cryogonal
+
 **Date:** December 8, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -76,8 +79,8 @@ Brace for the cold as Cryogonal crystallizes into the Dynamax spotlight!
 - Special Features:  
   - Winter-themed rewards  
 
-
 ## Spotlight Hour – Shieldon  
+
 **Date:** December 9, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
@@ -85,8 +88,8 @@ Brace for the cold as Cryogonal crystallizes into the Dynamax spotlight!
 
 Prepare your Lucky Eggs and stack that XP with this sturdy defender!  
 
-
 ## Raid Hour – Kyurem  
+
 **Date:** December 10, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
@@ -94,8 +97,8 @@ Prepare your Lucky Eggs and stack that XP with this sturdy defender!
 
 Face the icy might of Kyurem in this special December raid hour!  
 
-
 ## Max Monday – Kabuto
+
 **Date:** December 15, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -110,8 +113,8 @@ This prehistoric powerhouse emerges from the depths—revived and Dynamaxed!
 - Special Features:  
   - Fossil-themed bonus drops  
 
-
 ## Spotlight Hour – Mienfoo  
+
 **Date:** December 16, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
@@ -119,8 +122,8 @@ This prehistoric powerhouse emerges from the depths—revived and Dynamaxed!
 
 Sharpen your catching skills and double up on candy with this martial master!  
 
-
 ## Raid Hour – Reshiram  
+
 **Date:** December 17, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
@@ -128,8 +131,8 @@ Sharpen your catching skills and double up on candy with this martial master!
 
 The white-hot Dragon returns—bring your strongest counters!  
 
-
 ## Research Day  
+
 **Date:** December 20, 2025  
 **Time:** All Day  
 **Type:** Research Day
@@ -143,8 +146,8 @@ A focused day of Field Research featuring boosted encounters and themed rewards!
   - Increased encounter variety  
   - Exclusive bonuses  
 
-
 ## Max Monday – Spheal
+
 **Date:** December 22, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -159,8 +162,8 @@ Roll into winter with Spheal as it makes its Dynamax debut!
 - Special Features:  
   - Holiday-themed rewards  
 
-
 ## Spotlight Hour – Spheal  
+
 **Date:** December 23, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
@@ -168,8 +171,8 @@ Roll into winter with Spheal as it makes its Dynamax debut!
 
 Time to evolve and power-level your way through the holidays!  
 
-
 ## Raid Hour – Zekrom  
+
 **Date:** December 24, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
@@ -177,8 +180,8 @@ Time to evolve and power-level your way through the holidays!
 
 Charge into Christmas Eve with one of the strongest Electric attackers in the game!  
 
-
 ## Winter Weekend – Day 1  
+
 **Date:** December 27, 2025  
 **Time:** All Day  
 **Type:** Weekend Event  
@@ -186,8 +189,8 @@ Charge into Christmas Eve with one of the strongest Electric attackers in the ga
 
 Celebrate the season with boosted spawns and festive bonuses!  
 
-
 ## Winter Weekend – Day 2  
+
 **Date:** December 28, 2025  
 **Time:** All Day  
 **Type:** Weekend Event  
@@ -195,8 +198,8 @@ Celebrate the season with boosted spawns and festive bonuses!
 
 The winter fun continues with more bonuses and seasonal features!  
 
-
 ## Max Monday – Omanyte
+
 **Date:** December 29, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -211,8 +214,8 @@ This ancient spiral returns to dominate Max Monday—don’t get washed away!
 - Special Features:  
   - Bonus Stardust rewards  
 
-
 ## Spotlight Hour – Delibird  
+
 **Date:** December 30, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
@@ -220,8 +223,8 @@ This ancient spiral returns to dominate Max Monday—don’t get washed away!
 
 Load up on Stardust as Delibird spreads holiday cheer!  
 
-
 ## Raid Hour – Blacephalon  
+
 **Date:** December 31, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  

@@ -132,11 +132,16 @@
 
         // Cache duration (24 hours in milliseconds)
         const CACHE_DURATION = 24 * 60 * 60 * 1000;
+        // Data refresh cadence: re-fetch content when returning to tab after this interval
+        const DATA_REFRESH_INTERVAL = 7 * 24 * 60 * 60 * 1000; // 7 days
+        let lastDataRefresh = 0;
 
-        // Load markdown files from GitHub
+        // Load markdown files from GitHub with light cache-busting
         async function loadMarkdownFile(filename) {
             try {
-                const response = await fetch(filename);
+                const cacheBuster = Math.floor(Date.now() / DATA_REFRESH_INTERVAL);
+                const url = filename.includes('?') ? `${filename}&v=${cacheBuster}` : `${filename}?v=${cacheBuster}`;
+                const response = await fetch(url, { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`Failed to load ${filename}`);
                 }
@@ -145,6 +150,70 @@
                 console.error(`Error loading ${filename}:`, error);
                 return null;
             }
+        }
+
+        // Load and render all content blocks
+        async function loadContent() {
+            // Load and render lead-up week
+            const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
+            // renderLeadup handles empty/missing content and hides tab if needed
+            renderLeadup(leadupMarkdown || '');
+
+            // Load events
+            const eventsMarkdown = await loadMarkdownFile('events.md');
+            if (eventsMarkdown) {
+                eventsData = parseEvents(eventsMarkdown);
+                renderEvents();
+            } else {
+                console.error('Failed to load events.md');
+            }
+
+            // Load signature event
+            const signatureMarkdown = await loadMarkdownFile('signature.md');
+            signatureData = parseSignatureEvent(signatureMarkdown || '');
+            if (signatureData) {
+                renderSignature();
+                // Update mobile nav toggle after signature title is loaded
+                const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
+                const tabBtn = document.getElementById('signature-tab-btn');
+                if (mobileToggle && tabBtn && tabBtn.classList.contains('active')) {
+                    const displayTitle = signatureTitle.length > 25 
+                        ? signatureTitle.substring(0, 22) + '...' 
+                        : signatureTitle;
+                    mobileToggle.textContent = `🌟 ${displayTitle}`;
+                }
+            }
+
+            // Load meetup markdown
+            const meetupMarkdown = await loadMarkdownFile('signature_meetup.md');
+            meetupData = parseMeetupEvent(meetupMarkdown || '');
+            if (meetupData) {
+                renderMeetup();
+            }
+
+            // Load campfire groups
+            campfireData = await loadMarkdownFile('campfire.md');
+            if (campfireData) {
+                renderCampfire();
+            } else {
+                console.error('Failed to load campfire.md');
+            }
+
+            // Load wallpapers (optional)
+            const wallpapersMarkdown = await loadMarkdownFile('wallpapers.md');
+            if (wallpapersMarkdown) {
+                renderWallpapers(wallpapersMarkdown);
+                const btn = document.getElementById('wallpapers-tab-btn');
+                if (btn) btn.style.display = '';
+            } else {
+                // Hide the Wallpapers tab if not available
+                const btn = document.getElementById('wallpapers-tab-btn');
+                if (btn) btn.style.display = 'none';
+                const tab = document.getElementById('wallpapers-tab');
+                if (tab) tab.style.display = 'none';
+            }
+
+            lastDataRefresh = Date.now();
         }
 
         // Parse events and filter out past events
@@ -1240,65 +1309,7 @@
 
         // Initialize - Load all markdown files
         async function init() {
-            // Load events
-            // Load and render lead-up week
-            const leadupMarkdown = await loadMarkdownFile('signature_leadup.md');
-            // renderLeadup handles empty/missing content and hides tab if needed
-            renderLeadup(leadupMarkdown || '');
-
-            // Load events
-            const eventsMarkdown = await loadMarkdownFile('events.md');
-            if (eventsMarkdown) {
-                eventsData = parseEvents(eventsMarkdown);
-                renderEvents();
-            } else {
-                console.error('Failed to load events.md');
-            }
-
-            // Load signature event
-            const signatureMarkdown = await loadMarkdownFile('signature.md');
-            signatureData = parseSignatureEvent(signatureMarkdown || '');
-            if (signatureData) {
-                renderSignature();
-                // Update mobile nav toggle after signature title is loaded
-                const mobileToggle = document.querySelector('.mobile-nav-toggle .current-tab');
-                const tabBtn = document.getElementById('signature-tab-btn');
-                if (mobileToggle && tabBtn && tabBtn.classList.contains('active')) {
-                    const displayTitle = signatureTitle.length > 25 
-                        ? signatureTitle.substring(0, 22) + '...' 
-                        : signatureTitle;
-                    mobileToggle.textContent = `🌟 ${displayTitle}`;
-                }
-            }
-
-            // Load meetup markdown
-            const meetupMarkdown = await loadMarkdownFile('signature_meetup.md');
-            meetupData = parseMeetupEvent(meetupMarkdown || '');
-            if (meetupData) {
-                renderMeetup();
-            }
-
-            // Load campfire groups
-            campfireData = await loadMarkdownFile('campfire.md');
-            if (campfireData) {
-                renderCampfire();
-            } else {
-                console.error('Failed to load campfire.md');
-            }
-
-            // Load wallpapers (optional)
-            const wallpapersMarkdown = await loadMarkdownFile('wallpapers.md');
-            if (wallpapersMarkdown) {
-                renderWallpapers(wallpapersMarkdown);
-                const btn = document.getElementById('wallpapers-tab-btn');
-                if (btn) btn.style.display = '';
-            } else {
-                // Hide the Wallpapers tab if not available
-                const btn = document.getElementById('wallpapers-tab-btn');
-                if (btn) btn.style.display = 'none';
-                const tab = document.getElementById('wallpapers-tab');
-                if (tab) tab.style.display = 'none';
-            }
+            await loadContent();
         }
 
         // Initialize sticky mobile nav behavior
@@ -1441,7 +1452,7 @@
                 return hasContent ? `⏳ ${title}` : null;
             }
             const leadupLabel = await updateLeadupTabLabelFromMarkdown();
-            init();
+            await init();
             setupStickyMobileNav();
             setupPullToRefresh();
             
@@ -1470,6 +1481,16 @@
             if (mobileToggle && activeBtn) {
                 mobileToggle.textContent = activeBtn.textContent.trim();
             }
+
+            // Refresh data when returning to the tab after the interval
+            document.addEventListener('visibilitychange', async () => {
+                if (document.visibilityState === 'visible') {
+                    const now = Date.now();
+                    if (now - lastDataRefresh > DATA_REFRESH_INTERVAL) {
+                        await loadContent();
+                    }
+                }
+            });
         });
         
         // Add to Home Screen functionality
@@ -1585,7 +1606,7 @@
                 const m = attr.match(/showTab\('([^']+)'/);
                 if (m) activeTabName = m[1];
             }
-            await init();
+            await loadContent();
             // Restore the active tab and label
             const btnForTab = document.getElementById(`${activeTabName}-tab-btn`) || Array.from(document.querySelectorAll('.tab-btn')).find(b => (b.getAttribute('onclick')||'').includes(activeTabName));
             let label = btnForTab ? btnForTab.textContent.trim() : '';
