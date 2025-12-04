@@ -1,4 +1,3 @@
-# December Events
 
 ## Max Monday – Darumaka
 
