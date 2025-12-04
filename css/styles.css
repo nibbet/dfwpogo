@@ -682,6 +682,8 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
 .type-spotlight { background: #F2B90F; color: #1C3059; }
 .type-spotlight-hour { background: #F2B90F; color: #1C3059; }
 .type-community { background: #0F8C46; color: white; }
+.type-communityday { background: #0F8C46; color: white; }
+.type-community-day { background: #0F8C46; color: white; }
 .type-raid-day { background: #D95829; color: white; }
 .type-raid-hour { background: #D95829; color: white; } /* Coral-ish for urgency */
 .type-max-battle { background: #6E46A6; color: white; } /* Purple for major battles */
