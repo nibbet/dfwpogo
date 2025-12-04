@@ -1,4 +1,4 @@
-## Max Monday – Darumaka (Dynamax)  
+## Max Monday – Darumaka
 **Date:** December 1, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -61,7 +61,7 @@ The celebration continues with more chances to catch Community Day favorites!
   - High spawn rates  
 
 
-## Max Monday – Cryogonal (Dynamax)  
+## Max Monday – Cryogonal
 **Date:** December 8, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -95,7 +95,7 @@ Prepare your Lucky Eggs and stack that XP with this sturdy defender!
 Face the icy might of Kyurem in this special December raid hour!  
 
 
-## Max Monday – Kabuto (Dynamax)  
+## Max Monday – Kabuto
 **Date:** December 15, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -144,7 +144,7 @@ A focused day of Field Research featuring boosted encounters and themed rewards!
   - Exclusive bonuses  
 
 
-## Max Monday – Spheal (Dynamax)  
+## Max Monday – Spheal
 **Date:** December 22, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
@@ -196,7 +196,7 @@ Celebrate the season with boosted spawns and festive bonuses!
 The winter fun continues with more bonuses and seasonal features!  
 
 
-## Max Monday – Omanyte (Dynamax)  
+## Max Monday – Omanyte
 **Date:** December 29, 2025  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
