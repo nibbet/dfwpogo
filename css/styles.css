@@ -657,12 +657,12 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.event-card h3 {
-    color: var(--section-subheading);
-    transition: color 0.3s ease;
-}
-
-.event-card p {
+.event-card h3,
+.event-card p,
+.event-card .markdown-content,
+.event-card .markdown-content p,
+.event-card .markdown-content li,
+.event-card .markdown-content strong {
     color: var(--text-primary);
     transition: color 0.3s ease;
 }
@@ -676,33 +676,34 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
     font-size: 0.85rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
-.type-raid { background: #D95829; color: white; }
-.type-spotlight { background: #F2B90F; color: #1C3059; }
-.type-spotlight-hour { background: #F2B90F; color: #1C3059; }
-.type-community { background: #0F8C46; color: white; }
-.type-communityday { background: #0F8C46; color: white; }
-.type-community-day { background: #0F8C46; color: white; }
-.type-raid-day { background: #D95829; color: white; }
-.type-raid-hour { background: #D95829; color: white; } /* Coral-ish for urgency */
-.type-max-battle { background: #6E46A6; color: white; } /* Purple for major battles */
-.type-go-battle-league { background: #6E46A6; color: white; }
-.type-trade-day { background: #0F8C46; color: white; } /* Green for trading */
-.type-shadow-raid { background: #1C3059; color: white; } /* Dark navy */
-.type-g-max-battle { background: #6E46A6; color: white; } /* Legendary/rare */
-.type-raidhour { background: #D95829; color: white; }
-.type-maxbattle { background: #6E46A6; color: white; }
-.type-gobattleleague { background: #6E46A6; color: white; }
-.type-tradeday { background: #0F8C46; color: white; }
-.type-shadowraid { background: #1C3059; color: white; }
-.type-gmaxbattle { background: #6E46A6; color: white; }
-.type-research-day { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
-.type-researchday { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
-.type-research { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
-.type-weekend { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
-.type-weekendevent { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
-.type-weekend-event { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
+.type-raid { background: #D95829; }
+.type-spotlight { background: #c88800; }
+.type-spotlight-hour { background: #c88800; }
+.type-community { background: #0F8C46; }
+.type-communityday { background: #0F8C46; }
+.type-community-day { background: #0F8C46; }
+.type-raid-day { background: #D95829; }
+.type-raid-hour { background: #D95829; } /* Coral-ish for urgency */
+.type-max-battle { background: #6E46A6; } /* Purple for major battles */
+.type-go-battle-league { background: #6E46A6; }
+.type-trade-day { background: #0F8C46; } /* Green for trading */
+.type-shadow-raid { background: #1C3059; } /* Dark navy */
+.type-g-max-battle { background: #6E46A6; } /* Legendary/rare */
+.type-raidhour { background: #D95829; }
+.type-maxbattle { background: #6E46A6; }
+.type-gobattleleague { background: #6E46A6; }
+.type-tradeday { background: #0F8C46; }
+.type-shadowraid { background: #1C3059; }
+.type-gmaxbattle { background: #6E46A6; }
+.type-research-day { background: #1d7bb6; } /* Darker blue for contrast with white text */
+.type-researchday { background: #1d7bb6; }
+.type-research { background: #1d7bb6; }
+.type-weekend { background: #d75a0c; } /* Darker orange for contrast with white text */
+.type-weekendevent { background: #d75a0c; }
+.type-weekend-event { background: #d75a0c; }
 
 
 /* Campfire-specific styles */
