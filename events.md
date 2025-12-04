@@ -132,7 +132,7 @@ The white-hot Dragon returns—bring your strongest counters!
 ## Research Day  
 **Date:** December 20, 2025  
 **Time:** All Day  
-**Type:** Weekend Event  
+**Type:** Research Day
 **Featured Pokémon:** Special Research Encounters  
 
 A focused day of Field Research featuring boosted encounters and themed rewards!  

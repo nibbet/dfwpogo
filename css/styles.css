@@ -691,13 +691,18 @@ body.dark-mode .dark-mode-toggle .toggle-icon {
 .type-trade-day { background: #0F8C46; color: white; } /* Green for trading */
 .type-shadow-raid { background: #1C3059; color: white; } /* Dark navy */
 .type-g-max-battle { background: #6E46A6; color: white; } /* Legendary/rare */
-
 .type-raidhour { background: #D95829; color: white; }
 .type-maxbattle { background: #6E46A6; color: white; }
 .type-gobattleleague { background: #6E46A6; color: white; }
 .type-tradeday { background: #0F8C46; color: white; }
 .type-shadowraid { background: #1C3059; color: white; }
 .type-gmaxbattle { background: #6E46A6; color: white; }
+.type-research-day { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
+.type-researchday { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
+.type-research { background: #2D9CDB; color: #0F172A; } /* Cool blue for research days */
+.type-weekend { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
+.type-weekendevent { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
+.type-weekend-event { background: #F97316; color: #1F1308; } /* Warm orange for weekend events */
 
 /* Campfire-specific styles */
 /* Campfire ambassador badge: neutral style */
