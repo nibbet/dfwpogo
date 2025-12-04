@@ -33,6 +33,34 @@ Clear out your storage and load up on extra transfer candy with this fossil favo
 The Swords of Justice return for a legendary triple-feature raid night!  
 
 
+## Community Day – Day 1  
+**Date:** December 6, 2025  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Community Day  
+**Featured Pokémon:** All 2025 Community Day Pokémon  
+
+Kick off the annual recap event featuring every Community Day Pokémon from 2025!  
+
+- Special Features:  
+  - Increased Shiny rates  
+  - Exclusive moves available  
+  - Seasonal bonuses  
+
+
+## Community Day – Day 2  
+**Date:** December 7, 2025  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Community Day  
+**Featured Pokémon:** All 2025 Community Day Pokémon  
+
+The celebration continues with more chances to catch Community Day favorites!  
+
+- Special Features:  
+  - Additional bonuses  
+  - Exclusive moves  
+  - High spawn rates  
+
+
 ## Max Monday – Cryogonal (Dynamax)  
 **Date:** December 8, 2025  
 **Time:** 6:00 PM – 7:00 PM  
