@@ -12,6 +12,18 @@
     <meta name="apple-mobile-web-app-title" content="DFW PoGO">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-o9N1j7kCwWZ8zJkB8gE2S0ZL0Ydqg9O6bHsWv4fZlOs="
+        crossorigin=""
+    >
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-o5dR7A1mQiaxU9n32CuWHa3gwZMObn2yZk3xP2Vt7uM="
+        crossorigin=""
+        defer
+    ></script>
     <script>
         // Use marked defaults and enable GFM + line breaks
         marked.setOptions({
@@ -43,6 +55,7 @@
                 <button id="meetup-tab-btn" class="tab-btn" onclick="showTab('meetup', '📍 Meetup Locations')">📍 Meetup Locations</button>
                 <button class="tab-btn" onclick="showTab('campfire', '🔥 Campfire Groups')">🔥 Campfire Groups</button>
                 <button class="tab-btn" onclick="showTab('events', '📅 Pokémon Go Events')">📅 Pokémon Go Events</button>
+                <button id="locations-tab-btn" class="tab-btn" onclick="showTab('locations', '🗺️ Locations Map')">🗺️ Locations Map</button>
                 <button id="wallpapers-tab-btn" class="tab-btn" onclick="showTab('wallpapers', '🖼 Wallpapers')">🖼 Wallpapers</button>
             </div>
         </div>
@@ -52,6 +65,16 @@
                 <h2>Upcoming Events</h2>
                 <div id="events-list" class="event-grid">
                     <div class="loading">Loading events...</div>
+                </div>
+            </div>
+
+            <div id="locations-tab" class="tab-content" style="display:none;">
+                <h2>Locations Map</h2>
+                <div class="locations-map-wrapper">
+                    <div id="locations-map" class="locations-map">Loading map...</div>
+                </div>
+                <div id="locations-list" class="locations-list markdown-content">
+                    <div class="loading">Loading locations...</div>
                 </div>
             </div>
 
@@ -121,6 +144,9 @@
         let meetupData = '';
         let signatureTitle = localStorage.getItem('lastSignatureTitle') || 'Signature Events';
         let meetupTitle = localStorage.getItem('lastMeetupTitle') || 'Meetup Locations';
+        let locationsData = [];
+        let locationsMap = null;
+        let locationsLayer = null;
 
         // Constants for localStorage
         const STORAGE_KEYS = {
@@ -199,6 +225,11 @@
                 console.error('Failed to load campfire.md');
             }
 
+            // Load locations map data
+            const locationsMarkdown = await loadMarkdownFile('locations.md');
+            locationsData = parseLocations(locationsMarkdown || '');
+            renderLocations();
+
             // Load wallpapers (optional)
             const wallpapersMarkdown = await loadMarkdownFile('wallpapers.md');
             if (wallpapersMarkdown) {
@@ -263,6 +294,42 @@
                 }
             });
             return events;
+        }
+
+        // Parse locations markdown into objects with lat/lng
+        function parseLocations(markdown) {
+            if (!markdown) return [];
+            const sections = markdown.split(/^###\s+/m).filter(Boolean);
+            const results = [];
+            sections.forEach(block => {
+                const lines = block.trim().split('\n');
+                if (!lines.length) return;
+                const name = lines[0].trim();
+                const body = lines.slice(1).join('\n');
+                // Try multiple formats
+                const latMatch = body.match(/lat\s*[:=]\s*([\d.-]+)/i);
+                const lngMatch = body.match(/(lng|lon|long|longitude)\s*[:=]\s*([\d.-]+)/i);
+                const coordMatch = body.match(/coords?\s*[:=]\s*([\d.-]+)\s*,\s*([\d.-]+)/i);
+                let lat = null, lng = null;
+                if (coordMatch) {
+                    lat = parseFloat(coordMatch[1]);
+                    lng = parseFloat(coordMatch[2]);
+                } else {
+                    if (latMatch) lat = parseFloat(latMatch[1]);
+                    if (lngMatch) lng = parseFloat(lngMatch[2]);
+                }
+                const addressMatch = body.match(/address\s*[:=]\s*(.+)/i);
+                const notesMatch = body.match(/notes?\s*[:=]\s*(.+)/i);
+                const desc = body.replace(/^(?:[-*]\s*)?(lat|lng|lon|long|longitude|coords?|address|notes?)\s*[:=].*$/gmi, '').trim();
+                results.push({
+                    name,
+                    lat: isFinite(lat) ? lat : null,
+                    lng: isFinite(lng) ? lng : null,
+                    address: addressMatch ? addressMatch[1].trim() : '',
+                    notes: notesMatch ? notesMatch[1].trim() : desc
+                });
+            });
+            return results;
         }
 
         function parseSignatureEvent(markdown) {
@@ -1186,6 +1253,70 @@
 
             // Enhance any tables for better mobile behavior
             applyTableEnhancements(container);
+        }
+
+        function renderLocations() {
+            const listEl = document.getElementById('locations-list');
+            const mapEl = document.getElementById('locations-map');
+            if (!listEl || !mapEl) return;
+
+            if (!locationsData || !locationsData.length) {
+                listEl.innerHTML = '<div class="error">No locations found. Please ensure locations.md exists with entries like: <pre>### Name\n- Lat: 32.77\n- Lng: -96.79\n- Address: 123 Main St\n- Notes: Optional</pre></div>';
+                mapEl.innerHTML = 'No locations to display yet.';
+                return;
+            }
+
+            // Initialize map once Leaflet is available
+            if (typeof L === 'undefined') {
+                mapEl.innerHTML = 'Map failed to load (Leaflet unavailable).';
+                return;
+            }
+            if (!locationsMap) {
+                locationsMap = L.map(mapEl, {
+                    zoomControl: true,
+                }).setView([32.7767, -96.7970], 9); // Default: Dallas area
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(locationsMap);
+            }
+            if (locationsLayer) {
+                locationsLayer.remove();
+            }
+            locationsLayer = L.layerGroup().addTo(locationsMap);
+
+            const markers = [];
+            locationsData.forEach(loc => {
+                if (loc.lat != null && loc.lng != null) {
+                    const marker = L.marker([loc.lat, loc.lng]);
+                    const popupParts = [
+                        `<strong>${loc.name}</strong>`,
+                        loc.address ? `<div>${loc.address}</div>` : '',
+                        loc.notes ? `<div style="margin-top:4px;">${loc.notes}</div>` : ''
+                    ].filter(Boolean);
+                    marker.bindPopup(popupParts.join(''));
+                    marker.addTo(locationsLayer);
+                    markers.push(marker);
+                }
+            });
+
+            if (markers.length) {
+                const group = L.featureGroup(markers);
+                locationsMap.fitBounds(group.getBounds(), { padding: [30, 30] });
+            } else {
+                locationsMap.setView([32.7767, -96.7970], 9);
+            }
+
+            // Render list fallback
+            listEl.innerHTML = locationsData.map(loc => {
+                const coords = (loc.lat != null && loc.lng != null) ? `${loc.lat}, ${loc.lng}` : 'Coordinates not provided';
+                return `
+                    <div class="location-card">
+                        <h3>${loc.name}</h3>
+                        <p>${loc.address || loc.notes || ''}</p>
+                        <p class="location-coords">${coords}</p>
+                    </div>
+                `;
+            }).join('');
         }
 
         function showTab(tabName, tabLabel) {
