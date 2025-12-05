@@ -12,18 +12,6 @@
     <meta name="apple-mobile-web-app-title" content="DFW PoGO">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-o9N1j7kCwWZ8zJkB8gE2S0ZL0Ydqg9O6bHsWv4fZlOs="
-        crossorigin=""
-    >
-    <script
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-o5dR7A1mQiaxU9n32CuWHa3gwZMObn2yZk3xP2Vt7uM="
-        crossorigin=""
-        defer
-    ></script>
     <script>
         // Use marked defaults and enable GFM + line breaks
         marked.setOptions({
@@ -69,11 +57,8 @@
             </div>
 
             <div id="locations-tab" class="tab-content" style="display:none;">
-                <h2>Locations Map</h2>
-                <div class="locations-map-wrapper">
-                    <div id="locations-map" class="locations-map">Loading map...</div>
-                </div>
-                <div id="locations-list" class="locations-list markdown-content">
+                <h2>Locations</h2>
+                <div id="locations-list" class="locations-list">
                     <div class="loading">Loading locations...</div>
                 </div>
             </div>
@@ -228,6 +213,7 @@
             // Load locations map data
             const locationsMarkdown = await loadMarkdownFile('locations.md');
             locationsData = parseLocations(locationsMarkdown || '');
+            console.log('Locations parsed:', locationsData.length, locationsData);
             renderLocations();
 
             // Load wallpapers (optional)
@@ -1257,68 +1243,28 @@
 
         function renderLocations() {
             const listEl = document.getElementById('locations-list');
-            const mapEl = document.getElementById('locations-map');
-            if (!listEl || !mapEl) return;
+            if (!listEl) return;
 
             if (!locationsData || !locationsData.length) {
                 listEl.innerHTML = '<div class="error">No locations found. Please ensure locations.md exists with entries like: <pre>### Name\n- Lat: 32.77\n- Lng: -96.79\n- Address: 123 Main St\n- Notes: Optional</pre></div>';
-                mapEl.innerHTML = 'No locations to display yet.';
                 return;
             }
 
-            // Initialize map once Leaflet is available
-            if (typeof L === 'undefined') {
-                if (locationsRenderAttempts < 5) {
-                    locationsRenderAttempts += 1;
-                    setTimeout(renderLocations, 300);
-                } else {
-                    mapEl.innerHTML = 'Map failed to load (Leaflet unavailable).';
-                }
-                return;
-            }
-            if (!locationsMap) {
-                locationsMap = L.map(mapEl, {
-                    zoomControl: true,
-                }).setView([32.7767, -96.7970], 9); // Default: Dallas area
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(locationsMap);
-            }
-            if (locationsLayer) {
-                locationsLayer.remove();
-            }
-            locationsLayer = L.layerGroup().addTo(locationsMap);
-
-            const markers = [];
-            locationsData.forEach(loc => {
-                if (loc.lat != null && loc.lng != null) {
-                    const marker = L.marker([loc.lat, loc.lng]);
-                    const popupParts = [
-                        `<strong>${loc.name}</strong>`,
-                        loc.address ? `<div>${loc.address}</div>` : '',
-                        loc.notes ? `<div style="margin-top:4px;">${loc.notes}</div>` : ''
-                    ].filter(Boolean);
-                    marker.bindPopup(popupParts.join(''));
-                    marker.addTo(locationsLayer);
-                    markers.push(marker);
-                }
-            });
-
-            if (markers.length) {
-                const group = L.featureGroup(markers);
-                locationsMap.fitBounds(group.getBounds(), { padding: [30, 30] });
-            } else {
-                locationsMap.setView([32.7767, -96.7970], 9);
-            }
-
-            // Render list fallback
+            // Render simple list with map links
             listEl.innerHTML = locationsData.map(loc => {
-                const coords = (loc.lat != null && loc.lng != null) ? `${loc.lat}, ${loc.lng}` : 'Coordinates not provided';
+                const hasCoords = loc.lat != null && loc.lng != null;
+                const mapsUrl = hasCoords 
+                    ? `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`
+                    : loc.address 
+                        ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address)}`
+                        : null;
+                
                 return `
                     <div class="location-card">
                         <h3>${loc.name}</h3>
-                        <p>${loc.address || loc.notes || ''}</p>
-                        <p class="location-coords">${coords}</p>
+                        ${loc.address ? `<p class="location-address">📍 ${loc.address}</p>` : ''}
+                        ${loc.notes ? `<p class="location-notes">${loc.notes}</p>` : ''}
+                        ${mapsUrl ? `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="location-map-link">🗺️ Open in Maps</a>` : ''}
                     </div>
                 `;
             }).join('');
@@ -1339,24 +1285,6 @@
             );
             if (clickedButton) {
                 clickedButton.classList.add('active');
-            }
-
-            // If locations tab is shown, (re)render and fix map sizing after becoming visible
-            if (tabName === 'locations') {
-                renderLocations();
-                setTimeout(() => {
-                    if (locationsMap) {
-                        locationsMap.invalidateSize();
-                        if (locationsLayer && locationsLayer.getLayers().length) {
-                            try {
-                                const group = L.featureGroup(locationsLayer.getLayers());
-                                locationsMap.fitBounds(group.getBounds(), { padding: [30, 30] });
-                            } catch (e) {
-                                console.warn('Could not fit bounds for locations map', e);
-                            }
-                        }
-                    }
-                }, 200);
             }
 
             // Update mobile nav toggle text
