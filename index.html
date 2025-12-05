@@ -1268,7 +1268,12 @@
 
             // Initialize map once Leaflet is available
             if (typeof L === 'undefined') {
-                mapEl.innerHTML = 'Map failed to load (Leaflet unavailable).';
+                if (locationsRenderAttempts < 5) {
+                    locationsRenderAttempts += 1;
+                    setTimeout(renderLocations, 300);
+                } else {
+                    mapEl.innerHTML = 'Map failed to load (Leaflet unavailable).';
+                }
                 return;
             }
             if (!locationsMap) {
@@ -1334,6 +1339,24 @@
             );
             if (clickedButton) {
                 clickedButton.classList.add('active');
+            }
+
+            // If locations tab is shown, (re)render and fix map sizing after becoming visible
+            if (tabName === 'locations') {
+                renderLocations();
+                setTimeout(() => {
+                    if (locationsMap) {
+                        locationsMap.invalidateSize();
+                        if (locationsLayer && locationsLayer.getLayers().length) {
+                            try {
+                                const group = L.featureGroup(locationsLayer.getLayers());
+                                locationsMap.fitBounds(group.getBounds(), { padding: [30, 30] });
+                            } catch (e) {
+                                console.warn('Could not fit bounds for locations map', e);
+                            }
+                        }
+                    }
+                }, 200);
             }
 
             // Update mobile nav toggle text
