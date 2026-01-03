@@ -3,7 +3,7 @@
 
 **Date:** January 4, 2026  
 **Time:** 2:00 PM – 5:00 PM  
-**Type:** Community Day Classic  
+**Type:** Community Day  
 **Featured Pokémon:** Piplup  
 
 Relive a fan-favorite Community Day with boosted shiny rates and exclusive evolution moves.
