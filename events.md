@@ -1,232 +1,349 @@
 
-## Max Monday – Darumaka
+## Community Day Classic – Piplup  
 
-**Date:** December 1, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Max Battle  
-**Featured Pokémon:** Darumaka  
-
-Heat things up as Darumaka takes over the Power Spots for the first December Max Monday!  
-
-- Difficulty: ⭐  
-- Requirements:  
-  - Trainer Level 35+  
-  - Strong Water & Rock counters  
-- Special Features:  
-  - Increased Max Battle rewards  
-  - Chance for boosted IVs  
-
-## Spotlight Hour – Cranidos  
-
-**Date:** December 2, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour  
-**Bonus:** 2× Transfer Candy  
-
-Clear out your storage and load up on extra transfer candy with this fossil favorite!  
-
-## Raid Hour – Cobalion, Terrakion, Virizion  
-
-**Date:** December 3, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Raid Hour  
-**Featured Pokémon:** Cobalion, Terrakion, Virizion  
-
-The Swords of Justice return for a legendary triple-feature raid night!  
-
-## Community Day – Day 1  
-
-**Date:** December 6, 2025  
+**Date:** January 4, 2026  
 **Time:** 2:00 PM – 5:00 PM  
-**Type:** Community Day  
-**Featured Pokémon:** All 2025 Community Day Pokémon  
+**Type:** Community Day Classic  
+**Featured Pokémon:** Piplup  
 
-Kick off the annual recap event featuring every Community Day Pokémon from 2025!  
+Relive a fan-favorite Community Day with boosted shiny rates and exclusive evolution moves.
 
 - Special Features:  
   - Increased Shiny rates  
-  - Exclusive moves available  
-  - Seasonal bonuses  
+  - Exclusive move on evolution  
+  - Extended Lure duration  
 
-## Community Day – Day 2  
 
-**Date:** December 7, 2025  
-**Time:** 2:00 PM – 5:00 PM  
-**Type:** Community Day  
-**Featured Pokémon:** All 2025 Community Day Pokémon  
 
-The celebration continues with more chances to catch Community Day favorites!  
+## Max Monday – Drampa  
 
-- Special Features:  
-  - Additional bonuses  
-  - Exclusive moves  
-  - High spawn rates  
-
-## Max Monday – Cryogonal
-
-**Date:** December 8, 2025  
+**Date:** January 5, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
-**Featured Pokémon:** Cryogonal  
+**Featured Pokémon:** Drampa  
 
-Brace for the cold as Cryogonal crystallizes into the Dynamax spotlight!  
+Drampa enters the Max Battle rotation, bringing Dragon-type pressure to Power Spots.
 
 - Difficulty: ⭐⭐  
 - Requirements:  
   - Trainer Level 35+  
-  - Fire, Rock, and Fighting teams  
-- Special Features:  
-  - Winter-themed rewards  
+  - Ice & Dragon counters  
 
-## Spotlight Hour – Shieldon  
 
-**Date:** December 9, 2025  
+
+## Spotlight Hour – Barboach  
+
+**Date:** January 6, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
 **Bonus:** 2× Catch XP  
 
-Prepare your Lucky Eggs and stack that XP with this sturdy defender!  
+Ideal hour to stack XP quickly with fast catches.
 
-## Raid Hour – Kyurem  
 
-**Date:** December 10, 2025  
+
+## Raid Hour – Genesect (Burn / Chill Drive)  
+
+**Date:** January 7, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
-**Featured Pokémon:** Kyurem  
+**Featured Pokémon:** Genesect  
 
-Face the icy might of Kyurem in this special December raid hour!  
+Genesect rotates through special Drives—optimize teams and target needed variants.
 
-## Max Monday – Kabuto
 
-**Date:** December 15, 2025  
+
+## Raid Day – Kyurem Fusion  
+
+**Date:** January 10, 2026  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Raid Day  
+**Featured Pokémon:** Kyurem (Fusion Forms)  
+
+A focused raid window featuring Kyurem’s fusion power.
+
+- Special Features:  
+  - Increased Raid spawns  
+  - Free Raid Passes  
+
+
+
+## Max Monday – Caterpie  
+
+**Date:** January 12, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
-**Featured Pokémon:** Kabuto  
+**Featured Pokémon:** Caterpie  
 
-This prehistoric powerhouse emerges from the depths—revived and Dynamaxed!  
-
-- Difficulty: ⭐⭐  
-- Requirements:  
-  - Trainer Level 35+  
-  - Grass & Electric counters  
-- Special Features:  
-  - Fossil-themed bonus drops  
-
-## Spotlight Hour – Mienfoo  
-
-**Date:** December 16, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Spotlight Hour  
-**Bonus:** 2× Catch Candy  
-
-Sharpen your catching skills and double up on candy with this martial master!  
-
-## Raid Hour – Reshiram  
-
-**Date:** December 17, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Raid Hour  
-**Featured Pokémon:** Reshiram  
-
-The white-hot Dragon returns—bring your strongest counters!  
-
-## Research Day  
-
-**Date:** December 20, 2025  
-**Time:** All Day  
-**Type:** Research Day
-**Featured Pokémon:** Special Research Encounters  
-
-A focused day of Field Research featuring boosted encounters and themed rewards!  
-
-- Requirements:  
-  - Complete limited Research tasks  
-- Special Features:  
-  - Increased encounter variety  
-  - Exclusive bonuses  
-
-## Max Monday – Spheal
-
-**Date:** December 22, 2025  
-**Time:** 6:00 PM – 7:00 PM  
-**Type:** Max Battle  
-**Featured Pokémon:** Spheal  
-
-Roll into winter with Spheal as it makes its Dynamax debut!  
+Low-difficulty Max Battle, ideal for newer trainers.
 
 - Difficulty: ⭐  
 - Requirements:  
   - Trainer Level 30+  
-  - Electric & Grass counters  
-- Special Features:  
-  - Holiday-themed rewards  
 
-## Spotlight Hour – Spheal  
 
-**Date:** December 23, 2025  
+
+## Spotlight Hour – Mareep  
+
+**Date:** January 13, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
 **Bonus:** 2× Evolution XP  
 
-Time to evolve and power-level your way through the holidays!  
+Prime opportunity to evolve and power-level efficiently.
 
-## Raid Hour – Zekrom  
 
-**Date:** December 24, 2025  
+
+## Raid Hour – Genesect (Burn / Chill Drive)  
+
+**Date:** January 14, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
-**Featured Pokémon:** Zekrom  
+**Featured Pokémon:** Genesect  
 
-Charge into Christmas Eve with one of the strongest Electric attackers in the game!  
+Second January appearance—clean up unfinished raids.
 
-## Winter Weekend – Day 1  
 
-**Date:** December 27, 2025  
-**Time:** All Day  
-**Type:** Weekend Event  
-**Featured Pokémon:** Winter Holiday Pokémon  
 
-Celebrate the season with boosted spawns and festive bonuses!  
+## Community Day – Grookey  
 
-## Winter Weekend – Day 2  
+**Date:** January 18, 2026  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Community Day  
+**Featured Pokémon:** Grookey  
 
-**Date:** December 28, 2025  
-**Time:** All Day  
-**Type:** Weekend Event  
-**Featured Pokémon:** Winter Holiday Pokémon  
+The Galar starter takes the spotlight with boosted shinies and exclusive moves.
 
-The winter fun continues with more bonuses and seasonal features!  
 
-## Max Monday – Omanyte
 
-**Date:** December 29, 2025  
+## Max Monday – Beldum  
+
+**Date:** January 19, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Max Battle  
-**Featured Pokémon:** Omanyte  
+**Featured Pokémon:** Beldum  
 
-This ancient spiral returns to dominate Max Monday—don’t get washed away!  
+High-value Max Battle featuring a top-tier evolution line.
 
-- Difficulty: ⭐⭐  
-- Requirements:  
-  - Trainer Level 35+  
-  - Grass & Electric counters  
-- Special Features:  
-  - Bonus Stardust rewards  
 
-## Spotlight Hour – Delibird  
 
-**Date:** December 30, 2025  
+## Spotlight Hour – Hatenna  
+
+**Date:** January 20, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Spotlight Hour  
+**Bonus:** 2× Transfer Candy  
+
+Perfect for clearing storage and optimizing candy flow.
+
+
+
+## Raid Hour – Thundurus  
+
+**Date:** January 21, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Raid Hour  
+**Featured Pokémon:** Thundurus (Incarnate Forme)  
+
+Electric powerhouse returns—Ice and Rock counters recommended.
+
+
+
+## Shadow Raid Day  
+
+**Date:** January 24, 2026  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Raid Day  
+**Featured Pokémon:** Shadow Raids  
+
+Shadow Pokémon dominate gyms during this limited raid window.
+
+
+
+## Max Monday – Roggenrola  
+
+**Date:** January 26, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Max Battle  
+**Featured Pokémon:** Roggenrola  
+
+Solid Rock-type Max Battle with long-term evolution value.
+
+
+
+## Spotlight Hour – Foongus  
+
+**Date:** January 27, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Spotlight Hour  
 **Bonus:** 2× Catch Stardust  
 
-Load up on Stardust as Delibird spreads holiday cheer!  
+One of January’s best Stardust farming hours.
 
-## Raid Hour – Blacephalon  
 
-**Date:** December 31, 2025  
+
+## Raid Hour – Tornadus  
+
+**Date:** January 28, 2026  
 **Time:** 6:00 PM – 7:00 PM  
 **Type:** Raid Hour  
-**Featured Pokémon:** Blacephalon  
+**Featured Pokémon:** Tornadus (Incarnate Forme)  
 
-Ring in the New Year with the explosive Ultra Beast Blacephalon!  
+Final January legendary raid hour.
+
+
+
+# February 2026
+
+
+
+## Max Monday – Wooper  
+
+**Date:** February 2, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Max Battle  
+**Featured Pokémon:** Wooper  
+
+Accessible Max Battle with strong PvP evolution potential.
+
+
+
+## Spotlight Hour – Spheal  
+
+**Date:** February 3, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Spotlight Hour  
+**Bonus:** 2× Catch XP  
+
+Fast catches and consistent XP gains.
+
+
+
+## Raid Hour – Tornadus  
+
+**Date:** February 4, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Raid Hour  
+**Featured Pokémon:** Tornadus (Therian Forme)  
+
+Higher-attack Therian forme hits gyms.
+
+
+
+## Max Monday – Drilbur  
+
+**Date:** February 9, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Max Battle  
+**Featured Pokémon:** Drilbur  
+
+Priority Ground-type investment opportunity.
+
+
+
+## Spotlight Hour – Spritzee  
+
+**Date:** February 10, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Spotlight Hour  
+**Bonus:** 2× Catch Candy  
+
+Fairy-type candy farming at scale.
+
+
+
+## Raid Hour – Thundurus  
+
+**Date:** February 11, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Raid Hour  
+**Featured Pokémon:** Thundurus (Therian Forme)  
+
+Top-tier Electric attacker returns.
+
+
+
+## Valentine’s Event  
+
+**Date:** February 14–18, 2026  
+**Time:** All Day  
+**Type:** Seasonal Event  
+**Featured Pokémon:** Valentine-themed spawns  
+
+Celebrate friendship with Fairy-focused bonuses and encounters.
+
+
+
+## Max Monday – Togetic  
+
+**Date:** February 16, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Max Battle  
+**Featured Pokémon:** Togetic  
+
+Valuable evolution chain with PvP and raid relevance.
+
+
+
+## Spotlight Hour – Alomomola  
+
+**Date:** February 17, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Spotlight Hour  
+**Bonus:** 2× Transfer Candy  
+
+Efficient candy conversion hour.
+
+
+
+## Raid Hour – Landorus  
+
+**Date:** February 18, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Raid Hour  
+**Featured Pokémon:** Landorus (Therian Forme)  
+
+One of the strongest Ground-type legendaries returns.
+
+
+
+## Community Day – Fuecoco  
+
+**Date:** February 21, 2026  
+**Time:** 2:00 PM – 5:00 PM  
+**Type:** Community Day  
+**Featured Pokémon:** Fuecoco  
+
+Paldea’s Fire starter takes center stage with exclusive moves and boosted shinies.
+
+
+
+## Max Monday – Ralts  
+
+**Date:** February 23, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Max Battle  
+**Featured Pokémon:** Ralts  
+
+High-demand Max Battle with multiple elite evolutions.
+
+
+
+## Spotlight Hour – Minccino  
+
+**Date:** February 24, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Spotlight Hour  
+**Bonus:** 2× Catch Stardust  
+
+Top-tier Stardust farming hour.
+
+
+
+## Raid Hour – Landorus  
+
+**Date:** February 25, 2026  
+**Time:** 6:00 PM – 7:00 PM  
+**Type:** Raid Hour  
+**Featured Pokémon:** Landorus (Incarnate Forme)  
+
